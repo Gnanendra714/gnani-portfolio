@@ -17,8 +17,11 @@ const connectRoutes = require("./routes/connectRoutes");
 const app = express();
 
 // MIDDLEWARE
-
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://gnanendraganne.vercel.app",
+  }),
+);
 
 app.use(express.json());
 
