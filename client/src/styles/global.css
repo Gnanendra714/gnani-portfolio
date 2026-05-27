@@ -1,0 +1,170 @@
+/* ========================= */
+/* RESET */
+/* ========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+}
+
+/* ========================= */
+/* HTML */
+/* ========================= */
+
+html {
+  scroll-behavior: smooth;
+
+  overflow-x: hidden;
+}
+
+/* ========================= */
+/* BODY */
+/* ========================= */
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+
+  background:
+    radial-gradient(circle at top, rgba(212, 175, 55, 0.03), transparent 40%),
+    #020617;
+
+  color: #f8fafc;
+
+  -webkit-font-smoothing: antialiased;
+
+  text-rendering: optimizeLegibility;
+}
+
+/* ========================= */
+/* LINKS */
+/* ========================= */
+
+a {
+  text-decoration: none;
+
+  color: inherit;
+}
+
+/* ========================= */
+/* LIST */
+/* ========================= */
+
+ul {
+  list-style: none;
+}
+
+/* ========================= */
+/* BUTTONS */
+/* ========================= */
+
+button {
+  cursor: pointer;
+
+  border: none;
+
+  font-family: inherit;
+
+  background: none;
+}
+
+/* ========================= */
+/* GLOBAL SECTION SETTINGS */
+/* ========================= */
+
+section {
+  position: relative;
+
+  overflow-x: hidden;
+
+  scroll-margin-top: 70px;
+}
+
+/* ========================= */
+/* IMAGE OPTIMIZATION */
+/* ========================= */
+
+img {
+  max-width: 100%;
+
+  display: block;
+}
+
+/* ========================= */
+/* TEXT SELECTION */
+/* ========================= */
+
+::selection {
+  background: rgba(212, 175, 55, 0.25);
+
+  color: #f8fafc;
+}
+
+/* ========================= */
+/* SCROLLBAR */
+/* ========================= */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #020617;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.25);
+
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 175, 55, 0.45);
+}
+
+/* ========================= */
+/* COMMON OVERFLOW FIX */
+/* ========================= */
+
+.timeline-section,
+.about-section,
+.skills-section,
+.projects-section,
+.connect-section,
+.hero-section {
+  overflow-x: hidden;
+}
+
+/* ========================= */
+/* TABLET */
+/* ========================= */
+
+@media (max-width: 768px) {
+  section {
+    scroll-margin-top: 70px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+}
+
+/* ========================= */
+/* SMALL MOBILE */
+/* ========================= */
+
+@media (max-width: 480px) {
+  section {
+    scroll-margin-top: 70px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+}
