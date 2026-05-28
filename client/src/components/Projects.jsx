@@ -61,7 +61,7 @@ function Projects() {
               <p>{project.description}</p>
 
               <div className="tech-stack">
-                {project.techStack.map((item, index) => (
+                {project.tools?.map((item, index) => (
                   <span key={index}>{item}</span>
                 ))}
               </div>

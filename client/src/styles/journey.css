@@ -309,3 +309,413 @@
     line-height: 1.45;
   }
 }
+
+/* MODAL OVERLAY */
+
+.journey-modal-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.75);
+
+  backdrop-filter: blur(10px);
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 40px;
+
+  z-index: 999;
+}
+
+/* MODAL */
+
+.journey-modal {
+  width: 100%;
+
+  max-width: 850px;
+
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  background: #0f172a;
+
+  border: 1px solid #1e293b;
+
+  border-radius: 28px;
+
+  padding: 50px;
+
+  position: relative;
+
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+}
+
+/* CLOSE BUTTON */
+
+.modal-close {
+  position: absolute;
+
+  top: 24px;
+
+  right: 24px;
+
+  width: 42px;
+
+  height: 42px;
+
+  border-radius: 50%;
+
+  border: none;
+
+  background: #1e293b;
+
+  color: white;
+
+  cursor: pointer;
+
+  font-size: 18px;
+
+  transition: 0.3s;
+}
+
+.modal-close:hover {
+  background: #ef4444;
+}
+
+/* YEAR */
+
+.modal-year {
+  color: #eab308;
+
+  letter-spacing: 4px;
+
+  font-size: 13px;
+}
+
+/* TITLE */
+
+.journey-modal h2 {
+  font-size: 52px;
+
+  color: #eab308;
+
+  margin: 12px 0 24px;
+}
+
+/* STORY */
+
+.modal-story {
+  color: #cbd5e1;
+
+  line-height: 2;
+
+  font-size: 17px;
+
+  margin-bottom: 35px;
+}
+
+/* OVERLAY */
+
+.journey-modal-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.78);
+
+  backdrop-filter: blur(10px);
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 30px;
+
+  z-index: 999;
+}
+
+/* MODAL */
+
+.journey-modal {
+  width: 100%;
+
+  max-width: 760px;
+
+  max-height: 88vh;
+
+  overflow-y: auto;
+
+  background: #0f172a;
+
+  border: 1px solid #1e293b;
+
+  border-radius: 26px;
+
+  padding: 42px;
+
+  position: relative;
+
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+}
+
+/* CLOSE */
+
+.modal-close {
+  position: absolute;
+
+  top: 20px;
+
+  right: 20px;
+
+  width: 40px;
+
+  height: 40px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: #1e293b;
+
+  color: white;
+
+  cursor: pointer;
+
+  font-size: 16px;
+
+  transition: 0.3s;
+}
+
+.modal-close:hover {
+  background: #ef4444;
+}
+
+/* YEAR */
+
+.modal-year {
+  color: #eab308;
+
+  letter-spacing: 4px;
+
+  font-size: 11px;
+
+  font-weight: 500;
+}
+
+/* TITLE */
+
+.journey-modal h2 {
+  color: #eab308;
+
+  font-size: 3.2rem;
+
+  line-height: 1.05;
+
+  margin: 12px 0 18px;
+
+  font-family: Georgia, serif;
+
+  font-weight: 500;
+}
+
+/* DESCRIPTION */
+
+.modal-description {
+  color: #94a3b8;
+
+  font-size: 0.95rem;
+
+  line-height: 1.9;
+
+  margin-bottom: 34px;
+
+  max-width: 90%;
+}
+
+/* SECTIONS */
+
+.modal-section {
+  margin-bottom: 32px;
+}
+
+.modal-section h3 {
+  color: white;
+
+  font-size: 1.6rem;
+
+  margin-bottom: 14px;
+}
+
+/* TAGS */
+
+.modal-tags {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+}
+
+.modal-tags span {
+  background: #1e293b;
+
+  color: #eab308;
+
+  padding: 9px 16px;
+
+  border-radius: 999px;
+
+  font-size: 13px;
+}
+
+/* ACHIEVEMENTS */
+
+.modal-section ul {
+  padding-left: 20px;
+
+  color: #94a3b8;
+
+  line-height: 2;
+
+  font-size: 15px;
+}
+
+/* FUTURE TEXT */
+
+.modal-section p {
+  color: #cbd5e1;
+
+  line-height: 1.9;
+
+  font-size: 15px;
+}
+
+/* =========================
+   MODAL RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+  .journey-modal-overlay {
+    padding: 18px;
+  }
+
+  .journey-modal {
+    padding: 28px 22px;
+
+    border-radius: 22px;
+
+    max-height: 88vh;
+  }
+
+  .modal-close {
+    width: 36px;
+
+    height: 36px;
+
+    top: 18px;
+
+    right: 18px;
+
+    font-size: 15px;
+  }
+
+  .modal-year {
+    font-size: 11px;
+
+    letter-spacing: 3px;
+  }
+
+  .journey-modal h2 {
+    font-size: 2rem;
+
+    line-height: 1.1;
+
+    margin: 10px 0 18px;
+  }
+
+  .modal-story {
+    font-size: 0.92rem;
+
+    line-height: 1.8;
+
+    margin-bottom: 28px;
+  }
+
+  .modal-section {
+    margin-bottom: 28px;
+  }
+
+  .modal-section h3 {
+    font-size: 18px;
+
+    margin-bottom: 12px;
+  }
+
+  .modal-tags {
+    gap: 10px;
+  }
+
+  .modal-tags span {
+    padding: 8px 14px;
+
+    font-size: 13px;
+  }
+
+  .modal-section ul {
+    padding-left: 18px;
+
+    line-height: 1.8;
+
+    font-size: 14px;
+  }
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 480px) {
+  .journey-modal-overlay {
+    padding: 12px;
+  }
+
+  .journey-modal {
+    padding: 22px 18px;
+
+    border-radius: 18px;
+  }
+
+  .journey-modal h2 {
+    font-size: 1.6rem;
+  }
+
+  .modal-story {
+    font-size: 0.84rem;
+
+    line-height: 1.7;
+  }
+
+  .modal-section h3 {
+    font-size: 16px;
+  }
+
+  .modal-tags span {
+    font-size: 12px;
+
+    padding: 7px 12px;
+  }
+
+  .modal-close {
+    width: 32px;
+
+    height: 32px;
+
+    font-size: 13px;
+  }
+}

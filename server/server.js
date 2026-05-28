@@ -14,12 +14,21 @@ const projectRoutes = require("./routes/projectRoutes");
 const journeyRoutes = require("./routes/journeyRoutes");
 const connectRoutes = require("./routes/connectRoutes");
 
+const authRoutes = require("./routes/authRoutes");
+const analyticsRoutes = require("./routes/analyticsRoutes");
+const messageRoutes = require("./routes/messageRoutes");
+
 const app = express();
 
 // MIDDLEWARE
 app.use(
   cors({
-    origin: "https://gnanendraganne.vercel.app",
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:5174",
+      "https://gnanendraganne.vercel.app",
+    ],
+    credentials: true,
   }),
 );
 
@@ -34,6 +43,9 @@ app.use("/api/skills", skillsRoutes);
 app.use("/api/projects", projectRoutes);
 app.use("/api/journey", journeyRoutes);
 app.use("/api/connect", connectRoutes);
+
+app.use("/api/auth", authRoutes);
+app.use("/api/messages", messageRoutes);
 
 // PORT
 

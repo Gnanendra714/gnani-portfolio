@@ -1,30 +1,35 @@
 const mongoose = require("mongoose");
 
-const aboutCardSchema = new mongoose.Schema({
-  icon: String,
+const aboutSchema = new mongoose.Schema(
+  {
+    subtitle: {
+      type: String,
+      default: "ABOUT ME",
+    },
 
-  title: String,
+    heading: {
+      type: String,
+      required: true,
+    },
 
-  description: String,
-});
+    description: {
+      type: String,
+      required: true,
+    },
 
-const aboutSchema = new mongoose.Schema({
-  subtitle: {
-    type: String,
-    required: true,
+    cards: [
+      {
+        icon: String,
+
+        title: String,
+
+        description: String,
+      },
+    ],
   },
-
-  heading: {
-    type: String,
-    required: true,
+  {
+    timestamps: true,
   },
-
-  description: {
-    type: String,
-    required: true,
-  },
-
-  cards: [aboutCardSchema],
-});
+);
 
 module.exports = mongoose.model("About", aboutSchema);

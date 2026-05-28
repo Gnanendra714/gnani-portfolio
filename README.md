@@ -1,182 +1,225 @@
-# ♛ GNANI PORTFOLIO CMS
+# Gnani Portfolio V2 🚀
 
-A futuristic full-stack portfolio and content management platform built using React, Node.js, Express, MongoDB, and modern frontend animations.
+A fully dynamic full-stack developer portfolio with a custom-built CMS dashboard for real-time content management.
+
+This project is designed as a scalable personal operating system — combining portfolio presentation, admin content management, journey tracking, and dynamic UI architecture.
 
 ---
 
-# 🚀 Features
+# ✨ Features
 
-## 🌐 Dynamic Portfolio Website
+## 🌐 Portfolio Website
 
-- Hero Section CMS
+- Dynamic Hero Section
+- Dynamic About Section
+- Dynamic Skills Section
+- Dynamic Projects Section
+- Dynamic Journey Timeline
+- Responsive Modern UI
+- Framer Motion Animations
+- Cinematic Timeline Experience
+- Mobile Optimized
+
+---
+
+## 🛠️ Admin CMS Dashboard
+
+- Secure Login System
+- Home Section CMS
 - About Section CMS
-- Skills Section CMS
-- Projects Section CMS
+- Skills Management
+- Projects Management
 - Journey Timeline CMS
-- Connect Section CMS
+- Real-Time Portfolio Updates
+- Clean Minimal Dashboard UI
 
 ---
 
-## 📊 Visitor Analytics System
+## ⚙️ Backend System
 
-- Unique visitor tracking
-- Return visitor detection
-- Device analytics
-- IP & location tracking
-- Visit count management
-- MongoDB visitor storage
-
----
-
-## ⚡ Backend API System
-
-- REST API architecture
-- Express.js backend
-- MongoDB Atlas integration
-- Mongoose models
-- Modular controllers & routes
+- REST API Architecture
+- MongoDB Database Integration
+- Express.js Server
+- Modular Route Structure
+- CMS-Based Dynamic Data Flow
+- Authentication Support
 
 ---
 
-## 🎨 Frontend Experience
-
-- React + Vite
-- Framer Motion animations
-- Responsive design
-- Dynamic content rendering
-- Modern futuristic UI
-
----
-
-# 🛠 Tech Stack
+# 🧠 Tech Stack
 
 ## Frontend
 
 - React.js
 - Vite
-- Axios
 - Framer Motion
-- React Icons
+- Axios
+- CSS3
 
 ## Backend
 
 - Node.js
 - Express.js
-- MongoDB Atlas
+- MongoDB
 - Mongoose
 
+## Deployment
+
+- Vercel (Frontend)
+- Render (Backend)
+
 ---
 
-# 📁 Project Structure
+# 📂 Project Structure
 
 ```bash
-GNANI_PORTFOLIO_VER1
+Gnani_Portfolio_ver1/
 │
-├── client
-│   ├── src
-│   ├── public
-│   └── package.json
-│
-├── server
-│   ├── controllers
-│   ├── models
-│   ├── routes
-│   ├── .env
-│   └── server.js
-│
-└── README.md
+├── client/     # Portfolio Frontend
+├── admin/      # Admin CMS Dashboard
+├── server/     # Backend API Server
 ```
 
 ---
 
-# ⚙️ Installation
+# 🚀 Installation
 
-## Clone Repository
+## 1. Clone Repository
 
 ```bash
-git clone https://github.com/Gnanendra714/gnani-portfolio.git
+git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
 ```
 
 ---
 
-## Frontend Setup
+## 2. Install Dependencies
+
+### Client
 
 ```bash
 cd client
 npm install
-npm run dev
 ```
 
----
+### Admin
 
-## Backend Setup
+```bash
+cd admin
+npm install
+```
+
+### Server
 
 ```bash
 cd server
 npm install
-npm run dev
 ```
 
 ---
 
-# 🔐 Environment Variables
+# 🔑 Environment Variables
 
-Create a `.env` file inside the `server` folder:
+Create a `.env` file inside `server/`
 
 ```env
+MONGO_URI=your_mongodb_connection
+JWT_SECRET=your_secret_key
 PORT=5000
+```
 
-MONGO_URI=your_mongodb_connection_string
+---
+
+# ▶️ Run Project
+
+## Client
+
+```bash
+cd client
+npm run dev
+```
+
+## Admin
+
+```bash
+cd admin
+npm run dev
+```
+
+## Server
+
+```bash
+cd server
+npm run dev
 ```
 
 ---
 
 # 🌍 API Endpoints
 
-## Visitor Analytics
+## Hero
 
-- `/api/visitors`
-- `/api/visitors/stats`
+- `GET /api/hero`
+- `POST /api/hero`
 
-## Hero CMS
+## About
 
-- `/api/hero`
+- `GET /api/about`
+- `POST /api/about`
 
-## About CMS
+## Skills
 
-- `/api/about`
+- `GET /api/skills`
+- `POST /api/skills`
 
-## Skills CMS
+## Projects
 
-- `/api/skills`
+- `GET /api/projects`
+- `POST /api/projects`
 
-## Projects CMS
+## Journey
 
-- `/api/projects`
-
-## Journey CMS
-
-- `/api/journey`
-
-## Connect CMS
-
-- `/api/connect`
+- `GET /api/journey`
+- `POST /api/journey`
 
 ---
 
-# 🚀 Future Roadmap
+# 📸 Screenshots
 
-- Admin Dashboard
-- JWT Authentication
-- Image Upload System
-- Resume Management
+(Add screenshots here later)
+
+---
+
+# 🎯 Future Improvements
+
+- Cloudinary Image Uploads
+- Analytics Dashboard
+- Visitor Insights
+- AI Portfolio Assistant
+- Dark/Light Themes
+- Resume Generator
 - Blog CMS
-- AI Analytics
-- Deployment Pipeline
+- Deployment Automation
 
 ---
 
-# 👑 Author
+# 👨‍💻 Author
 
-GNANI  
-Royal Digital Empire
+## Gnani
+
+Passionate about:
+
+- Full Stack Development
+- Embedded Systems
+- AI Systems
+- Robotics
+- System Design
+
+---
+
+# ⭐ Vision
+
+This project is not just a portfolio.
+
+It is evolving into a complete digital identity system powered by dynamic content architecture and scalable full-stack engineering.
+
+---

@@ -1,39 +1,72 @@
 const Journey = require("../models/Journey");
 
-// GET JOURNEY
+// GET ALL
 
-const getJourney = async (req, res) => {
+const getJourneys = async (req, res) => {
   try {
-    const journey = await Journey.find();
+    const journeys = await Journey.find().sort({ year: 1 });
 
-    res.status(200).json(journey);
+    res.json(journeys);
   } catch (error) {
     res.status(500).json({
-      message: "Failed to fetch journey",
+      message: error.message,
     });
   }
 };
 
-// CREATE JOURNEY ITEM
+// CREATE
 
 const createJourney = async (req, res) => {
   try {
-    const item = new Journey(req.body);
+    const journey = await Journey.create(req.body);
 
-    await item.save();
+    res.status(201).json(journey);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
 
-    res.status(201).json({
-      message: "Journey item created",
-      item,
+// UPDATE
+
+const updateJourney = async (req, res) => {
+  try {
+    const updatedJourney = await Journey.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {
+        new: true,
+      },
+    );
+
+    res.json(updatedJourney);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+// DELETE
+
+const deleteJourney = async (req, res) => {
+  try {
+    await Journey.findByIdAndDelete(req.params.id);
+
+    res.json({
+      message: "Journey Deleted",
     });
   } catch (error) {
     res.status(500).json({
-      message: "Failed to create journey item",
+      message: error.message,
     });
   }
 };
 
 module.exports = {
-  getJourney,
+  getJourneys,
   createJourney,
+  updateJourney,
+  deleteJourney,
 };

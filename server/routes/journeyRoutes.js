@@ -3,16 +3,18 @@ const express = require("express");
 const router = express.Router();
 
 const {
-  getJourney,
+  getJourneys,
   createJourney,
+  updateJourney,
+  deleteJourney,
 } = require("../controllers/journeyController");
 
-// GET JOURNEY
-
-router.get("/", getJourney);
-
-// CREATE JOURNEY ITEM
+router.get("/", getJourneys);
 
 router.post("/", createJourney);
+
+router.put("/:id", updateJourney);
+
+router.delete("/:id", deleteJourney);
 
 module.exports = router;

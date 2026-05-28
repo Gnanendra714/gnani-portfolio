@@ -9,16 +9,14 @@ import axios from "axios";
 function Skills() {
   // SKILLS DATA
 
-  const [skillsData, setSkillsData] = useState(null);
+  const [skillsData, setSkillsData] = useState([]);
 
   // FETCH SKILLS
 
   useEffect(() => {
     const fetchSkills = async () => {
       try {
-        const res = await axios.get(
-          "https://gnani-portfolio-server.onrender.com/api/skills",
-        );
+        const res = await axios.get("http://localhost:5000/api/skills");
 
         setSkillsData(res.data);
       } catch (error) {
@@ -51,18 +49,18 @@ function Skills() {
           once: true,
         }}
       >
-        <span className="skills-subtitle">{skillsData.subtitle}</span>
+        <span className="skills-subtitle">MY TECH STACK</span>
 
-        <h1>{skillsData.heading}</h1>
+        <h1>Skills & Technologies</h1>
 
         <div className="skills-grid">
-          {skillsData.categories.map((group, index) => (
-            <div className="skills-card" key={index}>
+          {skillsData.map((group) => (
+            <div className="skills-card" key={group._id}>
               <h2>{group.category}</h2>
 
               <div className="skills-list">
-                {group.skills.map((skill, skillIndex) => (
-                  <span key={skillIndex}>{skill}</span>
+                {group.skills.map((skill, index) => (
+                  <span key={index}>{skill}</span>
                 ))}
               </div>
             </div>

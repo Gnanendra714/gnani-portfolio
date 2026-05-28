@@ -316,3 +316,49 @@
     letter-spacing: 0.8px;
   }
 }
+
+.message-section {
+  max-width: 800px;
+  margin: 70px auto 0;
+}
+
+.message-section h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: white;
+}
+
+.message-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.message-form input,
+.message-form textarea {
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #334155;
+  background-color: #0f172a;
+  color: white;
+  font-size: 15px;
+}
+
+.message-form textarea {
+  resize: none;
+}
+
+.message-form button {
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  background-color: #2563eb;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.message-form button:hover {
+  background-color: #1d4ed8;
+}

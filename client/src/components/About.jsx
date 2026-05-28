@@ -19,11 +19,9 @@ const iconMap = {
 };
 
 function About() {
-  // ABOUT DATA
-
   const [aboutData, setAboutData] = useState(null);
 
-  // FETCH ABOUT DATA
+  // FETCH ABOUT
 
   useEffect(() => {
     const fetchAbout = async () => {
@@ -31,6 +29,8 @@ function About() {
         const res = await axios.get(
           "https://gnani-portfolio-server.onrender.com/api/about",
         );
+
+        // SINGLE DOCUMENT SYSTEM
 
         setAboutData(res.data);
       } catch (error) {
@@ -41,7 +41,7 @@ function About() {
     fetchAbout();
   }, []);
 
-  // LOADING SAFETY
+  // LOADING
 
   if (!aboutData) return null;
 
@@ -66,14 +66,24 @@ function About() {
           once: true,
         }}
       >
-        <span className="about-subtitle">{aboutData.subtitle}</span>
+        {/* SUBTITLE */}
+
+        <span className="about-subtitle">
+          {aboutData.subtitle || "ABOUT ME"}
+        </span>
+
+        {/* HEADING */}
 
         <h1>{aboutData.heading}</h1>
 
+        {/* DESCRIPTION */}
+
         <p className="about-description">{aboutData.description}</p>
 
+        {/* CARDS */}
+
         <div className="about-cards">
-          {aboutData.cards.map((card, index) => {
+          {aboutData.cards?.map((card, index) => {
             const Icon = iconMap[card.icon];
 
             return (
@@ -84,7 +94,7 @@ function About() {
                   y: -8,
                 }}
               >
-                <Icon className="about-icon" />
+                {Icon && <Icon className="about-icon" />}
 
                 <h2>{card.title}</h2>
 

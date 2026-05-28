@@ -9,7 +9,7 @@ import axios from "axios";
 function Hero() {
   const visitorName = localStorage.getItem("visitorName") || "GNANI";
 
-  // HERO DATA FROM BACKEND
+  // HERO DATA
 
   const [heroData, setHeroData] = useState(null);
 
@@ -21,7 +21,7 @@ function Hero() {
 
   const [charIndex, setCharIndex] = useState(0);
 
-  // FETCH HERO DATA
+  // FETCH HERO
 
   useEffect(() => {
     const fetchHero = async () => {
@@ -29,6 +29,8 @@ function Hero() {
         const res = await axios.get(
           "https://gnani-portfolio-server.onrender.com/api/hero",
         );
+
+        console.log(res.data);
 
         setHeroData(res.data);
       } catch (error) {
@@ -39,14 +41,16 @@ function Hero() {
     fetchHero();
   }, []);
 
-  // TYPING TEXTS FROM DATABASE
+  // DATABASE ROLES
 
-  const roles = heroData?.typingTexts || [];
+  const roles = heroData?.roles || [];
 
   // TYPING EFFECT
 
   useEffect(() => {
-    const currentRole = roles[index] || "";
+    if (roles.length === 0) return;
+
+    const currentRole = roles[index];
 
     if (charIndex < currentRole.length) {
       const timeout = setTimeout(() => {
@@ -69,7 +73,7 @@ function Hero() {
     }
   }, [charIndex, index, roles]);
 
-  // LOADING SAFETY
+  // LOADING
 
   if (!heroData) return null;
 
@@ -89,6 +93,8 @@ function Hero() {
           duration: 1.2,
         }}
       >
+        {/* CROWN */}
+
         <motion.div
           className="hero-crown"
           initial={{
@@ -106,6 +112,8 @@ function Hero() {
           ♛
         </motion.div>
 
+        {/* WELCOME */}
+
         <motion.p
           className="hero-welcome"
           initial={{
@@ -120,6 +128,8 @@ function Hero() {
         >
           WELCOME, {visitorName.toUpperCase()}
         </motion.p>
+
+        {/* NAME */}
 
         <motion.h1
           className="hero-title"
@@ -136,8 +146,10 @@ function Hero() {
             duration: 1,
           }}
         >
-          {heroData.title}
+          {heroData.name}
         </motion.h1>
+
+        {/* TYPING TEXT */}
 
         <motion.div
           className="hero-typing"
@@ -155,6 +167,8 @@ function Hero() {
 
           <span className="cursor">|</span>
         </motion.div>
+
+        {/* DESCRIPTION */}
 
         <motion.p
           className="hero-description"

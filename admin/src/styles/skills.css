@@ -1,0 +1,268 @@
+.skills-page {
+  color: white;
+}
+
+.skills-header {
+  margin-bottom: 35px;
+}
+
+.skills-header p {
+  color: #eab308;
+
+  letter-spacing: 4px;
+
+  font-size: 13px;
+
+  margin-bottom: 10px;
+}
+
+.skills-header h1 {
+  font-size: 52px;
+
+  font-weight: 700;
+}
+
+/* FORM */
+
+.skills-form {
+  background: #0f172a;
+
+  border: 1px solid #1e293b;
+
+  border-radius: 24px;
+
+  padding: 24px;
+
+  display: flex;
+
+  gap: 16px;
+
+  margin-bottom: 35px;
+}
+
+.skills-form input {
+  flex: 1;
+
+  background: #020617;
+
+  border: 1px solid #1e293b;
+
+  color: white;
+
+  padding: 15px 18px;
+
+  border-radius: 14px;
+
+  font-size: 14px;
+
+  outline: none;
+}
+
+.skills-form input:focus {
+  border-color: #2563eb;
+}
+
+.skills-form button {
+  background: #2563eb;
+
+  border: none;
+
+  color: white;
+
+  padding: 0 28px;
+
+  border-radius: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.skills-form button:hover {
+  background: #1d4ed8;
+}
+
+/* GRID */
+
+.skills-grid {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 24px;
+}
+
+/* CARD */
+
+.skill-card {
+  width: 360px;
+
+  background: #0f172a;
+
+  border: 1px solid #1e293b;
+
+  border-radius: 28px;
+
+  padding: 32px;
+
+  transition: 0.3s;
+}
+
+.skill-card:hover {
+  transform: translateY(-4px);
+
+  border-color: #334155;
+}
+
+.skill-card h2 {
+  font-size: 30px;
+
+  color: #eab308;
+
+  margin-bottom: 28px;
+
+  font-weight: 600;
+}
+
+/* TAGS */
+
+.skill-tags {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 14px;
+
+  margin-bottom: 28px;
+}
+
+.skill-tags span {
+  background: #1e293b;
+
+  color: #eab308;
+
+  padding: 12px 20px;
+
+  border-radius: 999px;
+
+  font-size: 15px;
+
+  font-weight: 500;
+}
+
+/* ACTIONS */
+
+.skill-actions {
+  display: flex;
+
+  gap: 14px;
+}
+
+.edit-btn,
+.delete-btn {
+  border: none;
+
+  padding: 12px 20px;
+
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  transition: 0.3s;
+}
+
+.edit-btn {
+  background: #2563eb;
+
+  color: white;
+}
+
+.edit-btn:hover {
+  background: #1d4ed8;
+}
+
+.delete-btn {
+  background: #ef4444;
+
+  color: white;
+}
+
+.delete-btn:hover {
+  background: #dc2626;
+}
+
+.skills-form-buttons {
+  display: flex;
+
+  gap: 14px;
+
+  margin-top: 10px;
+}
+
+.skill-submit-btn {
+  flex: 1;
+
+  background: #2563eb;
+
+  color: white;
+
+  border: none;
+
+  padding: 16px;
+
+  border-radius: 14px;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.skill-submit-btn:hover {
+  background: #1d4ed8;
+}
+
+.skill-cancel-btn {
+  background: #ef4444;
+
+  color: white;
+
+  border: none;
+
+  padding: 16px 24px;
+
+  border-radius: 14px;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.skill-cancel-btn:hover {
+  background: #dc2626;
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+  .skills-form {
+    flex-direction: column;
+  }
+
+  .skills-header h1 {
+    font-size: 38px;
+  }
+}

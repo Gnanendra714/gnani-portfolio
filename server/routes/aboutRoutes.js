@@ -4,12 +4,12 @@ const router = express.Router();
 
 const { getAbout, updateAbout } = require("../controllers/aboutController");
 
-// GET ABOUT
+// GET
 
 router.get("/", getAbout);
 
-// UPDATE ABOUT
+// UPDATE
 
-router.put("/", updateAbout);
+router.post("/", updateAbout);
 
 module.exports = router;

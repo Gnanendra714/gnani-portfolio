@@ -4,12 +4,8 @@ const router = express.Router();
 
 const { getHero, updateHero } = require("../controllers/heroController");
 
-// GET HERO
-
 router.get("/", getHero);
 
-// UPDATE HERO
-
-router.put("/", updateHero);
+router.post("/", updateHero);
 
 module.exports = router;
