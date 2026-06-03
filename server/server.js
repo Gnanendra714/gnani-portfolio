@@ -27,6 +27,7 @@ app.use(
       "http://localhost:5173",
       "http://localhost:5174",
       "https://gnanendraganne.vercel.app",
+      "https://gnani-portfolio-admin.vercel.app",
     ],
     credentials: true,
   }),

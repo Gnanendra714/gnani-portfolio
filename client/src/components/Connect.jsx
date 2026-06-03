@@ -2,7 +2,13 @@ import "../styles/connect.css";
 
 import { motion } from "framer-motion";
 
-import { FaGithub, FaLinkedin, FaYoutube, FaInstagram } from "react-icons/fa";
+import {
+  FaGithub,
+  FaLinkedin,
+  FaYoutube,
+  FaInstagram,
+  FaEnvelope,
+} from "react-icons/fa";
 
 import { useEffect, useState } from "react";
 
@@ -11,10 +17,11 @@ import axios from "axios";
 // ICON MAP
 
 const iconMap = {
-  FaGithub: FaGithub,
-  FaLinkedin: FaLinkedin,
-  FaYoutube: FaYoutube,
-  FaInstagram: FaInstagram,
+  FaGithub,
+  FaLinkedin,
+  FaYoutube,
+  FaInstagram,
+  FaEnvelope,
 };
 
 function Connect() {
