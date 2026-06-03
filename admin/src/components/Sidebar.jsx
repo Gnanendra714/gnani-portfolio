@@ -1,4 +1,8 @@
+import { useEffect, useState } from "react";
+
 import { NavLink, useNavigate } from "react-router-dom";
+
+import API from "../services/api";
 
 import {
   FaThLarge,
@@ -14,7 +18,34 @@ import {
 function Sidebar() {
   const navigate = useNavigate();
 
-  // LOGOUT FUNCTION
+  const [unreadCount, setUnreadCount] = useState(0);
+
+  // FETCH UNREAD COUNT
+
+  useEffect(() => {
+    const fetchUnreadCount = async () => {
+      try {
+        const res = await API.get("/messages");
+
+        const unread = res.data.filter((msg) => !msg.isRead).length;
+
+        setUnreadCount(unread);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchUnreadCount();
+
+    const interval = setInterval(() => {
+      fetchUnreadCount();
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // LOGOUT
+
   const handleLogout = () => {
     localStorage.removeItem("token");
 
@@ -43,7 +74,11 @@ function Sidebar() {
               className={({ isActive }) => (isActive ? "active-link" : "")}
             >
               <FaEnvelope />
-              Messages
+
+              <span>
+                Messages
+                {unreadCount > 0 && ` (${unreadCount})`}
+              </span>
             </NavLink>
           </li>
 

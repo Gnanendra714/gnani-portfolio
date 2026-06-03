@@ -12,6 +12,11 @@ const messageSchema = new mongoose.Schema(
       required: true,
     },
 
+    subject: {
+      type: String,
+      default: "Portfolio Inquiry",
+    },
+
     message: {
       type: String,
       required: true,

@@ -1,20 +1,14 @@
 import { useEffect, useState } from "react";
-
 import API from "../services/api";
-
 import "../styles/messages.css";
 
 const Messages = () => {
   const [messages, setMessages] = useState([]);
-
   const [selectedMessage, setSelectedMessage] = useState(null);
-
-  // FETCH
 
   const fetchMessages = async () => {
     try {
       const res = await API.get("/messages");
-
       setMessages(res.data);
     } catch (error) {
       console.log(error);
@@ -22,79 +16,124 @@ const Messages = () => {
   };
 
   useEffect(() => {
-    fetchMessages();
-  }, []);
+    const loadMessages = async () => {
+      await fetchMessages();
 
-  // OPEN MESSAGE
-
-  const openMessage = async (message) => {
-    setSelectedMessage(message);
-
-    // AUTO MARK READ
-
-    if (!message.isRead) {
       try {
-        await API.put(`/messages/${message._id}/read`);
-
-        fetchMessages();
+        await API.put("/messages/read-all");
       } catch (error) {
         console.log(error);
       }
-    }
-  };
-
-  // DELETE
-
-  const deleteMessage = async (id) => {
-    try {
-      await API.delete(`/messages/${id}`);
 
       fetchMessages();
+    };
 
-      setSelectedMessage(null);
+    loadMessages();
+  }, []);
+
+  const handleSelect = async (message) => {
+    try {
+      if (selectedMessage?._id === message._id) {
+        setSelectedMessage(null);
+        return;
+      }
+
+      setSelectedMessage(message);
+
+      if (!message.isRead) {
+        await API.put(`/messages/read/${message._id}`);
+
+        fetchMessages();
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
+  const handleDelete = async (id) => {
+    if (!window.confirm("Delete this message?")) return;
+
+    try {
+      await API.delete(`/messages/${id}`);
+
+      fetchMessages();
+
+      if (selectedMessage?._id === id) {
+        setSelectedMessage(null);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const unreadCount = messages.filter((msg) => !msg.isRead).length;
+
   return (
     <div className="messages-page">
-      <div className="messages-sidebar">
-        <h1>Inbox</h1>
+      <div className="messages-header">
+        <div>
+          <h1>
+            Inbox
+            <span className="count-badge">{messages.length}</span>
+          </h1>
 
-        <div className="messages-list">
-          {messages.map((message) => (
-            <div
-              key={message._id}
-              className={`message-preview ${!message.isRead ? "unread" : ""}`}
-              onClick={() => openMessage(message)}
-            >
-              <h3>{message.name}</h3>
+          <p>Manage visitor inquiries</p>
+        </div>
 
-              <p>{message.email}</p>
-            </div>
-          ))}
+        <div className="messages-stats">
+          <div className="stat-card">
+            <h2>{messages.length}</h2>
+            <span>Total</span>
+          </div>
+
+          <div className="stat-card">
+            <h2>{unreadCount}</h2>
+            <span>Unread</span>
+          </div>
         </div>
       </div>
 
-      <div className="message-viewer">
-        {selectedMessage ? (
-          <div className="viewer-card">
-            <h2>{selectedMessage.name}</h2>
-
-            <p>{selectedMessage.email}</p>
-
-            <div className="viewer-message">{selectedMessage.message}</div>
-
-            <button
-              className="delete-btn"
-              onClick={() => deleteMessage(selectedMessage._id)}
-            >
-              Delete Message
-            </button>
-          </div>
+      <div className="messages-layout">
+        {messages.length === 0 ? (
+          <div className="empty-state">No messages yet</div>
         ) : (
-          <div className="empty-view">Select a message</div>
+          messages.map((msg) => (
+            <div
+              key={msg._id}
+              className={`message-card ${
+                selectedMessage?._id === msg._id ? "expanded" : ""
+              }`}
+              onClick={() => handleSelect(msg)}
+            >
+              <div className="message-preview">
+                <div className="message-info">
+                  <h3>{msg.name}</h3>
+
+                  <p>{msg.email}</p>
+
+                  <small>{new Date(msg.createdAt).toLocaleString()}</small>
+                </div>
+
+                {!msg.isRead && <span className="unread-dot"></span>}
+              </div>
+
+              {selectedMessage?._id === msg._id && (
+                <div className="message-body">
+                  <div className="message-text">{msg.message}</div>
+
+                  <button
+                    className="delete-btn"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleDelete(msg._id);
+                    }}
+                  >
+                    Delete Message
+                  </button>
+                </div>
+              )}
+            </div>
+          ))
         )}
       </div>
     </div>
