@@ -16,7 +16,9 @@ function Skills() {
   useEffect(() => {
     const fetchSkills = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/skills");
+        const res = await axios.get(
+          "https://gnani-portfolio-server.onrender.com/api/skills",
+        );
 
         setSkillsData(res.data);
       } catch (error) {
