@@ -53,7 +53,10 @@ function Connect() {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:5000/api/messages", formData);
+      await axios.post(
+        "https://gnani-portfolio-server.onrender.com/api/messages",
+        formData,
+      );
 
       alert("Message Sent Successfully");
 
