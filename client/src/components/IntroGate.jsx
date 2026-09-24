@@ -39,27 +39,15 @@ function IntroGate({ onSubmit }) {
 
       // GET LOCATION + IP
 
-      let ipAddress = "Unknown";
-      let country = "Unknown";
-      let city = "Unknown";
+      const response = await fetch("https://ipapi.co/json/");
 
-      try {
-        const response = await fetch("https://ipapi.co/json/");
+      const data = await response.json();
 
-        if (response.ok) {
-          const data = await response.json();
+      const ipAddress = data.ip;
 
-          ipAddress = data.ip || "Unknown";
-          country = data.country_name || "Unknown";
-          city = data.city || "Unknown";
-        } else {
-          console.log(
-            `Location API unavailable: ${response.status} ${response.statusText}`,
-          );
-        }
-      } catch (error) {
-        console.log("Location lookup failed:", error);
-      }
+      const country = data.country_name;
+
+      const city = data.city;
 
       // SEND TO BACKEND
 
