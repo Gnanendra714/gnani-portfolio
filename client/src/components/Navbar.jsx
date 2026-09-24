@@ -72,22 +72,15 @@ function Navbar() {
 
     setMenuOpen(false);
 
-    /*
-      Update the URL.
-      This does NOT reload the page.
-    */
-
     if (location.pathname !== path) {
       navigate(path);
-    }
 
-    /*
-      Scroll to the selected section.
-    */
-
-    setTimeout(() => {
+      setTimeout(() => {
+        scrollToSection(section);
+      }, 100);
+    } else {
       scrollToSection(section);
-    }, 50);
+    }
   };
 
   /* =====================================================
