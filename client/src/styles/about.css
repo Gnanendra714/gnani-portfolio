@@ -181,59 +181,55 @@
 
   .about-subtitle {
     font-size: 0.68rem;
-
     letter-spacing: 7px;
   }
 
   .about-content h1 {
     font-size: 2.15rem;
-
     line-height: 1.15;
-
     margin-top: 0.8rem;
-
     margin-bottom: 1.8rem;
   }
 
   .about-description {
     font-size: 0.92rem;
-
     line-height: 1.95;
-
     max-width: 92%;
-
     margin-bottom: 3rem;
-
     color: #7c8aa5;
   }
 
+  /* ABOUT CARDS */
+
   .about-cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.2rem;
+    align-items: stretch;
   }
 
   .about-card {
+    width: 100%;
     padding: 1.9rem 1.4rem;
-
     border-radius: 22px;
+    box-sizing: border-box;
+    margin: 0;
+    transform: none;
   }
 
   .about-icon {
     font-size: 2.1rem;
-
     margin-bottom: 1rem;
   }
 
   .about-card h2 {
     font-size: 1.15rem;
-
     margin-bottom: 0.7rem;
   }
 
   .about-card p {
     font-size: 0.84rem;
-
     line-height: 1.75;
-
     color: #7c8aa5;
   }
 }
@@ -247,22 +243,21 @@
 
   .about-content h1 {
     font-size: 1.85rem;
-
     line-height: 1.15;
   }
 
   .about-description {
     font-size: 0.84rem;
-
     line-height: 1.85;
-
     max-width: 95%;
   }
+
+  /* TWO CARDS PER ROW */
 
   .about-cards {
     display: grid;
 
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 
     gap: 0.8rem;
 
@@ -275,33 +270,27 @@
     padding: 1.2rem 0.8rem;
 
     border-radius: 16px;
-  }
 
-  .about-card:last-child {
-    grid-column: 1 / -1;
+    margin: 0;
 
-    width: 48%;
+    transform: none;
 
-    margin: 0 auto;
+    box-sizing: border-box;
   }
 
   .about-icon {
     font-size: 1.5rem;
-
     margin-bottom: 0.7rem;
   }
 
   .about-card h2 {
     font-size: 0.9rem;
-
     line-height: 1.4;
-
     margin-bottom: 0.5rem;
   }
 
   .about-card p {
     font-size: 0.72rem;
-
     line-height: 1.55;
   }
 }

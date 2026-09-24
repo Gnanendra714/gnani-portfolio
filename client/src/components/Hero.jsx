@@ -75,7 +75,13 @@ function Hero() {
 
   // LOADING
 
-  if (!heroData) return null;
+  if (!heroData) {
+    return (
+      <section className="hero-section" id="hero">
+        <div className="hero-glow"></div>
+      </section>
+    );
+  }
 
   return (
     <section className="hero-section" id="hero">

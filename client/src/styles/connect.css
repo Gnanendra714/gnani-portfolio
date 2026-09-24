@@ -196,22 +196,23 @@
 
   .connect-description {
     font-size: 0.74rem;
-
     line-height: 1.6;
-
     margin-bottom: 1.8rem;
   }
 
   .connect-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.7rem;
   }
 
   .connect-card {
-    width: 180px;
-
+    width: 100%;
     padding: 1rem 0.75rem;
-
     border-radius: 14px;
+    box-sizing: border-box;
+    margin: 0;
+    transform: none;
   }
 
   .connect-card svg {
@@ -236,65 +237,49 @@
 
   .connect-section h1 {
     font-size: 1.55rem;
-
     line-height: 1.08;
   }
 
   .connect-subtitle {
     font-size: 0.54rem;
-
     letter-spacing: 4px;
   }
 
   .connect-description {
     font-size: 0.68rem;
-
     line-height: 1.55;
-
     margin-bottom: 1.6rem;
   }
 
+  /* TWO CARDS PER ROW */
+
   .connect-grid {
     display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.6rem;
   }
 
   .connect-card {
     width: 100%;
-
     padding: 0.9rem 0.65rem;
-
     border-radius: 12px;
-  }
-
-  /* LAST CARD CENTER */
-
-  .connect-card:last-child {
-    grid-column: 1 / -1;
-
-    width: 48%;
-
-    margin: 0 auto;
+    margin: 0;
+    transform: none;
+    box-sizing: border-box;
   }
 
   .connect-card svg {
     font-size: 1.1rem;
-
     margin-bottom: 0.55rem;
   }
 
   .connect-card h2 {
     font-size: 0.72rem;
-
     margin-bottom: 0.3rem;
   }
 
   .connect-card p {
     font-size: 0.56rem;
-
     line-height: 1.35;
   }
 
@@ -312,7 +297,6 @@
 
   .connect-footer p {
     font-size: 0.5rem;
-
     letter-spacing: 0.8px;
   }
 }
