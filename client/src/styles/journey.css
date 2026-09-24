@@ -1,3 +1,7 @@
+/* =========================================================
+   JOURNEY SECTION
+   ========================================================= */
+
 .timeline-section {
   width: 100%;
 
@@ -12,7 +16,9 @@
   overflow: hidden;
 }
 
-/* HEADER */
+/* =========================================================
+   HEADER
+   ========================================================= */
 
 .timeline-header {
   text-align: center;
@@ -50,7 +56,9 @@
   line-height: 1.08;
 }
 
-/* TIMELINE */
+/* =========================================================
+   TIMELINE
+   ========================================================= */
 
 .timeline-container {
   position: relative;
@@ -69,7 +77,7 @@
 
   width: 1px;
 
-  background: rgba(212, 175, 55, 0.08);
+  background: rgba(148, 163, 184, 0.18);
 
   top: 0;
 
@@ -80,7 +88,9 @@
   transform: translateX(-50%);
 }
 
-/* ITEMS */
+/* =========================================================
+   TIMELINE ITEMS
+   ========================================================= */
 
 .timeline-item {
   position: relative;
@@ -88,6 +98,8 @@
   width: 50%;
 
   padding: 1.5rem 2.3rem;
+
+  cursor: pointer;
 }
 
 .timeline-item.left {
@@ -102,7 +114,9 @@
   text-align: left;
 }
 
-/* DOT */
+/* =========================================================
+   TIMELINE DOT
+   ========================================================= */
 
 .timeline-dot {
   width: 10px;
@@ -119,24 +133,30 @@
 
   right: -5px;
 
-  box-shadow: 0 0 12px rgba(212, 175, 55, 0.35);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.25);
 }
 
 .timeline-item.right .timeline-dot {
   left: -5px;
 }
 
-/* CONTENT */
+/* =========================================================
+   CONTENT
+   ========================================================= */
 
 .timeline-content {
-  transition: 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
 }
 
 .timeline-content:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
-/* YEAR */
+/* =========================================================
+   YEAR
+   ========================================================= */
 
 .timeline-content span {
   color: #d4af37;
@@ -145,13 +165,15 @@
 
   letter-spacing: 2px;
 
-  font-weight: 300;
+  font-weight: 400;
 }
 
-/* TITLE */
+/* =========================================================
+   JOURNEY TITLE
+   ========================================================= */
 
 .timeline-content h2 {
-  color: #d4af37;
+  color: #e5c65a;
 
   margin: 0.55rem 0;
 
@@ -164,7 +186,9 @@
   line-height: 1.2;
 }
 
-/* TEXT */
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
 
 .timeline-content p {
   color: #94a3b8;
@@ -182,7 +206,80 @@
   margin-left: auto;
 }
 
-/* TABLET */
+/* =========================================================
+   TECHNOLOGY TAGS
+   ========================================================= */
+
+.timeline-tech {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 0.45rem;
+
+  margin-top: 0.8rem;
+}
+
+.timeline-item.left .timeline-tech {
+  justify-content: flex-end;
+}
+
+.timeline-item.right .timeline-tech {
+  justify-content: flex-start;
+}
+
+.timeline-tech span {
+  background: #151e30;
+
+  color: #cbd5e1;
+
+  border: 1px solid #26344d;
+
+  padding: 0.35rem 0.65rem;
+
+  border-radius: 16px;
+
+  font-size: 0.62rem;
+
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.timeline-tech span:hover {
+  background: rgba(212, 175, 55, 0.1);
+
+  border-color: rgba(212, 175, 55, 0.35);
+
+  color: #f8fafc;
+}
+
+/* =========================================================
+   READ MORE
+   ========================================================= */
+
+.timeline-readmore {
+  color: #cbd5e1;
+
+  font-size: 0.74rem;
+
+  margin-top: 0.8rem;
+
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.timeline-item:hover .timeline-readmore {
+  color: #d4af37;
+
+  transform: translateX(3px);
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
 
 @media (max-width: 768px) {
   .timeline-section {
@@ -203,9 +300,13 @@
     letter-spacing: 5px;
   }
 
+  /* LINE */
+
   .timeline-container::after {
     left: 16px;
   }
+
+  /* ITEMS */
 
   .timeline-item {
     width: 100%;
@@ -221,6 +322,8 @@
     text-align: left !important;
   }
 
+  /* DOT */
+
   .timeline-dot {
     width: 10px;
 
@@ -231,11 +334,15 @@
     top: 8px;
   }
 
+  /* TITLE */
+
   .timeline-content h2 {
     font-size: 1rem;
 
     margin: 0.45rem 0;
   }
+
+  /* TEXT */
 
   .timeline-content p {
     font-size: 0.76rem;
@@ -248,9 +355,22 @@
   .timeline-item.left .timeline-content p {
     margin-left: 0;
   }
+
+  /* TAGS */
+
+  .timeline-item.left .timeline-tech,
+  .timeline-item.right .timeline-tech {
+    justify-content: flex-start;
+  }
+
+  .timeline-readmore {
+    font-size: 0.7rem;
+  }
 }
 
-/* SMALL MOBILE */
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
 
 @media (max-width: 480px) {
   .timeline-section {
@@ -308,16 +428,36 @@
 
     line-height: 1.45;
   }
+
+  .timeline-tech {
+    gap: 0.35rem;
+
+    margin-top: 0.6rem;
+  }
+
+  .timeline-tech span {
+    font-size: 0.55rem;
+
+    padding: 0.3rem 0.55rem;
+  }
+
+  .timeline-readmore {
+    font-size: 0.62rem;
+
+    margin-top: 0.6rem;
+  }
 }
 
-/* MODAL OVERLAY */
+/* =========================================================
+   JOURNEY MODAL OVERLAY
+   ========================================================= */
 
 .journey-modal-overlay {
   position: fixed;
 
   inset: 0;
 
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(2, 6, 23, 0.84);
 
   backdrop-filter: blur(10px);
 
@@ -327,234 +467,198 @@
 
   align-items: center;
 
-  padding: 40px;
+  padding: 24px;
 
   z-index: 999;
 }
 
-/* MODAL */
+/* =========================================================
+   JOURNEY MODAL
+   ========================================================= */
 
 .journey-modal {
+  position: relative;
+
   width: 100%;
 
-  max-width: 850px;
+  max-width: 680px;
 
-  max-height: 90vh;
+  height: auto;
+
+  max-height: 78vh;
 
   overflow-y: auto;
 
-  background: #0f172a;
+  background: #0b1222;
 
-  border: 1px solid #1e293b;
+  border: 1px solid #26344d;
 
-  border-radius: 28px;
+  border-radius: 22px;
 
-  padding: 50px;
+  padding: 32px 38px;
 
-  position: relative;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
 
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+  scrollbar-width: thin;
+
+  scrollbar-color: #475569 transparent;
 }
 
-/* CLOSE BUTTON */
+/* =========================================================
+   CUSTOM SCROLLBAR
+   ========================================================= */
+
+.journey-modal::-webkit-scrollbar {
+  width: 7px;
+}
+
+.journey-modal::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.journey-modal::-webkit-scrollbar-thumb {
+  background: #475569;
+
+  border-radius: 10px;
+}
+
+.journey-modal::-webkit-scrollbar-thumb:hover {
+  background: #d4af37;
+}
+
+/* =========================================================
+   CLOSE BUTTON
+   ========================================================= */
 
 .modal-close {
   position: absolute;
 
-  top: 24px;
+  top: 16px;
 
-  right: 24px;
+  right: 16px;
 
-  width: 42px;
+  width: 36px;
 
-  height: 42px;
+  height: 36px;
+
+  border: 1px solid #334155;
 
   border-radius: 50%;
 
-  border: none;
+  background: #151e30;
 
-  background: #1e293b;
-
-  color: white;
-
-  cursor: pointer;
-
-  font-size: 18px;
-
-  transition: 0.3s;
-}
-
-.modal-close:hover {
-  background: #ef4444;
-}
-
-/* YEAR */
-
-.modal-year {
-  color: #eab308;
-
-  letter-spacing: 4px;
-
-  font-size: 13px;
-}
-
-/* TITLE */
-
-.journey-modal h2 {
-  font-size: 52px;
-
-  color: #eab308;
-
-  margin: 12px 0 24px;
-}
-
-/* STORY */
-
-.modal-story {
   color: #cbd5e1;
 
-  line-height: 2;
+  cursor: pointer;
 
-  font-size: 17px;
-
-  margin-bottom: 35px;
-}
-
-/* OVERLAY */
-
-.journey-modal-overlay {
-  position: fixed;
-
-  inset: 0;
-
-  background: rgba(0, 0, 0, 0.78);
-
-  backdrop-filter: blur(10px);
+  font-size: 15px;
 
   display: flex;
 
-  justify-content: center;
-
   align-items: center;
 
-  padding: 30px;
+  justify-content: center;
 
-  z-index: 999;
-}
-
-/* MODAL */
-
-.journey-modal {
-  width: 100%;
-
-  max-width: 760px;
-
-  max-height: 88vh;
-
-  overflow-y: auto;
-
-  background: #0f172a;
-
-  border: 1px solid #1e293b;
-
-  border-radius: 26px;
-
-  padding: 42px;
-
-  position: relative;
-
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
-}
-
-/* CLOSE */
-
-.modal-close {
-  position: absolute;
-
-  top: 20px;
-
-  right: 20px;
-
-  width: 40px;
-
-  height: 40px;
-
-  border: none;
-
-  border-radius: 50%;
-
-  background: #1e293b;
-
-  color: white;
-
-  cursor: pointer;
-
-  font-size: 16px;
-
-  transition: 0.3s;
+  transition: 0.3s ease;
 }
 
 .modal-close:hover {
-  background: #ef4444;
+  background: #d4af37;
+
+  border-color: #d4af37;
+
+  color: #020617;
+
+  transform: rotate(5deg);
 }
 
-/* YEAR */
+/* =========================================================
+   YEAR
+   ========================================================= */
 
 .modal-year {
-  color: #eab308;
+  display: block;
 
-  letter-spacing: 4px;
+  color: #d4af37;
 
-  font-size: 11px;
+  letter-spacing: 3px;
 
-  font-weight: 500;
+  font-size: 0.65rem;
+
+  margin-bottom: 7px;
 }
 
-/* TITLE */
+/* =========================================================
+   MODAL TITLE
+   ========================================================= */
 
-.journey-modal h2 {
-  color: #eab308;
-
-  font-size: 3.2rem;
-
-  line-height: 1.05;
-
-  margin: 12px 0 18px;
+.journey-modal .modal-title {
+  color: #e5c65a;
 
   font-family: Georgia, serif;
 
-  font-weight: 500;
+  font-size: 2.6rem;
+
+  font-weight: 400;
+
+  line-height: 1.05;
+
+  margin: 0 0 12px;
 }
 
-/* DESCRIPTION */
+/* =========================================================
+   SHORT DESCRIPTION
+   ========================================================= */
 
 .modal-description {
   color: #94a3b8;
 
-  font-size: 0.95rem;
+  font-size: 0.86rem;
 
-  line-height: 1.9;
+  line-height: 1.65;
 
-  margin-bottom: 34px;
+  margin: 0 0 26px;
 
-  max-width: 90%;
+  max-width: 100%;
 }
 
-/* SECTIONS */
+/* =========================================================
+   MODAL SECTION
+   ========================================================= */
 
 .modal-section {
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
+
+/* SECTION HEADING */
 
 .modal-section h3 {
-  color: white;
+  color: #f8fafc;
 
-  font-size: 1.6rem;
+  font-size: 1.2rem;
 
-  margin-bottom: 14px;
+  font-weight: 500;
+
+  margin: 0 0 10px;
 }
 
-/* TAGS */
+/* =========================================================
+   STORY
+   ========================================================= */
+
+.modal-story {
+  color: #cbd5e1;
+
+  font-size: 0.84rem;
+
+  line-height: 1.75;
+
+  margin: 0;
+}
+
+/* =========================================================
+   TECHNOLOGY TAGS
+   ========================================================= */
 
 .modal-tags {
   display: flex;
@@ -565,157 +669,305 @@
 }
 
 .modal-tags span {
-  background: #1e293b;
+  background: #151e30;
 
-  color: #eab308;
+  border: 1px solid #2b3a52;
 
-  padding: 9px 16px;
+  color: #cbd5e1;
+
+  padding: 8px 16px;
 
   border-radius: 999px;
 
-  font-size: 13px;
+  font-size: 0.78rem;
+
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease;
 }
 
-/* ACHIEVEMENTS */
+.modal-tags span:hover {
+  background: rgba(212, 175, 55, 0.1);
 
-.modal-section ul {
+  border-color: rgba(212, 175, 55, 0.4);
+
+  color: #f8fafc;
+
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   ACHIEVEMENTS
+   ========================================================= */
+
+.achievement-list {
+  margin: 0;
+
   padding-left: 20px;
 
   color: #94a3b8;
 
-  line-height: 2;
+  line-height: 1.7;
 
-  font-size: 15px;
+  font-size: 0.82rem;
 }
 
-/* FUTURE TEXT */
+.achievement-list li {
+  padding-left: 4px;
 
-.modal-section p {
+  margin-bottom: 5px;
+}
+
+/* =========================================================
+   FUTURE VISION
+   ========================================================= */
+
+.future-goal {
   color: #cbd5e1;
 
-  line-height: 1.9;
+  font-size: 0.84rem;
 
-  font-size: 15px;
+  line-height: 1.75;
+
+  margin: 0;
 }
 
-/* =========================
-   MODAL RESPONSIVE
-========================= */
+/* =========================================================
+   EXPLORE MODAL — MOBILE ONLY
+   ========================================================= */
 
 @media (max-width: 768px) {
   .journey-modal-overlay {
-    padding: 18px;
+    padding: 20px;
   }
 
   .journey-modal {
-    padding: 28px 22px;
+    width: 90%;
 
-    border-radius: 22px;
+    max-width: 520px;
 
-    max-height: 88vh;
+    max-height: 78vh;
+
+    padding: 28px 24px;
+
+    border-radius: 20px;
   }
+
+  /* CLOSE BUTTON */
 
   .modal-close {
-    width: 36px;
+    top: 14px;
+    right: 14px;
 
-    height: 36px;
-
-    top: 18px;
-
-    right: 18px;
-
-    font-size: 15px;
-  }
-
-  .modal-year {
-    font-size: 11px;
-
-    letter-spacing: 3px;
-  }
-
-  .journey-modal h2 {
-    font-size: 2rem;
-
-    line-height: 1.1;
-
-    margin: 10px 0 18px;
-  }
-
-  .modal-story {
-    font-size: 0.92rem;
-
-    line-height: 1.8;
-
-    margin-bottom: 28px;
-  }
-
-  .modal-section {
-    margin-bottom: 28px;
-  }
-
-  .modal-section h3 {
-    font-size: 18px;
-
-    margin-bottom: 12px;
-  }
-
-  .modal-tags {
-    gap: 10px;
-  }
-
-  .modal-tags span {
-    padding: 8px 14px;
-
-    font-size: 13px;
-  }
-
-  .modal-section ul {
-    padding-left: 18px;
-
-    line-height: 1.8;
+    width: 34px;
+    height: 34px;
 
     font-size: 14px;
   }
+
+  /* YEAR */
+
+  .modal-year {
+    font-size: 0.58rem;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 6px;
+  }
+
+  /* TITLE */
+
+  .journey-modal .modal-title {
+    font-size: 1.9rem;
+
+    line-height: 1.1;
+
+    margin: 0 42px 12px 0;
+  }
+
+  /* SHORT DESCRIPTION */
+
+  .modal-description {
+    font-size: 0.76rem;
+
+    line-height: 1.65;
+
+    margin-bottom: 24px;
+  }
+
+  /* SECTION */
+
+  .modal-section {
+    margin-bottom: 22px;
+  }
+
+  .modal-section h3 {
+    font-size: 1.05rem;
+
+    margin-bottom: 9px;
+  }
+
+  /* STORY */
+
+  .modal-story {
+    font-size: 0.74rem;
+
+    line-height: 1.7;
+  }
+
+  /* TECHNOLOGIES */
+
+  .modal-tags {
+    gap: 7px;
+  }
+
+  .modal-tags span {
+    padding: 6px 12px;
+
+    font-size: 0.65rem;
+  }
+
+  /* ACHIEVEMENTS */
+
+  .achievement-list {
+    padding-left: 18px;
+
+    font-size: 0.68rem;
+
+    line-height: 1.65;
+  }
+
+  .achievement-list li {
+    margin-bottom: 5px;
+  }
+
+  /* FUTURE */
+
+  .future-goal {
+    font-size: 0.72rem;
+
+    line-height: 1.7;
+  }
 }
 
-/* SMALL MOBILE */
+/* =========================================================
+   EXPLORE MODAL — SMALL MOBILE
+   ========================================================= */
 
 @media (max-width: 480px) {
   .journey-modal-overlay {
-    padding: 12px;
+    padding: 14px;
   }
 
   .journey-modal {
+    width: 92%;
+
+    max-width: 420px;
+
+    max-height: 74vh;
+
     padding: 22px 18px;
 
     border-radius: 18px;
   }
 
-  .journey-modal h2 {
-    font-size: 1.6rem;
-  }
-
-  .modal-story {
-    font-size: 0.84rem;
-
-    line-height: 1.7;
-  }
-
-  .modal-section h3 {
-    font-size: 16px;
-  }
-
-  .modal-tags span {
-    font-size: 12px;
-
-    padding: 7px 12px;
-  }
+  /* CLOSE */
 
   .modal-close {
-    width: 32px;
+    top: 10px;
+    right: 10px;
 
+    width: 32px;
     height: 32px;
 
     font-size: 13px;
+  }
+
+  /* YEAR */
+
+  .modal-year {
+    font-size: 0.52rem;
+
+    letter-spacing: 2.5px;
+
+    margin-bottom: 4px;
+  }
+
+  /* TITLE */
+
+  .journey-modal .modal-title {
+    font-size: 1.5rem;
+
+    line-height: 1.05;
+
+    margin-right: 38px;
+
+    margin-bottom: 10px;
+  }
+
+  /* DESCRIPTION */
+
+  .modal-description {
+    font-size: 0.68rem;
+
+    line-height: 1.55;
+
+    margin-bottom: 18px;
+  }
+
+  /* SECTION */
+
+  .modal-section {
+    margin-bottom: 17px;
+  }
+
+  .modal-section h3 {
+    font-size: 0.92rem;
+
+    margin-bottom: 7px;
+  }
+
+  /* STORY */
+
+  .modal-story {
+    font-size: 0.66rem;
+
+    line-height: 1.6;
+  }
+
+  /* TECHNOLOGIES */
+
+  .modal-tags {
+    gap: 6px;
+  }
+
+  .modal-tags span {
+    padding: 5px 10px;
+
+    font-size: 0.58rem;
+  }
+
+  /* ACHIEVEMENTS */
+
+  .achievement-list {
+    padding-left: 17px;
+
+    font-size: 0.62rem;
+
+    line-height: 1.55;
+  }
+
+  .achievement-list li {
+    margin-bottom: 3px;
+  }
+
+  /* FUTURE */
+
+  .future-goal {
+    font-size: 0.64rem;
+
+    line-height: 1.6;
   }
 }

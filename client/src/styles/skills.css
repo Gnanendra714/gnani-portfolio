@@ -10,7 +10,9 @@
   text-align: center;
 }
 
-/* SUBTITLE */
+/* =========================================================
+   SUBTITLE
+   ========================================================= */
 
 .skills-subtitle {
   color: #d4af37;
@@ -24,7 +26,9 @@
   opacity: 0.9;
 }
 
-/* TITLE */
+/* =========================================================
+   TITLE
+   ========================================================= */
 
 .skills-section h1 {
   font-size: clamp(2rem, 4.5vw, 3.4rem);
@@ -32,6 +36,7 @@
   color: #d4af37;
 
   margin-top: 1rem;
+
   margin-bottom: 3.2rem;
 
   font-family: Georgia, serif;
@@ -41,7 +46,9 @@
   line-height: 1.1;
 }
 
-/* GRID */
+/* =========================================================
+   GRID
+   ========================================================= */
 
 .skills-grid {
   display: flex;
@@ -57,14 +64,16 @@
   margin: 0 auto;
 }
 
-/* CARD */
+/* =========================================================
+   CARD
+   ========================================================= */
 
 .skills-card {
   width: 270px;
 
-  background: rgba(15, 23, 42, 0.72);
+  background: #0b1222;
 
-  border: 1px solid rgba(212, 175, 55, 0.08);
+  border: 1px solid rgba(148, 163, 184, 0.14);
 
   border-radius: 20px;
 
@@ -72,23 +81,32 @@
 
   text-align: left;
 
-  transition: all 0.35s ease;
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
 
   backdrop-filter: blur(10px);
 }
 
+/* CARD HOVER */
+
 .skills-card:hover {
   transform: translateY(-5px);
 
-  border: 1px solid rgba(212, 175, 55, 0.16);
+  border-color: rgba(212, 175, 55, 0.3);
 
-  box-shadow: 0 0 22px rgba(212, 175, 55, 0.04);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.25),
+    0 0 18px rgba(212, 175, 55, 0.05);
 }
 
-/* CARD TITLE */
+/* =========================================================
+   CARD TITLE
+   ========================================================= */
 
 .skills-card h2 {
-  color: #d4af37;
+  color: #e5c65a;
 
   margin-bottom: 1.4rem;
 
@@ -101,7 +119,9 @@
   line-height: 1.4;
 }
 
-/* SKILL LIST */
+/* =========================================================
+   SKILL LIST
+   ========================================================= */
 
 .skills-list {
   display: flex;
@@ -111,16 +131,18 @@
   gap: 0.65rem;
 }
 
-/* SKILL TAG */
+/* =========================================================
+   SKILL TAG
+   ========================================================= */
 
 .skills-list span {
   padding: 0.5rem 0.9rem;
 
   border-radius: 20px;
 
-  background: rgba(212, 175, 55, 0.07);
+  background: #151e30;
 
-  color: #d4af37;
+  color: #cbd5e1;
 
   font-size: 0.76rem;
 
@@ -128,22 +150,32 @@
 
   letter-spacing: 0.2px;
 
-  transition: all 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
 
-  border: 1px solid transparent;
+  border: 1px solid #26344d;
 }
 
-.skills-list span:hover {
-  background-color: rgba(212, 175, 55, 0.14);
+/* =========================================================
+   SKILL TAG HOVER
+   ========================================================= */
 
-  border: 1px solid rgba(212, 175, 55, 0.2);
+.skills-list span:hover {
+  background: rgba(212, 175, 55, 0.12);
+
+  border-color: rgba(212, 175, 55, 0.4);
 
   color: #f8fafc;
 
   transform: translateY(-2px);
 }
 
-/* TABLET */
+/* =========================================================
+   TABLET
+   ========================================================= */
 
 @media (max-width: 768px) {
   .skills-section {
@@ -185,7 +217,9 @@
   }
 }
 
-/* SMALL MOBILE */
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
 
 @media (max-width: 480px) {
   .skills-section {
