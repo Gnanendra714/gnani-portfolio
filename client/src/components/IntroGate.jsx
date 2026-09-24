@@ -11,11 +11,15 @@ function IntroGate({ onSubmit }) {
     if (name.trim() === "") return;
 
     try {
+      // =====================================================
       // CHECK EXISTING VISITOR ID
+      // =====================================================
 
       let visitorId = localStorage.getItem("visitorId");
 
+      // =====================================================
       // CREATE NEW ID ONLY FIRST TIME
+      // =====================================================
 
       if (!visitorId) {
         visitorId = "visitor_" + Math.random().toString(36).substring(2, 12);
@@ -23,38 +27,64 @@ function IntroGate({ onSubmit }) {
         localStorage.setItem("visitorId", visitorId);
       }
 
+      // =====================================================
       // DEVICE TYPE
+      // =====================================================
 
       const device = /Mobi|Android/i.test(navigator.userAgent)
         ? "Mobile"
         : "Laptop/Desktop";
 
+      // =====================================================
       // BROWSER INFO
+      // =====================================================
 
       const browser = navigator.userAgent;
 
+      // =====================================================
       // OPERATING SYSTEM
+      // =====================================================
 
       const os = navigator.platform;
 
+      // =====================================================
+      // DEFAULT LOCATION + IP
+      // =====================================================
+
+      let ipAddress = "Unknown";
+      let country = "Unknown";
+      let city = "Unknown";
+
+      // =====================================================
       // GET LOCATION + IP
+      // =====================================================
 
-      const response = await fetch("https://ipapi.co/json/");
+      try {
+        const response = await fetch("https://ipapi.co/json/");
 
-      const data = await response.json();
+        if (response.ok) {
+          const data = await response.json();
 
-      const ipAddress = data.ip;
+          ipAddress = data.ip || "Unknown";
+          country = data.country_name || "Unknown";
+          city = data.city || "Unknown";
+        } else {
+          console.log(
+            `Location API unavailable: ${response.status} ${response.statusText}`,
+          );
+        }
+      } catch (locationError) {
+        console.log("Location lookup failed:", locationError);
+      }
 
-      const country = data.country_name;
-
-      const city = data.city;
-
-      // SEND TO BACKEND
+      // =====================================================
+      // SEND VISITOR DATA TO BACKEND
+      // =====================================================
 
       await axios.post(
         "https://gnani-portfolio-server.onrender.com/api/visitors",
         {
-          name,
+          name: name.trim(),
           visitorId,
           device,
           browser,
@@ -65,13 +95,19 @@ function IntroGate({ onSubmit }) {
         },
       );
 
-      // SAVE NAME LOCALLY
+      // =====================================================
+      // SAVE VISITOR NAME LOCALLY
+      // =====================================================
 
-      localStorage.setItem("visitorName", name);
+      localStorage.setItem("visitorName", name.trim());
 
-      onSubmit(name);
+      // =====================================================
+      // ENTER PORTFOLIO
+      // =====================================================
+
+      onSubmit(name.trim());
     } catch (error) {
-      console.log(error);
+      console.log("Visitor submission failed:", error);
     }
   };
 
@@ -83,7 +119,6 @@ function IntroGate({ onSubmit }) {
         className="intro-card"
         onSubmit={(e) => {
           e.preventDefault();
-
           handleContinue();
         }}
       >
