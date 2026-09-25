@@ -26,6 +26,8 @@ function Projects() {
           "https://gnani-portfolio-server.onrender.com/api/projects",
         );
 
+        console.log("Projects received:", res.data);
+
         setProjectsData(res.data);
       } catch (error) {
         console.log("Projects fetch error:", error);
@@ -36,11 +38,13 @@ function Projects() {
   }, []);
 
   // =====================================================
-  // FORMAT EXTERNAL URL
+  // FORMAT URL
   // =====================================================
 
   const formatUrl = (url) => {
-    if (!url) return "#";
+    if (!url || url.trim() === "") {
+      return "#";
+    }
 
     const cleanUrl = url.trim();
 
@@ -50,10 +54,6 @@ function Projects() {
 
     return `https://${cleanUrl}`;
   };
-
-  // =====================================================
-  // UI
-  // =====================================================
 
   return (
     <section className="projects-section" data-aos="fade-up" id="projects">
@@ -103,39 +103,35 @@ function Projects() {
               </div>
 
               {/* =================================================
-                  PROJECT BUTTONS
+                  PROJECT LINKS
               ================================================= */}
 
               <div className="project-buttons">
                 {/* GITHUB */}
 
-                {project.githubLink && (
-                  <a
-                    href={formatUrl(project.githubLink)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <button type="button">
-                      <FaGithub />
-                      GitHub
-                    </button>
-                  </a>
-                )}
+                <a
+                  href={formatUrl(project.githubLink)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button type="button">
+                    <FaGithub />
+                    GitHub
+                  </button>
+                </a>
 
                 {/* LIVE DEMO */}
 
-                {project.liveLink && (
-                  <a
-                    href={formatUrl(project.liveLink)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <button type="button">
-                      <FaExternalLinkAlt />
-                      Live Demo
-                    </button>
-                  </a>
-                )}
+                <a
+                  href={formatUrl(project.liveLink)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button type="button">
+                    <FaExternalLinkAlt />
+                    Live Demo
+                  </button>
+                </a>
               </div>
             </div>
           ))}
