@@ -9,11 +9,15 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 function Projects() {
+  // =====================================================
   // PROJECTS DATA
+  // =====================================================
 
   const [projectsData, setProjectsData] = useState([]);
 
-  // FETCH PROJECTS
+  // =====================================================
+  // FETCH ALL PROJECTS
+  // =====================================================
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -24,12 +28,28 @@ function Projects() {
 
         setProjectsData(res.data);
       } catch (error) {
-        console.log(error);
+        console.log("Projects fetch error:", error);
       }
     };
 
     fetchProjects();
   }, []);
+
+  // =====================================================
+  // FORMAT URL
+  // =====================================================
+
+  const formatUrl = (url) => {
+    if (!url) return "";
+
+    const cleanUrl = url.trim();
+
+    if (cleanUrl.startsWith("http://") || cleanUrl.startsWith("https://")) {
+      return cleanUrl;
+    }
+
+    return `https://${cleanUrl}`;
+  };
 
   return (
     <section className="projects-section" data-aos="fade-up" id="projects">
@@ -56,30 +76,60 @@ function Projects() {
         <div className="projects-grid">
           {projectsData.map((project) => (
             <div className="project-card" key={project._id}>
+              {/* =================================================
+                  PROJECT TITLE
+              ================================================= */}
+
               <h2>{project.title}</h2>
+
+              {/* =================================================
+                  PROJECT DESCRIPTION
+              ================================================= */}
 
               <p>{project.description}</p>
 
+              {/* =================================================
+                  TECHNOLOGY STACK
+              ================================================= */}
+
               <div className="tech-stack">
-                {project.tools?.map((item, index) => (
+                {project.techStack?.map((item, index) => (
                   <span key={index}>{item}</span>
                 ))}
               </div>
 
-              <div className="project-buttons">
-                <a href={project.githubLink} target="_blank">
-                  <button>
-                    <FaGithub />
-                    GitHub
-                  </button>
-                </a>
+              {/* =================================================
+                  PROJECT LINKS
+              ================================================= */}
 
-                <a href={project.liveLink} target="_blank">
-                  <button>
+              <div className="project-buttons">
+                {/* GITHUB LINK */}
+
+                {project.githubLink && (
+                  <a
+                    href={formatUrl(project.githubLink)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="project-btn github-btn"
+                  >
+                    <FaGithub />
+                    <span>GitHub</span>
+                  </a>
+                )}
+
+                {/* LIVE DEMO LINK */}
+
+                {project.liveLink && (
+                  <a
+                    href={formatUrl(project.liveLink)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="project-btn live-btn"
+                  >
                     <FaExternalLinkAlt />
-                    Live Demo
-                  </button>
-                </a>
+                    <span>Live Demo</span>
+                  </a>
+                )}
               </div>
             </div>
           ))}
