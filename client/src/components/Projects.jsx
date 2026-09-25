@@ -16,7 +16,7 @@ function Projects() {
   const [projectsData, setProjectsData] = useState([]);
 
   // =====================================================
-  // FETCH ALL PROJECTS
+  // FETCH PROJECTS
   // =====================================================
 
   useEffect(() => {
@@ -36,11 +36,11 @@ function Projects() {
   }, []);
 
   // =====================================================
-  // FORMAT URL
+  // FORMAT EXTERNAL URL
   // =====================================================
 
   const formatUrl = (url) => {
-    if (!url) return "";
+    if (!url) return "#";
 
     const cleanUrl = url.trim();
 
@@ -50,6 +50,10 @@ function Projects() {
 
     return `https://${cleanUrl}`;
   };
+
+  // =====================================================
+  // UI
+  // =====================================================
 
   return (
     <section className="projects-section" data-aos="fade-up" id="projects">
@@ -93,41 +97,43 @@ function Projects() {
               ================================================= */}
 
               <div className="tech-stack">
-                {project.techStack?.map((item, index) => (
+                {project.tools?.map((item, index) => (
                   <span key={index}>{item}</span>
                 ))}
               </div>
 
               {/* =================================================
-                  PROJECT LINKS
+                  PROJECT BUTTONS
               ================================================= */}
 
               <div className="project-buttons">
-                {/* GITHUB LINK */}
+                {/* GITHUB */}
 
                 {project.githubLink && (
                   <a
                     href={formatUrl(project.githubLink)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="project-btn github-btn"
                   >
-                    <FaGithub />
-                    <span>GitHub</span>
+                    <button type="button">
+                      <FaGithub />
+                      GitHub
+                    </button>
                   </a>
                 )}
 
-                {/* LIVE DEMO LINK */}
+                {/* LIVE DEMO */}
 
                 {project.liveLink && (
                   <a
                     href={formatUrl(project.liveLink)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="project-btn live-btn"
                   >
-                    <FaExternalLinkAlt />
-                    <span>Live Demo</span>
+                    <button type="button">
+                      <FaExternalLinkAlt />
+                      Live Demo
+                    </button>
                   </a>
                 )}
               </div>
