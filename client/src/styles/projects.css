@@ -68,52 +68,26 @@
   margin: 0 auto;
 }
 
-/*
-   Flexbox is intentional here.
-
-   Desktop:
-   4 cards per row.
-
-   If there are 5:
-   4 on first row + 1 centered on second row.
-
-   If there are 6:
-   4 on first row + 2 centered on second row.
-
-   If there are 7:
-   4 on first row + 3 centered on second row.
-
-   This happens automatically because of
-   justify-content: center.
-*/
-
 /* =========================================================
    PROJECT CARD
    ========================================================= */
 
 .project-card {
   width: 300px;
-
   height: 340px;
-
   flex: 0 0 300px;
 
   background: #0b1222;
-
   border: 1px solid rgba(148, 163, 184, 0.14);
-
   border-radius: 20px;
 
   padding: 1.7rem 1.3rem;
 
   text-align: left;
-
   box-sizing: border-box;
 
   display: flex;
-
   flex-direction: column;
-
   overflow: hidden;
 
   backdrop-filter: blur(10px);
@@ -501,18 +475,17 @@
 }
 
 /* =========================================================
-   TABLET
+   RESPONSIVE PROJECT SECTION
+   CARD DESIGN REMAINS THE SAME
+   ========================================================= */
+
+/* =========================================================
+   TABLET / SMALL DESKTOP
    ========================================================= */
 
 @media (max-width: 1400px) {
   .projects-grid {
     gap: 24px;
-  }
-
-  .project-card {
-    width: 300px;
-
-    flex-basis: 300px;
   }
 }
 
@@ -528,16 +501,11 @@
   .projects-grid {
     gap: 22px;
   }
-
-  .project-card {
-    width: 280px;
-
-    flex-basis: 280px;
-  }
 }
 
 /* =========================================================
    MOBILE
+   SAME CARD SIZE / SAME CARD DESIGN
    ========================================================= */
 
 @media (max-width: 768px) {
@@ -547,93 +515,37 @@
 
   .projects-section h1 {
     font-size: 2.2rem;
-
     margin-bottom: 2.6rem;
   }
 
   .projects-grid {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 
-    flex-wrap: wrap;
+    gap: 20px;
 
-    justify-content: center;
-
-    align-items: flex-start;
-
-    gap: 14px;
+    width: 100%;
   }
 
   .project-card {
-    width: calc(50% - 7px);
+    /* SAME AS DESKTOP */
+    width: 300px;
+    height: 340px;
 
-    flex: 0 0 calc(50% - 7px);
+    flex: 0 0 300px;
 
-    height: 390px;
+    /* SAME INTERNAL DESIGN */
+    padding: 1.7rem 1.3rem;
 
-    padding: 1.2rem 0.95rem;
-
-    border-radius: 17px;
-  }
-
-  .project-card h2 {
-    font-size: 1rem;
-
-    margin-bottom: 0.75rem;
-  }
-
-  .project-description {
-    height: 82px;
-
-    margin-bottom: 0.8rem;
-  }
-
-  .project-description p {
-    font-size: 0.72rem;
-
-    line-height: 1.6;
-
-    -webkit-line-clamp: 3;
-
-    line-clamp: 3;
-  }
-
-  .view-more-btn {
-    font-size: 0.65rem;
-
-    margin-top: 5px;
-  }
-
-  .tech-stack {
-    height: 62px;
-
-    gap: 0.4rem;
-
-    margin-bottom: 0.8rem;
-  }
-
-  .tech-stack span {
-    font-size: 0.6rem;
-
-    padding: 0.32rem 0.55rem;
-  }
-
-  .project-buttons {
-    gap: 0.4rem;
-  }
-
-  .project-buttons button {
-    padding: 7px 9px;
-
-    font-size: 0.61rem;
-
-    border-radius: 14px;
-
-    gap: 0.3rem;
+    border-radius: 20px;
   }
 }
 
 /* =========================================================
    VERY SMALL MOBILE
+   SAME CARD DESIGN
    ========================================================= */
 
 @media (max-width: 480px) {
@@ -643,113 +555,23 @@
 
   .projects-section h1 {
     font-size: 1.85rem;
-
     line-height: 1.15;
   }
 
   .projects-grid {
-    gap: 10px;
+    gap: 20px;
   }
 
   .project-card {
-    width: calc(50% - 5px);
+    /* SAME AS DESKTOP */
+    width: 300px;
+    height: 340px;
 
-    flex-basis: calc(50% - 5px);
+    flex: 0 0 300px;
 
-    height: 360px;
+    /* SAME INTERNAL DESIGN */
+    padding: 1.7rem 1.3rem;
 
-    padding: 1rem 0.75rem;
-
-    border-radius: 15px;
-  }
-
-  .project-card h2 {
-    font-size: 0.88rem;
-
-    margin-bottom: 0.65rem;
-  }
-
-  .project-description {
-    height: 72px;
-
-    margin-bottom: 0.7rem;
-  }
-
-  .project-description p {
-    font-size: 0.66rem;
-
-    line-height: 1.55;
-
-    -webkit-line-clamp: 3;
-
-    line-clamp: 3;
-  }
-
-  .view-more-btn {
-    font-size: 0.58rem;
-
-    margin-top: 4px;
-  }
-
-  .tech-stack {
-    height: 55px;
-
-    gap: 0.3rem;
-
-    margin-bottom: 0.7rem;
-  }
-
-  .tech-stack span {
-    font-size: 0.55rem;
-
-    padding: 0.28rem 0.45rem;
-  }
-
-  .project-buttons {
-    gap: 0.3rem;
-  }
-
-  .project-buttons button {
-    flex: 1;
-
-    padding: 6px 5px;
-
-    font-size: 0.55rem;
-
-    border-radius: 12px;
-  }
-
-  .project-modal {
-    width: 92vw;
-
-    max-height: 75vh;
-
-    padding: 1.4rem;
-
-    border-radius: 17px;
-  }
-
-  .project-modal h2 {
-    font-size: 1.2rem;
-
-    margin-right: 35px;
-  }
-
-  .project-modal p {
-    font-size: 0.72rem;
-
-    line-height: 1.7;
-  }
-
-  .project-modal-close {
-    width: 30px;
-
-    height: 30px;
-
-    top: 10px;
-
-    right: 10px;
-
-    font-size: 0.75rem;
+    border-radius: 20px;
   }
 }
