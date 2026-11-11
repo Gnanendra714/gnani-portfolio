@@ -1,4 +1,4 @@
-const API_BASE = "/api";
+const API_BASE = "https://gnani-portfolio-server.onrender.com/api";
 
 export type SkillsSectionData = {
   kicker: string;
