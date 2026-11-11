@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 # ==========================================
 # Dependencies
@@ -74,3 +75,8 @@ desktop.ini
 # Package manager files
 # ==========================================
 # Keep package-lock.json, bun.lock and other lockfiles
+=======
+node_modules
+.env
+dist
+>>>>>>> origin/main
