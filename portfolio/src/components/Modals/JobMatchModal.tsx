@@ -1,3 +1,4 @@
+﻿import { apiUrl } from "../../utils/api";
 import { useState } from 'react';
 import { Award, Sparkles, X, CheckCircle2, ArrowRight, Zap, Briefcase } from 'lucide-react';
 import { sound } from '../../utils/soundEffects';
@@ -38,7 +39,7 @@ export function JobMatchModal({ isOpen, onClose }: JobMatchModalProps) {
     setIsLoading(true);
 
     try {
-      const res = await fetch('/api/ai/evaluate-jd', {
+      const res = await fetch(apiUrl("/ai/evaluate-jd"), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ jobDescription, targetRole }),
@@ -83,7 +84,7 @@ export function JobMatchModal({ isOpen, onClose }: JobMatchModalProps) {
                 AI Job Compatibility Evaluator
               </h3>
               <p className="text-xs font-mono text-cyan-400">
-                Powered by Gemini 3.8 Flash · Instant Match Analysis
+                Powered by Gemini 3.8 Flash Â· Instant Match Analysis
               </p>
             </div>
           </div>
@@ -225,3 +226,4 @@ export function JobMatchModal({ isOpen, onClose }: JobMatchModalProps) {
     </div>
   );
 }
+

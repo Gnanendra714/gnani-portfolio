@@ -446,13 +446,12 @@ export function PortfolioProvider({ children }: { children: ReactNode }) {
 
   const refetchData = useCallback(async () => {
     try {
-      const res = await fetch("/api/portfolio", {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
+      const res = await fetch(
+        "https://gnani-portfolio-server.onrender.com/api/portfolio",
+        {
+          cache: "no-store",
         },
-        cache: "no-store",
-      });
+      );
 
       if (!res.ok) {
         throw new Error(`Portfolio API returned HTTP ${res.status}`);

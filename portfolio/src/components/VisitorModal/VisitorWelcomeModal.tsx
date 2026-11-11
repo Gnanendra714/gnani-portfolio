@@ -1,16 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { User, Sparkles, ArrowRight, ShieldCheck, X } from 'lucide-react';
+﻿import React, { useState, useEffect } from "react";
+import { User, Sparkles, ArrowRight, ShieldCheck, X } from "lucide-react";
+import { apiUrl } from "../../utils/api";
 
 interface VisitorWelcomeModalProps {
   onWelcomeComplete?: (name: string) => void;
 }
 
-const STORAGE_KEY = 'gnani_portfolio_visitor_id';
-const NAME_STORAGE_KEY = 'gnani_portfolio_visitor_name';
+const STORAGE_KEY = "gnani_portfolio_visitor_id";
+const NAME_STORAGE_KEY = "gnani_portfolio_visitor_name";
 
-export function VisitorWelcomeModal({ onWelcomeComplete }: VisitorWelcomeModalProps) {
+export function VisitorWelcomeModal({
+  onWelcomeComplete,
+}: VisitorWelcomeModalProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -21,15 +24,17 @@ export function VisitorWelcomeModal({ onWelcomeComplete }: VisitorWelcomeModalPr
 
       if (existingId) {
         // Returning visitor: track visit asynchronously without showing modal
-        fetch('/api/visitors', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+        fetch(apiUrl("/visitors"), {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             visitorId: existingId,
-            name: existingName || 'Anonymous Visitor',
-            referrer: document.referrer || '',
+            name: existingName || "Anonymous Visitor",
+            referrer: document.referrer || "",
           }),
-        }).catch((err) => console.warn('Failed to update returning visitor:', err));
+        }).catch((err) =>
+          console.warn("Failed to update returning visitor:", err),
+        );
       } else {
         // First-time visitor: Show modal after brief 600ms entrance
         const timer = setTimeout(() => {
@@ -46,7 +51,8 @@ export function VisitorWelcomeModal({ onWelcomeComplete }: VisitorWelcomeModalPr
     setSubmitting(true);
     setError(null);
 
-    const chosenName = guestMode || !name.trim() ? 'Guest Visitor' : name.trim();
+    const chosenName =
+      guestMode || !name.trim() ? "Guest Visitor" : name.trim();
     const visitorId = `vis_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
 
     try {
@@ -58,17 +64,17 @@ export function VisitorWelcomeModal({ onWelcomeComplete }: VisitorWelcomeModalPr
 
     // Report to backend
     try {
-      await fetch('/api/visitors', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      await fetch(apiUrl("/visitors"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           visitorId,
           name: chosenName,
-          referrer: document.referrer || '',
+          referrer: document.referrer || "",
         }),
       });
     } catch (err) {
-      console.warn('Visitor API recording offline or unavailable:', err);
+      console.warn("Visitor API recording offline or unavailable:", err);
     }
 
     setSubmitting(false);
@@ -108,16 +114,21 @@ export function VisitorWelcomeModal({ onWelcomeComplete }: VisitorWelcomeModalPr
           </div>
           <div>
             <span className="text-[10px] font-mono tracking-widest uppercase text-amber-400 font-semibold">
-              GNANI PORTFOLIO · WELCOME
+              GNANI PORTFOLIO Â· WELCOME
             </span>
-            <h2 id="visitor-welcome-title" className="text-xl sm:text-2xl font-bold font-serif-display text-white">
+            <h2
+              id="visitor-welcome-title"
+              className="text-xl sm:text-2xl font-bold font-serif-display text-white"
+            >
               Welcome! What should we call you?
             </h2>
           </div>
         </div>
 
         <p className="text-xs sm:text-sm text-slate-300 mb-6 leading-relaxed">
-          Glad to have you here! Enter your name or company so Gnani can personalize your experience across the IoT workbench and projects showcase.
+          Glad to have you here! Enter your name or company so Gnani can
+          personalize your experience across the IoT workbench and projects
+          showcase.
         </p>
 
         <form
@@ -128,7 +139,10 @@ export function VisitorWelcomeModal({ onWelcomeComplete }: VisitorWelcomeModalPr
           className="space-y-4"
         >
           <div>
-            <label htmlFor="visitor-name-input" className="block text-xs font-mono text-slate-400 mb-1.5">
+            <label
+              htmlFor="visitor-name-input"
+              className="block text-xs font-mono text-slate-400 mb-1.5"
+            >
               YOUR NAME OR COMPANY (OPTIONAL)
             </label>
             <div className="relative">
@@ -155,7 +169,7 @@ export function VisitorWelcomeModal({ onWelcomeComplete }: VisitorWelcomeModalPr
               disabled={submitting}
               className="w-full sm:flex-1 py-3 px-5 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider shadow-lg shadow-amber-500/20 transition-all flex items-center justify-center gap-2 active:scale-95 disabled:opacity-50 cursor-pointer"
             >
-              <span>{submitting ? 'Entering...' : 'Enter Portfolio'}</span>
+              <span>{submitting ? "Entering..." : "Enter Portfolio"}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
             <button
@@ -169,10 +183,13 @@ export function VisitorWelcomeModal({ onWelcomeComplete }: VisitorWelcomeModalPr
 
           <div className="flex items-center justify-center gap-2 pt-2 text-[10px] text-slate-500 font-mono">
             <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Zero cookies · No tracking beyond visit counts · Private</span>
+            <span>
+              Zero cookies Â· No tracking beyond visit counts Â· Private
+            </span>
           </div>
         </form>
       </div>
     </div>
   );
 }
+

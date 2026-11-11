@@ -10,6 +10,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 import { usePortfolio } from "../../context/PortfolioContext";
+import { apiUrl } from "../../utils/api";
 
 interface ConnectSectionProps {
   onShowToast: (msg: string) => void;
@@ -61,7 +62,7 @@ export function ConnectSection({ onShowToast }: ConnectSectionProps) {
     }
 
     try {
-      const res = await fetch("/api/messages", {
+      const res = await fetch(apiUrl("/messages"), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,3 +1,4 @@
+﻿import { apiUrl } from "../../utils/api";
 import React, { useState, useEffect, useRef } from 'react';
 import { Terminal as TerminalIcon, X, Maximize2, Minimize2, Sparkles } from 'lucide-react';
 import { sound } from '../../utils/soundEffects';
@@ -120,10 +121,10 @@ export function TerminalModal({
       case 'about':
         output = (
           <div className="space-y-1 text-slate-300">
-            <div className="text-amber-400 font-bold">{data.personal.name} — B.Tech Electronics & Communication Engineering</div>
+            <div className="text-amber-400 font-bold">{data.personal.name} â€” B.Tech Electronics & Communication Engineering</div>
             <p className="text-xs leading-relaxed text-slate-300">{data.personal.shortBio}</p>
             <div className="text-xs text-emerald-400 font-mono mt-1">
-              Location: {data.personal.location} · Status: Available for Technical Roles & Internships
+              Location: {data.personal.location} Â· Status: Available for Technical Roles & Internships
             </div>
           </div>
         );
@@ -132,9 +133,9 @@ export function TerminalModal({
       case 'skills':
         output = (
           <div className="space-y-1.5 text-xs text-slate-300">
-            <div><span className="text-amber-400 font-bold">• Embedded & IoT:</span> ESP32, Arduino, C/C++, I2C, SPI, UART, BLE, Wi-Fi, MQTT, PlatformIO</div>
-            <div><span className="text-cyan-400 font-bold">• Full-Stack Web:</span> React 19, TypeScript, Tailwind CSS, Node.js, Express, MongoDB, REST APIs</div>
-            <div><span className="text-emerald-400 font-bold">• Protocols & Hardware:</span> Oscilloscopes, ADC/DAC, Logic Analyzers, KiCad, Linux CLI, Git</div>
+            <div><span className="text-amber-400 font-bold">â€¢ Embedded & IoT:</span> ESP32, Arduino, C/C++, I2C, SPI, UART, BLE, Wi-Fi, MQTT, PlatformIO</div>
+            <div><span className="text-cyan-400 font-bold">â€¢ Full-Stack Web:</span> React 19, TypeScript, Tailwind CSS, Node.js, Express, MongoDB, REST APIs</div>
+            <div><span className="text-emerald-400 font-bold">â€¢ Protocols & Hardware:</span> Oscilloscopes, ADC/DAC, Logic Analyzers, KiCad, Linux CLI, Git</div>
           </div>
         );
         break;
@@ -228,7 +229,7 @@ export function TerminalModal({
           try {
             output = <div className="text-cyan-400 animate-pulse">Connecting to Gemini API...</div>;
             setHistory((prev) => [...prev, { command: raw, output }]);
-            const res = await fetch('/api/ai/chat', {
+            const res = await fetch(apiUrl("/ai/chat"), {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ message: aiPrompt }),
@@ -319,3 +320,4 @@ export function TerminalModal({
     </div>
   );
 }
+

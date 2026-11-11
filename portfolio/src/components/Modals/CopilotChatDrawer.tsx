@@ -1,3 +1,4 @@
+﻿import { apiUrl } from "../../utils/api";
 import { useState, useEffect, useRef } from 'react';
 import { Bot, Send, X, Sparkles, User, RefreshCw, ArrowRight } from 'lucide-react';
 import { sound } from '../../utils/soundEffects';
@@ -49,7 +50,7 @@ export function CopilotChatDrawer({ isOpen, onClose }: CopilotChatDrawerProps) {
     setIsLoading(true);
 
     try {
-      const res = await fetch('/api/ai/chat', {
+      const res = await fetch(apiUrl("/ai/chat"), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -217,3 +218,4 @@ export function CopilotChatDrawer({ isOpen, onClose }: CopilotChatDrawerProps) {
     </div>
   );
 }
+

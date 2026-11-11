@@ -1,3 +1,4 @@
+﻿import { apiUrl } from "../../utils/api";
 import { useState, useEffect, useRef } from "react";
 import { MicrocontrollerExplorer } from "./MicrocontrollerExplorer";
 import {
@@ -296,7 +297,7 @@ export function HardwareWorkbench() {
     setIsGenerating(true);
 
     try {
-      const res = await fetch("/api/ai/architect", {
+      const res = await fetch(apiUrl("/ai/architect"), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -461,7 +462,7 @@ export function HardwareWorkbench() {
                         Ambient Temperature (DHT22)
                       </span>
                       <span className="font-bold text-cyan-400">
-                        {temperature.toFixed(1)} °C
+                        {temperature.toFixed(1)} Â°C
                       </span>
                     </div>
 
@@ -478,9 +479,9 @@ export function HardwareWorkbench() {
                     />
 
                     <div className="mt-1 flex justify-between font-mono text-[10px] text-slate-500">
-                      <span>-10°C</span>
-                      <span>25°C (Room)</span>
-                      <span>65°C (Alert)</span>
+                      <span>-10Â°C</span>
+                      <span>25Â°C (Room)</span>
+                      <span>65Â°C (Alert)</span>
                     </div>
                   </div>
 
@@ -580,7 +581,7 @@ export function HardwareWorkbench() {
                     </div>
 
                     <p className="mb-3 text-[11px] text-slate-400">
-                      GPIO 18 · Irrigation Valve
+                      GPIO 18 Â· Irrigation Valve
                     </p>
 
                     <button
@@ -618,7 +619,7 @@ export function HardwareWorkbench() {
                     </div>
 
                     <p className="mb-3 text-[11px] text-slate-400">
-                      GPIO 19 · Exhaust Fan
+                      GPIO 19 Â· Exhaust Fan
                     </p>
 
                     <button
@@ -650,7 +651,7 @@ export function HardwareWorkbench() {
                       </h3>
 
                       <p className="font-mono text-[10px] text-slate-400">
-                        CH1: GPIO 34 Probe · 500 MSa/s
+                        CH1: GPIO 34 Probe Â· 500 MSa/s
                       </p>
                     </div>
                   </div>
@@ -946,3 +947,4 @@ export function HardwareWorkbench() {
     </section>
   );
 }
+
