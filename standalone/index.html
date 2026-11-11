@@ -1,0 +1,2157 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gnani | Portfolio - Embedded Systems, IoT & Full-Stack Engineer</title>
+  <meta name="description" content="Portfolio of Gnani - B.Tech Electronics & Communication Engineer specializing in Arduino, ESP32, IoT Hardware, AI, and Full-Stack Development.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Three.js CDN for 3D Microcontroller Canvas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <style>
+    :root {
+      --bg-dark: #030712;
+      --bg-surface: #0b0f19;
+      --bg-card: rgba(15, 23, 42, 0.65);
+      --border-glow: rgba(245, 158, 11, 0.2);
+      --gold: #f59e0b;
+      --gold-light: #fbbf24;
+      --cyan: #06b6d4;
+      --cyan-light: #22d3ee;
+      --emerald: #10b981;
+      --text-main: #f3f4f6;
+      --text-muted: #94a3b8;
+      --font-heading: 'Plus Jakarta Sans', sans-serif;
+      --font-display: 'Cinzel', serif;
+      --font-mono: 'Fira Code', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-heading);
+      overflow-x: hidden;
+      line-height: 1.6;
+      cursor: default;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #030712;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 4px;
+      border: 1px solid rgba(245, 158, 11, 0.2);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--gold);
+    }
+
+    /* Selection */
+    ::selection {
+      background: rgba(245, 158, 11, 0.3);
+      color: var(--gold-light);
+    }
+
+    /* Typography Classes */
+    .font-mono { font-family: var(--font-mono); }
+    .font-serif-display { font-family: var(--font-display); }
+
+    /* Glassmorphism Cards */
+    .glass-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 1rem;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+
+    .glass-card:hover {
+      border-color: rgba(245, 158, 11, 0.35);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7), 0 0 20px -5px rgba(245, 158, 11, 0.15);
+      transform: translateY(-3px);
+    }
+
+    .glass-nav {
+      background: rgba(3, 7, 18, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    /* Gradients & Glows */
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #fef3c7 0%, #f59e0b 50%, #d97706 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .cyan-gradient-text {
+      background: linear-gradient(135deg, #cffafe 0%, #06b6d4 50%, #0284c7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Custom Cursor */
+    #cursor-dot, #cursor-ring {
+      pointer-events: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      z-index: 9999;
+      transition: opacity 0.3s ease;
+    }
+    #cursor-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--gold-light);
+    }
+    #cursor-ring {
+      width: 32px;
+      height: 32px;
+      border: 1.5px solid rgba(245, 158, 11, 0.5);
+      transition: transform 0.15s ease-out, width 0.2s, height 0.2s, border-color 0.2s;
+    }
+    body.hovering #cursor-ring {
+      width: 52px;
+      height: 52px;
+      border-color: var(--cyan);
+      background: rgba(6, 182, 212, 0.06);
+    }
+
+    /* Container */
+    .container-custom {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Buttons */
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+      color: #030712;
+      font-weight: 700;
+      font-size: 0.875rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.75rem;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.25);
+      transition: all 0.2s ease;
+    }
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(245, 158, 11, 0.35);
+      background: linear-gradient(135deg, #fde68a 0%, #fbbf24 100%);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-main);
+      font-weight: 600;
+      font-size: 0.875rem;
+      padding: 0.75rem 1.25rem;
+      border-radius: 0.75rem;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--gold);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* Circuit Canvas background */
+    #circuit-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.45;
+    }
+
+    /* Matrix Rain Overlay */
+    #matrix-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 900;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    #matrix-canvas.active {
+      opacity: 0.85;
+      pointer-events: auto;
+    }
+
+    /* Modal Backdrop */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 7, 18, 0.85);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .modal-backdrop.open {
+      display: flex;
+      opacity: 1;
+    }
+
+    /* Toast Notification */
+    #toast-container {
+      position: fixed;
+      top: 5rem;
+      right: 1.5rem;
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      pointer-events: none;
+    }
+    .toast {
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: #fff;
+      padding: 0.875rem 1.25rem;
+      border-radius: 0.75rem;
+      backdrop-filter: blur(16px);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+      transform: translateX(120%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: auto;
+      font-size: 0.875rem;
+    }
+    .toast.show {
+      transform: translateX(0);
+    }
+
+    /* 3D Model Hero Canvas */
+    #three-hero-container {
+      width: 100%;
+      height: 420px;
+      position: relative;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      background: radial-gradient(circle at center, rgba(6, 182, 212, 0.08) 0%, rgba(3, 7, 18, 0.7) 70%);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+    }
+
+    /* Switch toggle */
+    .switch-toggle {
+      position: relative;
+      display: inline-block;
+      width: 48px;
+      height: 26px;
+    }
+    .switch-toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .switch-slider {
+      position: absolute;
+      cursor: pointer;
+      inset: 0;
+      background-color: #1e293b;
+      transition: 0.3s;
+      border-radius: 26px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .switch-slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: #94a3b8;
+      transition: 0.3s;
+      border-radius: 50%;
+    }
+    input:checked + .switch-slider {
+      background-color: rgba(16, 185, 129, 0.25);
+      border-color: var(--emerald);
+    }
+    input:checked + .switch-slider:before {
+      transform: translateX(22px);
+      background-color: var(--emerald);
+      box-shadow: 0 0 10px var(--emerald);
+    }
+
+    /* Slider input styling */
+    input[type=range] {
+      -webkit-appearance: none;
+      width: 100%;
+      background: transparent;
+    }
+    input[type=range]:focus {
+      outline: none;
+    }
+    input[type=range]::-webkit-slider-runnable-track {
+      width: 100%;
+      height: 6px;
+      cursor: pointer;
+      background: #1e293b;
+      border-radius: 3px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    input[type=range]::-webkit-slider-thumb {
+      height: 18px;
+      width: 18px;
+      border-radius: 50%;
+      background: var(--gold);
+      cursor: pointer;
+      -webkit-appearance: none;
+      margin-top: -6px;
+      box-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
+      transition: transform 0.1s;
+    }
+    input[type=range]::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+
+    /* Utility animations */
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.9; }
+    }
+    .animate-pulse-slow {
+      animation: pulseGlow 4s infinite ease-in-out;
+    }
+
+    @keyframes blinkLED {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; filter: drop-shadow(0 0 8px #10b981); }
+    }
+    .led-blink {
+      animation: blinkLED 1s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Custom Cursor Elements -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- Background Animated Cyber-Circuit Canvas -->
+  <canvas id="circuit-canvas"></canvas>
+
+  <!-- Fullscreen Matrix Rain Canvas -->
+  <canvas id="matrix-canvas"></canvas>
+
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+
+  <!-- ======================== NAVIGATION ======================== -->
+  <header class="fixed top-0 left-0 right-0 z-50 glass-nav">
+    <div class="container-custom">
+      <div style="display: flex; align-items: center; justify-content: space-between; height: 4.5rem;">
+        
+        <!-- Logo -->
+        <a href="#home" style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none;">
+          <div style="width: 2.5rem; height: 2.5rem; border-radius: 0.6rem; background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(6, 182, 212, 0.2)); border: 1px solid rgba(245, 158, 11, 0.4); display: flex; align-items: center; justify-content: center;">
+            <i data-lucide="cpu" style="width: 1.25rem; height: 1.25rem; color: var(--gold);"></i>
+          </div>
+          <div>
+            <span class="font-serif-display" style="font-size: 1.25rem; font-weight: 800; letter-spacing: 0.1em; color: #fff;">GNANI</span>
+            <span class="font-mono" style="display: block; font-size: 0.65rem; color: var(--cyan); letter-spacing: 0.15em;">ECE · IoT ARCHITECT</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav style="display: none;" id="desktop-nav">
+          <style>
+            @media (min-width: 900px) {
+              #desktop-nav { display: flex !important; align-items: center; gap: 1.5rem; }
+            }
+          </style>
+          <a href="#home" class="nav-link" style="color: var(--gold); text-decoration: none; font-size: 0.875rem; font-weight: 600; transition: color 0.2s;">Home</a>
+          <a href="#about" class="nav-link" style="color: var(--text-muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s;">About</a>
+          <a href="#skills" class="nav-link" style="color: var(--text-muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s;">Skills</a>
+          <a href="#workbench" class="nav-link" style="color: var(--cyan); text-decoration: none; font-size: 0.875rem; font-weight: 600; display: flex; align-items: center; gap: 0.35rem;">
+            <i data-lucide="activity" style="width: 0.9rem; height: 0.9rem;"></i> Workbench
+          </a>
+          <a href="#projects" class="nav-link" style="color: var(--text-muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s;">Projects</a>
+          <a href="#journey" class="nav-link" style="color: var(--text-muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s;">Journey</a>
+          <a href="#contact" class="nav-link" style="color: var(--text-muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s;">Contact</a>
+        </nav>
+
+        <!-- Right Quick Controls -->
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <!-- Matrix Rain Button -->
+          <button id="btn-toggle-matrix" class="btn-ghost" style="padding: 0.5rem; border-radius: 0.5rem;" title="Toggle Matrix Digital Rain">
+            <i data-lucide="binary" style="width: 1.1rem; height: 1.1rem; color: var(--emerald);"></i>
+          </button>
+
+          <!-- Audio FX Toggle -->
+          <button id="btn-toggle-audio" class="btn-ghost" style="padding: 0.5rem; border-radius: 0.5rem;" title="Toggle Synthesizer Audio FX">
+            <i data-lucide="volume-2" id="audio-icon" style="width: 1.1rem; height: 1.1rem; color: var(--gold);"></i>
+          </button>
+
+          <!-- Hacker CLI Modal Button -->
+          <button id="btn-open-terminal" class="btn-ghost" style="padding: 0.5rem 0.85rem; border-radius: 0.5rem; font-family: var(--font-mono); font-size: 0.75rem;">
+            <i data-lucide="terminal" style="width: 0.9rem; height: 0.9rem; color: var(--cyan);"></i>
+            <span>CLI</span>
+          </button>
+
+          <!-- Get in Touch CTA -->
+          <a href="#contact" class="btn-gold" style="padding: 0.5rem 1rem; font-size: 0.8rem; border-radius: 0.5rem;">
+            <span>Hire Gnani</span>
+            <i data-lucide="arrow-up-right" style="width: 0.9rem; height: 0.9rem;"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ======================== MAIN CONTENT ======================== -->
+  <main style="position: relative; z-index: 1; padding-top: 5rem;">
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section id="home" style="padding: 6rem 0 4rem; position: relative;">
+      <div class="container-custom">
+        <div style="display: grid; grid-template-columns: 1fr; gap: 3.5rem; align-items: center;" id="hero-grid">
+          <style>
+            @media (min-width: 992px) {
+              #hero-grid { grid-template-columns: 1.1fr 0.9fr !important; }
+            }
+          </style>
+
+          <!-- Left Hero Column -->
+          <div>
+            <!-- Status Badge -->
+            <div style="display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.4rem 1rem; border-radius: 9999px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); margin-bottom: 1.5rem;">
+              <span style="width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--emerald);" class="led-blink"></span>
+              <span class="font-mono" style="font-size: 0.75rem; color: var(--emerald); font-weight: 600; letter-spacing: 0.05em;">AVAILABLE FOR ROLES & INTERNSHIPS</span>
+            </div>
+
+            <!-- Main Heading -->
+            <h1 class="font-serif-display" style="font-size: clamp(2.5rem, 5vw, 4.25rem); font-weight: 800; line-height: 1.15; margin-bottom: 1rem;">
+              Crafting <span class="gold-gradient-text">Silicon</span> & <span class="cyan-gradient-text">Software</span> Intelligence
+            </h1>
+
+            <!-- Typewriter Subtitle -->
+            <div style="display: flex; align-items: center; gap: 0.5rem; height: 2.25rem; margin-bottom: 1.5rem;">
+              <span class="font-mono" style="font-size: clamp(1.1rem, 2vw, 1.4rem); color: var(--gold); font-weight: 600;" id="role-typewriter">Embedded Systems Engineer</span>
+              <span style="display: inline-block; width: 2px; height: 1.4rem; background: var(--gold); animation: pulseGlow 1s infinite;"></span>
+            </div>
+
+            <!-- Bio Description -->
+            <p style="font-size: 1.05rem; color: var(--text-muted); line-height: 1.7; max-width: 580px; margin-bottom: 2.25rem;">
+              Hi, I'm <strong style="color: #fff;">Gnani (Gnanendra)</strong>—a B.Tech Electronics & Communication Engineer specializing in <strong>ESP32, Arduino microcontrollers, IoT sensor telemetry</strong>, and <strong>Full-Stack cloud web architecture</strong>. I bridge bare-metal hardware registers to scalable modern cloud dashboards.
+            </p>
+
+            <!-- Action Buttons -->
+            <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.5rem;">
+              <a href="#workbench" class="btn-gold" id="btn-hero-workbench">
+                <i data-lucide="zap" style="width: 1.1rem; height: 1.1rem;"></i>
+                <span>Explore IoT Workbench</span>
+              </a>
+
+              <button class="btn-ghost" id="btn-play-voice-pitch">
+                <i data-lucide="volume-2" style="width: 1.1rem; height: 1.1rem; color: var(--cyan);"></i>
+                <span>Listen to AI Pitch</span>
+              </button>
+
+              <button class="btn-ghost" id="btn-open-resume-modal">
+                <i data-lucide="file-text" style="width: 1.1rem; height: 1.1rem; color: var(--gold);"></i>
+                <span>View Resume</span>
+              </button>
+            </div>
+
+            <!-- Stats Bar -->
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; padding-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+              <div>
+                <div class="font-mono" style="font-size: 1.75rem; font-weight: 700; color: #fff;">15+</div>
+                <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Microcontroller Projects</div>
+              </div>
+              <div>
+                <div class="font-mono" style="font-size: 1.75rem; font-weight: 700; color: var(--gold);">100%</div>
+                <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">ECE Hardware & Code</div>
+              </div>
+              <div>
+                <div class="font-mono" style="font-size: 1.75rem; font-weight: 700; color: var(--cyan);">240MHz</div>
+                <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">ESP32 Dual-Core Clock</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Hero Column: 3D Microcontroller Canvas -->
+          <div>
+            <div class="glass-card" style="padding: 1rem; border-color: rgba(6, 182, 212, 0.3);">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem; padding: 0.25rem 0.5rem;">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="width: 0.6rem; height: 0.6rem; border-radius: 50%; background: #ef4444;"></span>
+                  <span style="width: 0.6rem; height: 0.6rem; border-radius: 50%; background: #f59e0b;"></span>
+                  <span style="width: 0.6rem; height: 0.6rem; border-radius: 50%; background: #10b981;"></span>
+                  <span class="font-mono" style="font-size: 0.75rem; color: var(--text-muted); margin-left: 0.5rem;">Interactive 3D Microcontroller Package</span>
+                </div>
+                <span class="font-mono" style="font-size: 0.7rem; color: var(--cyan); background: rgba(6, 182, 212, 0.1); padding: 0.2rem 0.5rem; border-radius: 0.25rem;">WebGL / Three.js</span>
+              </div>
+
+              <!-- Canvas Container -->
+              <div id="three-hero-container">
+                <div style="position: absolute; bottom: 1rem; left: 1rem; z-index: 10; pointer-events: none; background: rgba(3, 7, 18, 0.75); padding: 0.4rem 0.8rem; border-radius: 0.5rem; border: 1px solid rgba(255, 255, 255, 0.1);">
+                  <span class="font-mono" style="font-size: 0.7rem; color: var(--gold);">Move cursor to tilt 3D chip in real-time</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ABOUT & BENTO GRID ==================== -->
+    <section id="about" style="padding: 6rem 0;">
+      <div class="container-custom">
+        
+        <div style="text-align: center; max-width: 650px; margin: 0 auto 3.5rem;">
+          <div class="font-mono" style="font-size: 0.8rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 0.5rem;">Engineered from Fundamentals</div>
+          <h2 class="font-serif-display" style="font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 700;">The Mind Behind The Machine</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">
+            From transistor logic, analog signals, and microcontroller buses to responsive web UI and full-stack databases.
+          </p>
+        </div>
+
+        <!-- Bento Grid Layout -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.5rem;">
+          
+          <!-- Box 1: Degree -->
+          <div class="glass-card" style="padding: 2rem;">
+            <div style="width: 3rem; height: 3rem; border-radius: 0.75rem; background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem;">
+              <i data-lucide="graduation-cap" style="width: 1.5rem; height: 1.5rem; color: var(--gold);"></i>
+            </div>
+            <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">B.Tech in ECE</h3>
+            <p class="font-mono" style="font-size: 0.8rem; color: var(--gold); margin-bottom: 0.75rem;">Electronics & Communication Engineering</p>
+            <p style="color: var(--text-muted); font-size: 0.875rem;">
+              Deep rigorous grounding in Embedded C++, Microcontroller Architecture, Analog/Digital Signal Processing, VLSI principles, and High-Speed Communications.
+            </p>
+          </div>
+
+          <!-- Box 2: Hardware Stack -->
+          <div class="glass-card" style="padding: 2rem;">
+            <div style="width: 3rem; height: 3rem; border-radius: 0.75rem; background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.3); display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem;">
+              <i data-lucide="cpu" style="width: 1.5rem; height: 1.5rem; color: var(--cyan);"></i>
+            </div>
+            <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">Microcontrollers & Sensors</h3>
+            <p class="font-mono" style="font-size: 0.8rem; color: var(--cyan); margin-bottom: 0.75rem;">ESP32 · Arduino · PlatformIO</p>
+            <p style="color: var(--text-muted); font-size: 0.875rem;">
+              Direct hardware interfacing with Capacitive Moisture sensors, DHT22, ADS1115 ADC, I2C OLED displays, 12V relays, solenoids, and low-power Deep Sleep tuning.
+            </p>
+          </div>
+
+          <!-- Box 3: Protocols -->
+          <div class="glass-card" style="padding: 2rem;">
+            <div style="width: 3rem; height: 3rem; border-radius: 0.75rem; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem;">
+              <i data-lucide="radio" style="width: 1.5rem; height: 1.5rem; color: var(--emerald);"></i>
+            </div>
+            <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">Protocols & IoT Cloud</h3>
+            <p class="font-mono" style="font-size: 0.8rem; color: var(--emerald); margin-bottom: 0.75rem;">MQTT · HTTP · I2C · SPI · UART</p>
+            <p style="color: var(--text-muted); font-size: 0.875rem;">
+              Configuring distributed MQTT brokers (HiveMQ, Mosquitto), lightweight binary JSON serialization, Wi-Fi mesh nodes, and Bluetooth Low Energy (BLE) beacons.
+            </p>
+          </div>
+
+          <!-- Box 4: Full Stack -->
+          <div class="glass-card" style="padding: 2rem;">
+            <div style="width: 3rem; height: 3rem; border-radius: 0.75rem; background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.3); display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem;">
+              <i data-lucide="layers" style="width: 1.5rem; height: 1.5rem; color: #c084fc;"></i>
+            </div>
+            <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">Full-Stack & Cloud UI</h3>
+            <p class="font-mono" style="font-size: 0.8rem; color: #c084fc; margin-bottom: 0.75rem;">React · Node.js · Express · MongoDB</p>
+            <p style="color: var(--text-muted); font-size: 0.875rem;">
+              Building interactive telemetry visualization dashboards, real-time WebSocket telemetry charts, secure REST APIs, and automated device control systems.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SKILLS MATRIX ==================== -->
+    <section id="skills" style="padding: 6rem 0; background: rgba(11, 15, 25, 0.4);">
+      <div class="container-custom">
+        <div style="text-align: center; max-width: 650px; margin: 0 auto 3rem;">
+          <div class="font-mono" style="font-size: 0.8rem; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 0.5rem;">Technical Capabilities</div>
+          <h2 class="font-serif-display" style="font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 700;">Engineered Tech Stack</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">
+            Filter through specialized domains across physical computing, firmware, and cloud software.
+          </p>
+
+          <!-- Skill Filter Tabs -->
+          <div style="display: inline-flex; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 0.75rem; padding: 0.3rem; margin-top: 1.5rem; gap: 0.25rem;" id="skill-filter-tabs">
+            <button class="filter-btn active" data-filter="all" style="padding: 0.4rem 1rem; border-radius: 0.5rem; border: none; font-size: 0.8rem; font-weight: 600; cursor: pointer; background: var(--gold); color: #030712;">All</button>
+            <button class="filter-btn" data-filter="embedded" style="padding: 0.4rem 1rem; border-radius: 0.5rem; border: none; font-size: 0.8rem; font-weight: 600; cursor: pointer; background: transparent; color: var(--text-muted);">IoT & Embedded</button>
+            <button class="filter-btn" data-filter="software" style="padding: 0.4rem 1rem; border-radius: 0.5rem; border: none; font-size: 0.8rem; font-weight: 600; cursor: pointer; background: transparent; color: var(--text-muted);">Web & Cloud</button>
+            <button class="filter-btn" data-filter="tools" style="padding: 0.4rem 1rem; border-radius: 0.5rem; border: none; font-size: 0.8rem; font-weight: 600; cursor: pointer; background: transparent; color: var(--text-muted);">Tools & IDEs</button>
+          </div>
+        </div>
+
+        <!-- Skills Grid with Animated Meters -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;" id="skills-grid">
+          
+          <!-- Skill Item 1 -->
+          <div class="glass-card skill-card" data-category="embedded" style="padding: 1.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+              <span style="font-weight: 700; color: #fff;">ESP32 & Arduino C++</span>
+              <span class="font-mono" style="font-size: 0.8rem; color: var(--gold);">95%</span>
+            </div>
+            <div style="width: 100%; height: 6px; background: #1e293b; border-radius: 3px; overflow: hidden;">
+              <div style="width: 95%; height: 100%; background: linear-gradient(90deg, #f59e0b, #fbbf24); border-radius: 3px;"></div>
+            </div>
+            <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.6rem;">Firmware, FreeRTOS tasks, GPIO interrupts, Deep Sleep</p>
+          </div>
+
+          <!-- Skill Item 2 -->
+          <div class="glass-card skill-card" data-category="embedded" style="padding: 1.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+              <span style="font-weight: 700; color: #fff;">MQTT, I2C, SPI & UART</span>
+              <span class="font-mono" style="font-size: 0.8rem; color: var(--cyan);">92%</span>
+            </div>
+            <div style="width: 100%; height: 6px; background: #1e293b; border-radius: 3px; overflow: hidden;">
+              <div style="width: 92%; height: 100%; background: linear-gradient(90deg, #06b6d4, #22d3ee); border-radius: 3px;"></div>
+            </div>
+            <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.6rem;">Low-level hardware bus communications & pub/sub brokers</p>
+          </div>
+
+          <!-- Skill Item 3 -->
+          <div class="glass-card skill-card" data-category="embedded" style="padding: 1.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+              <span style="font-weight: 700; color: #fff;">Sensors, Relays & Circuitry</span>
+              <span class="font-mono" style="font-size: 0.8rem; color: var(--emerald);">90%</span>
+            </div>
+            <div style="width: 100%; height: 6px; background: #1e293b; border-radius: 3px; overflow: hidden;">
+              <div style="width: 90%; height: 100%; background: linear-gradient(90deg, #10b981, #34d399); border-radius: 3px;"></div>
+            </div>
+            <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.6rem;">Capacitive soil, DHT22, Solenoids, Optocouplers</p>
+          </div>
+
+          <!-- Skill Item 4 -->
+          <div class="glass-card skill-card" data-category="software" style="padding: 1.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+              <span style="font-weight: 700; color: #fff;">React & Modern JavaScript</span>
+              <span class="font-mono" style="font-size: 0.8rem; color: var(--cyan);">88%</span>
+            </div>
+            <div style="width: 100%; height: 6px; background: #1e293b; border-radius: 3px; overflow: hidden;">
+              <div style="width: 88%; height: 100%; background: linear-gradient(90deg, #06b6d4, #3b82f6); border-radius: 3px;"></div>
+            </div>
+            <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.6rem;">Interactive client SPAs, state hooks, responsive styling</p>
+          </div>
+
+          <!-- Skill Item 5 -->
+          <div class="glass-card skill-card" data-category="software" style="padding: 1.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+              <span style="font-weight: 700; color: #fff;">Node.js, Express & MongoDB</span>
+              <span class="font-mono" style="font-size: 0.8rem; color: var(--gold);">85%</span>
+            </div>
+            <div style="width: 100%; height: 6px; background: #1e293b; border-radius: 3px; overflow: hidden;">
+              <div style="width: 85%; height: 100%; background: linear-gradient(90deg, #f59e0b, #eab308); border-radius: 3px;"></div>
+            </div>
+            <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.6rem;">REST APIs, telemetry serialization, database pipelines</p>
+          </div>
+
+          <!-- Skill Item 6 -->
+          <div class="glass-card skill-card" data-category="tools" style="padding: 1.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+              <span style="font-weight: 700; color: #fff;">PlatformIO, VS Code & Git</span>
+              <span class="font-mono" style="font-size: 0.8rem; color: var(--emerald);">90%</span>
+            </div>
+            <div style="width: 100%; height: 6px; background: #1e293b; border-radius: 3px; overflow: hidden;">
+              <div style="width: 90%; height: 100%; background: linear-gradient(90deg, #10b981, #06b6d4); border-radius: 3px;"></div>
+            </div>
+            <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.6rem;">Serial monitor debugging, board package management, Git CI</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== INTERACTIVE IOT WORKBENCH ==================== -->
+    <section id="workbench" style="padding: 6rem 0; position: relative;">
+      <div class="container-custom">
+        
+        <div style="text-align: center; max-width: 700px; margin: 0 auto 3.5rem;">
+          <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.35rem 0.85rem; border-radius: 9999px; background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.3); margin-bottom: 0.75rem;">
+            <i data-lucide="zap" style="width: 0.9rem; height: 0.9rem; color: var(--cyan);"></i>
+            <span class="font-mono" style="font-size: 0.75rem; color: var(--cyan); font-weight: 600; letter-spacing: 0.1em;">PHYSICAL COMPUTING SIMULATOR</span>
+          </div>
+          <h2 class="font-serif-display" style="font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 700;">ESP32 IoT Hardware Workbench</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">
+            Adjust live voltage and temperature sliders, toggle mechanical relays, view real-time oscilloscope waveform traces, and stream serial logs.
+          </p>
+        </div>
+
+        <!-- Workbench Main Simulator Container -->
+        <div class="glass-card" style="padding: 2rem; border-color: rgba(245, 158, 11, 0.3);">
+          
+          <!-- Top Telemetry Status Strip -->
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; padding-bottom: 1.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <span style="width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--emerald);" id="led-hardware-status"></span>
+                <span class="font-mono" style="font-size: 0.8rem; color: #fff; font-weight: 600;">ESP32-WROOM-32D</span>
+              </div>
+              <span style="color: rgba(255, 255, 255, 0.2);">|</span>
+              <span class="font-mono" style="font-size: 0.75rem; color: var(--gold);" id="baud-rate-display">115200 BAUD</span>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
+              <div class="font-mono" style="font-size: 0.8rem; color: var(--text-muted);">
+                SYS VOLTAGE: <span style="color: var(--gold); font-weight: 700;" id="val-voltage-badge">3.3V</span>
+              </div>
+              <div class="font-mono" style="font-size: 0.8rem; color: var(--text-muted);">
+                CORE TEMP: <span style="color: var(--cyan); font-weight: 700;" id="val-temp-badge">28.4°C</span>
+              </div>
+              <div class="font-mono" style="font-size: 0.8rem; color: var(--text-muted);">
+                RSSI: <span style="color: var(--emerald); font-weight: 700;" id="val-rssi-badge">-62 dBm</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Workbench 2-Column Controls & Telemetry Layout -->
+          <div style="display: grid; grid-template-columns: 1fr; gap: 2rem;" id="workbench-grid">
+            <style>
+              @media (min-width: 992px) {
+                #workbench-grid { grid-template-columns: 1fr 1fr !important; }
+              }
+            </style>
+
+            <!-- Column 1: Hardware Inputs & Controls -->
+            <div>
+              <h3 class="font-mono" style="font-size: 0.9rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.25rem;">
+                1. Sensor Telemetry Inputs
+              </h3>
+
+              <!-- Slider 1: Voltage -->
+              <div style="margin-bottom: 1.5rem;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.85rem;">
+                  <span style="color: #fff; font-weight: 600;">Regulated Voltage Input (0 - 5.0V)</span>
+                  <span class="font-mono" style="color: var(--gold); font-weight: 700;" id="label-slider-voltage">3.30 V</span>
+                </div>
+                <input type="range" id="slider-voltage" min="0" max="5" step="0.05" value="3.3">
+              </div>
+
+              <!-- Slider 2: Temperature -->
+              <div style="margin-bottom: 1.5rem;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.85rem;">
+                  <span style="color: #fff; font-weight: 600;">Ambient Sensor Temperature (-20°C to 80°C)</span>
+                  <span class="font-mono" style="color: var(--cyan); font-weight: 700;" id="label-slider-temp">28.4 °C</span>
+                </div>
+                <input type="range" id="slider-temp" min="-20" max="80" step="0.5" value="28.4">
+              </div>
+
+              <!-- Slider 3: Wi-Fi RSSI -->
+              <div style="margin-bottom: 2rem;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.85rem;">
+                  <span style="color: #fff; font-weight: 600;">Wi-Fi Signal Strength (RSSI dBm)</span>
+                  <span class="font-mono" style="color: var(--emerald); font-weight: 700;" id="label-slider-rssi">-62 dBm</span>
+                </div>
+                <input type="range" id="slider-rssi" min="-95" max="-30" step="1" value="-62">
+              </div>
+
+              <!-- Relay Hardware Toggles -->
+              <h3 class="font-mono" style="font-size: 0.9rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">
+                2. Actuator Relays & GPIO Pin States
+              </h3>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <!-- Relay 1 -->
+                <div class="glass-card" style="padding: 1rem; border-color: rgba(255, 255, 255, 0.05);">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                    <div>
+                      <div style="font-weight: 700; font-size: 0.85rem;">Relay 1 (GPIO 18)</div>
+                      <div style="font-size: 0.75rem; color: var(--text-muted);">Solenoid Irrigation</div>
+                    </div>
+                    <label class="switch-toggle">
+                      <input type="checkbox" id="toggle-relay-1">
+                      <span class="switch-slider"></span>
+                    </label>
+                  </div>
+                  <div style="font-size: 0.7rem; font-family: var(--font-mono); color: var(--text-muted);" id="status-relay-1">
+                    STATE: DE-ENERGIZED
+                  </div>
+                </div>
+
+                <!-- Relay 2 -->
+                <div class="glass-card" style="padding: 1rem; border-color: rgba(255, 255, 255, 0.05);">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                    <div>
+                      <div style="font-weight: 700; font-size: 0.85rem;">Relay 2 (GPIO 19)</div>
+                      <div style="font-size: 0.75rem; color: var(--text-muted);">Cooling Exhaust Fan</div>
+                    </div>
+                    <label class="switch-toggle">
+                      <input type="checkbox" id="toggle-relay-2" checked>
+                      <span class="switch-slider"></span>
+                    </label>
+                  </div>
+                  <div style="font-size: 0.7rem; font-family: var(--font-mono); color: var(--emerald);" id="status-relay-2">
+                    STATE: ENERGIZED (ACTIVE)
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Column 2: Oscilloscope & Serial Terminal -->
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                <h3 class="font-mono" style="font-size: 0.9rem; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.1em;">
+                  Live Waveform Oscilloscope
+                </h3>
+                <!-- Wave Type Selector -->
+                <div style="display: flex; gap: 0.25rem;">
+                  <button class="wave-btn active" data-wave="sine" style="padding: 0.2rem 0.5rem; font-size: 0.7rem; font-family: var(--font-mono); border-radius: 0.25rem; border: none; background: var(--cyan); color: #030712; cursor: pointer;">SINE</button>
+                  <button class="wave-btn" data-wave="pwm" style="padding: 0.2rem 0.5rem; font-size: 0.7rem; font-family: var(--font-mono); border-radius: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.1); background: transparent; color: var(--text-muted); cursor: pointer;">PWM</button>
+                  <button class="wave-btn" data-wave="analog" style="padding: 0.2rem 0.5rem; font-size: 0.7rem; font-family: var(--font-mono); border-radius: 0.25rem; border: 1px solid rgba(255, 255, 255, 0.1); background: transparent; color: var(--text-muted); cursor: pointer;">NOISE</button>
+                </div>
+              </div>
+
+              <!-- Oscilloscope Canvas Box -->
+              <div style="background: #020617; border: 1px solid rgba(6, 182, 212, 0.3); border-radius: 0.75rem; padding: 0.5rem; margin-bottom: 1.5rem; position: relative;">
+                <canvas id="oscilloscope-canvas" style="width: 100%; height: 160px; display: block; border-radius: 0.5rem;"></canvas>
+                <div style="position: absolute; top: 0.75rem; right: 0.75rem; font-family: var(--font-mono); font-size: 0.65rem; color: var(--cyan); background: rgba(6, 182, 212, 0.1); padding: 0.2rem 0.4rem; border-radius: 0.25rem;">
+                  CH1: 50mV / div
+                </div>
+              </div>
+
+              <!-- Serial Monitor Terminal -->
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                <h3 class="font-mono" style="font-size: 0.9rem; color: var(--emerald); text-transform: uppercase; letter-spacing: 0.1em;">
+                  Serial Monitor Stream (TX / RX)
+                </h3>
+                <button id="btn-clear-serial" style="background: transparent; border: none; color: var(--text-muted); font-size: 0.7rem; font-family: var(--font-mono); cursor: pointer;">Clear Logs</button>
+              </div>
+
+              <div style="background: #020617; border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 0.75rem; padding: 0.85rem; height: 160px; overflow-y: auto; font-family: var(--font-mono); font-size: 0.75rem; color: #a7f3d0;" id="serial-terminal-logs">
+                <div>[00:00:00.120] ESP32 bootloader initialization... OK</div>
+                <div>[00:00:00.350] Connecting to MQTT broker: mqtt://broker.hivemq.com:1883</div>
+                <div>[00:00:00.680] Wi-Fi connected: 192.168.1.142 (RSSI: -62 dBm)</div>
+                <div>[00:00:01.010] Relay 2 pin energized for active cooling.</div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom: AI Firmware Architect Generator Drawer Trigger -->
+          <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+            <div>
+              <div style="font-weight: 700; font-size: 0.95rem; color: #fff;">Need custom ESP32 firmware for your hardware project?</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">Generate production-ready Arduino C++ code and pinout configurations with AI.</div>
+            </div>
+            <button class="btn-gold" id="btn-open-architect">
+              <i data-lucide="sparkles" style="width: 1rem; height: 1rem;"></i>
+              <span>Launch AI Firmware Architect</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PROJECTS SHOWCASE ==================== -->
+    <section id="projects" style="padding: 6rem 0; background: rgba(11, 15, 25, 0.4);">
+      <div class="container-custom">
+        <div style="text-align: center; max-width: 650px; margin: 0 auto 3.5rem;">
+          <div class="font-mono" style="font-size: 0.8rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 0.5rem;">Signature Creations</div>
+          <h2 class="font-serif-display" style="font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 700;">Featured Engineering Projects</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">
+            Click on any project to inspect system architecture, hardware wiring pinouts, and tech stack breakdowns.
+          </p>
+        </div>
+
+        <!-- Project Cards Grid -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+          
+          <!-- Project 1: Smart Irrigation -->
+          <div class="glass-card project-card" data-project="irrigation" style="padding: 2rem; cursor: pointer;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <span class="font-mono" style="font-size: 0.75rem; color: var(--emerald); background: rgba(16, 185, 129, 0.1); padding: 0.25rem 0.6rem; border-radius: 0.25rem; font-weight: 600;">IoT & AGRICULTURE</span>
+              <span class="font-mono" style="font-size: 0.75rem; color: var(--text-muted);">2024 - PRESENT</span>
+            </div>
+            <h3 style="font-size: 1.35rem; font-weight: 800; color: #fff; margin-bottom: 0.75rem;">Smart Agricultural Telemetry & Irrigation Gateway</h3>
+            <p style="color: var(--text-muted); font-size: 0.875rem; line-height: 1.6; margin-bottom: 1.5rem;">
+              Automated smart farming node utilizing ESP32, capacitive soil moisture sensors, and 12V solenoid relays. Streams field metrics over MQTT to a live cloud dashboard, reducing agricultural water waste by 34%.
+            </p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem;">
+              <span class="font-mono" style="font-size: 0.7rem; background: rgba(255, 255, 255, 0.05); padding: 0.2rem 0.5rem; border-radius: 0.25rem;">ESP32</span>
+              <span class="font-mono" style="font-size: 0.7rem; background: rgba(255, 255, 255, 0.05); padding: 0.2rem 0.5rem; border-radius: 0.25rem;">MQTT</span>
+              <span class="font-mono" style="font-size: 0.7rem; background: rgba(255, 255, 255, 0.05); padding: 0.2rem 0.5rem; border-radius: 0.25rem;">C++</span>
+              <span class="font-mono" style="font-size: 0.7rem; background: rgba(255, 255, 255, 0.05); padding: 0.2rem 0.5rem; border-radius: 0.25rem;">React</span>
+              <span class="font-mono" style="font-size: 0.7rem; background: rgba(255, 255, 255, 0.05); padding: 0.2rem 0.5rem; border-radius: 0.25rem;">Node.js</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 0.8rem; color: var(--gold); font-weight: 600; display: flex; align-items: center; gap: 0.35rem;">
+                View Architecture Pinouts <i data-lucide="arrow-right" style="width: 0.85rem; height: 0.85rem;"></i>
+              </span>
+              <i data-lucide="external-link" style="width: 1.1rem; height: 1.1rem; color: var(--text-muted);"></i>
+            </div>
+          </div>
+
+          <!-- Project 2: MediScan AI -->
+          <div class="glass-card project-card" data-project="mediscan" style="padding: 2rem; cursor: pointer;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <span class="font-mono" style="font-size: 0.75rem; color: var(--cyan); background: rgba(6, 182, 212, 0.1); padding: 0.25rem 0.6rem; border-radius: 0.25rem; font-weight: 600;">AI & HEALTHCARE</span>
+              <span class="font-mono" style="font-size: 0.75rem; color: var(--text-muted);">2024</span>
+            </div>
+            <h3 style="font-size: 1.35rem; font-weight: 800; color: #fff; margin-bottom: 0.75rem;">MediScan AI Medical Diagnostics Platform</h3>
+            <p style="color: var(--text-muted); font-size: 0.875rem; line-height: 1.6; margin-bottom: 1.5rem;">
+              Full-Stack intelligent clinical decision support system analyzing symptoms and patient biometrics. Features real-time AI report interpretation, drug interaction alerts, and HIPAA-compliant doctor audit workflows.
+            </p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem;">
+              <span class="font-mono" style="font-size: 0.7rem; background: rgba(255, 255, 255, 0.05); padding: 0.2rem 0.5rem; border-radius: 0.25rem;">React 19</span>
+              <span class="font-mono" style="font-size: 0.7rem; background: rgba(255, 255, 255, 0.05); padding: 0.2rem 0.5rem; border-radius: 0.25rem;">Gemini AI</span>
+              <span class="font-mono" style="font-size: 0.7rem; background: rgba(255, 255, 255, 0.05); padding: 0.2rem 0.5rem; border-radius: 0.25rem;">Express</span>
+              <span class="font-mono" style="font-size: 0.7rem; background: rgba(255, 255, 255, 0.05); padding: 0.2rem 0.5rem; border-radius: 0.25rem;">Tailwind CSS</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 0.8rem; color: var(--cyan); font-weight: 600; display: flex; align-items: center; gap: 0.35rem;">
+                View Architecture Pinouts <i data-lucide="arrow-right" style="width: 0.85rem; height: 0.85rem;"></i>
+              </span>
+              <i data-lucide="external-link" style="width: 1.1rem; height: 1.1rem; color: var(--text-muted);"></i>
+            </div>
+          </div>
+
+          <!-- Project 3: Solar Energy Monitor -->
+          <div class="glass-card project-card" data-project="solar" style="padding: 2rem; cursor: pointer;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <span class="font-mono" style="font-size: 0.75rem; color: var(--gold); background: rgba(245, 158, 11, 0.1); padding: 0.25rem 0.6rem; border-radius: 0.25rem; font-weight: 600;">CLEANTECH & TELEMETRY</span>
+              <span class="font-mono" style="font-size: 0.75rem; color: var(--text-muted);">2023 - 2024</span>
+            </div>
+            <h3 style="font-size: 1.35rem; font-weight: 800; color: #fff; margin-bottom: 0.75rem;">IoT Solar Photovoltaic Grid Monitor</h3>
+            <p style="color: var(--text-muted); font-size: 0.875rem; line-height: 1.6; margin-bottom: 1.5rem;">
+              High-accuracy voltage and current sensing circuit for photovoltaic panels. Uses ADS1115 16-bit ADC, INA219 sensor, and OLED display with real-time MPPT power tracking calculations.
+            </p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem;">
+              <span class="font-mono" style="font-size: 0.7rem; background: rgba(255, 255, 255, 0.05); padding: 0.2rem 0.5rem; border-radius: 0.25rem;">Arduino</span>
+              <span class="font-mono" style="font-size: 0.7rem; background: rgba(255, 255, 255, 0.05); padding: 0.2rem 0.5rem; border-radius: 0.25rem;">INA219</span>
+              <span class="font-mono" style="font-size: 0.7rem; background: rgba(255, 255, 255, 0.05); padding: 0.2rem 0.5rem; border-radius: 0.25rem;">I2C</span>
+              <span class="font-mono" style="font-size: 0.7rem; background: rgba(255, 255, 255, 0.05); padding: 0.2rem 0.5rem; border-radius: 0.25rem;">WebSockets</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 0.8rem; color: var(--gold); font-weight: 600; display: flex; align-items: center; gap: 0.35rem;">
+                View Architecture Pinouts <i data-lucide="arrow-right" style="width: 0.85rem; height: 0.85rem;"></i>
+              </span>
+              <i data-lucide="external-link" style="width: 1.1rem; height: 1.1rem; color: var(--text-muted);"></i>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== JOURNEY TIMELINE ==================== -->
+    <section id="journey" style="padding: 6rem 0;">
+      <div class="container-custom">
+        <div style="text-align: center; max-width: 650px; margin: 0 auto 4rem;">
+          <div class="font-mono" style="font-size: 0.8rem; color: var(--emerald); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 0.5rem;">Chronological Milestones</div>
+          <h2 class="font-serif-display" style="font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 700;">The Engineering Journey</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">
+            Click on any milestone year to open detailed project notes and engineering insights.
+          </p>
+        </div>
+
+        <!-- Vertical Timeline Path -->
+        <div style="max-w: 800px; margin: 0 auto; position: relative;">
+          <!-- Central Line -->
+          <div style="position: absolute; left: 1.5rem; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--gold), var(--cyan), var(--emerald));"></div>
+
+          <!-- Milestone 1 -->
+          <div class="timeline-item" style="position: relative; padding-left: 4.5rem; margin-bottom: 3rem; cursor: pointer;">
+            <div style="position: absolute; left: 0.75rem; top: 0.25rem; width: 1.5rem; height: 1.5rem; border-radius: 50%; background: #030712; border: 3px solid var(--gold); box-shadow: 0 0 12px var(--gold);"></div>
+            <div class="glass-card" style="padding: 1.5rem;">
+              <span class="font-mono" style="font-size: 0.8rem; color: var(--gold); font-weight: 700;">2023 · FOUNDATIONS & EMBEDDED C</span>
+              <h3 style="font-size: 1.15rem; font-weight: 700; color: #fff; margin: 0.25rem 0 0.5rem;">B.Tech Electronics Inception & Arduino Prototyping</h3>
+              <p style="color: var(--text-muted); font-size: 0.875rem;">
+                Began intensive study in ECE circuit analysis, breadboard prototyping, digital logic, and basic sensor telemetry using Arduino Uno.
+              </p>
+            </div>
+          </div>
+
+          <!-- Milestone 2 -->
+          <div class="timeline-item" style="position: relative; padding-left: 4.5rem; margin-bottom: 3rem; cursor: pointer;">
+            <div style="position: absolute; left: 0.75rem; top: 0.25rem; width: 1.5rem; height: 1.5rem; border-radius: 50%; background: #030712; border: 3px solid var(--cyan); box-shadow: 0 0 12px var(--cyan);"></div>
+            <div class="glass-card" style="padding: 1.5rem;">
+              <span class="font-mono" style="font-size: 0.8rem; color: var(--cyan); font-weight: 700;">2024 · IOT ADVANCEMENT & ESP32</span>
+              <h3 style="font-size: 1.15rem; font-weight: 700; color: #fff; margin: 0.25rem 0 0.5rem;">Wi-Fi Mesh & MQTT Cloud Gateways</h3>
+              <p style="color: var(--text-muted); font-size: 0.875rem;">
+                Transitioned to ESP32 dual-core architecture, FreeRTOS multithreading, MQTT broker integration, and smart agricultural automation systems.
+              </p>
+            </div>
+          </div>
+
+          <!-- Milestone 3 -->
+          <div class="timeline-item" style="position: relative; padding-left: 4.5rem; cursor: pointer;">
+            <div style="position: absolute; left: 0.75rem; top: 0.25rem; width: 1.5rem; height: 1.5rem; border-radius: 50%; background: #030712; border: 3px solid var(--emerald); box-shadow: 0 0 12px var(--emerald);"></div>
+            <div class="glass-card" style="padding: 1.5rem;">
+              <span class="font-mono" style="font-size: 0.8rem; color: var(--emerald); font-weight: 700;">2025 - PRESENT · FULL-STACK & EDGE AI</span>
+              <h3 style="font-size: 1.15rem; font-weight: 700; color: #fff; margin: 0.25rem 0 0.5rem;">Bridging Hardware to Production Web & AI</h3>
+              <p style="color: var(--text-muted); font-size: 0.875rem;">
+                Developed React 19 telemetry dashboards, Node.js REST servers, and Gemini AI diagnostic copilots. Seeking high-impact embedded engineering roles.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CONTACT SECTION ==================== -->
+    <section id="contact" style="padding: 6rem 0; background: rgba(11, 15, 25, 0.4);">
+      <div class="container-custom">
+        <div style="text-align: center; max-width: 650px; margin: 0 auto 3.5rem;">
+          <div class="font-mono" style="font-size: 0.8rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 0.5rem;">Initiate Transmission</div>
+          <h2 class="font-serif-display" style="font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 700;">Let's Build Something Extraordinary</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">
+            Whether you have an embedded systems role, IoT contract, or engineering project, send a direct transmission.
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 3rem; max-width: 900px; margin: 0 auto;" id="contact-grid">
+          <style>
+            @media (min-width: 768px) {
+              #contact-grid { grid-template-columns: 1fr 1fr !important; }
+            }
+          </style>
+
+          <!-- Contact Details -->
+          <div>
+            <h3 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 1.25rem;">Direct Coordinates</h3>
+            
+            <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 2rem;">
+              <div style="display: flex; align-items: center; gap: 1rem;">
+                <div style="width: 2.75rem; height: 2.75rem; border-radius: 0.6rem; background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); display: flex; align-items: center; justify-content: center;">
+                  <i data-lucide="mail" style="width: 1.25rem; height: 1.25rem; color: var(--gold);"></i>
+                </div>
+                <div>
+                  <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Direct Email</div>
+                  <a href="mailto:gnanendra714@gmail.com" style="color: #fff; text-decoration: none; font-weight: 600; font-family: var(--font-mono); font-size: 0.9rem;">gnanendra714@gmail.com</a>
+                </div>
+              </div>
+
+              <div style="display: flex; align-items: center; gap: 1rem;">
+                <div style="width: 2.75rem; height: 2.75rem; border-radius: 0.6rem; background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.3); display: flex; align-items: center; justify-content: center;">
+                  <i data-lucide="map-pin" style="width: 1.25rem; height: 1.25rem; color: var(--cyan);"></i>
+                </div>
+                <div>
+                  <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Location & Availability</div>
+                  <div style="color: #fff; font-weight: 600; font-size: 0.9rem;">Available On-Site, Hybrid & Remote</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass-card" style="padding: 1.25rem; border-color: rgba(16, 185, 129, 0.2);">
+              <div class="font-mono" style="font-size: 0.75rem; color: var(--emerald); font-weight: 600; margin-bottom: 0.35rem;">
+                ⚡ FAST RESPONSE GUARANTEE
+              </div>
+              <p style="font-size: 0.8rem; color: var(--text-muted);">
+                I regularly monitor my communications. You will receive an engineering response within 24 hours.
+              </p>
+            </div>
+          </div>
+
+          <!-- Glass Contact Form -->
+          <div class="glass-card" style="padding: 2rem;">
+            <form id="contact-form" style="display: flex; flex-direction: column; gap: 1.25rem;">
+              <div>
+                <label style="display: block; font-size: 0.8rem; font-weight: 600; color: #fff; margin-bottom: 0.5rem;" for="contact-name">Your Full Name</label>
+                <input type="text" id="contact-name" required placeholder="e.g. Elena Rostova" style="width: 100%; padding: 0.75rem 1rem; border-radius: 0.5rem; background: #030712; border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; font-size: 0.875rem;">
+              </div>
+
+              <div>
+                <label style="display: block; font-size: 0.8rem; font-weight: 600; color: #fff; margin-bottom: 0.5rem;" for="contact-email">Email Address</label>
+                <input type="email" id="contact-email" required placeholder="elena@engineering-firm.com" style="width: 100%; padding: 0.75rem 1rem; border-radius: 0.5rem; background: #030712; border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; font-size: 0.875rem;">
+              </div>
+
+              <div>
+                <label style="display: block; font-size: 0.8rem; font-weight: 600; color: #fff; margin-bottom: 0.5rem;" for="contact-message">Message / Opportunity Details</label>
+                <textarea id="contact-message" required rows="4" placeholder="Hi Gnani, we reviewed your ESP32 irrigation project and would like to interview you for an Embedded Systems role..." style="width: 100%; padding: 0.75rem 1rem; border-radius: 0.5rem; background: #030712; border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; font-size: 0.875rem; resize: vertical;"></textarea>
+              </div>
+
+              <button type="submit" class="btn-gold" style="width: 100%; justify-content: center;">
+                <i data-lucide="send" style="width: 1rem; height: 1rem;"></i>
+                <span>Transmit Message</span>
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer style="padding: 3rem 0; border-top: 1px solid rgba(255, 255, 255, 0.08); background: #030712; text-align: center;">
+    <div class="container-custom">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <i data-lucide="cpu" style="width: 1.25rem; height: 1.25rem; color: var(--gold);"></i>
+          <span class="font-serif-display" style="font-weight: 800; font-size: 1.1rem; color: #fff;">GNANI</span>
+        </div>
+        <p style="font-size: 0.8rem; color: var(--text-muted); max-width: 480px;">
+          Engineered with precision using Three.js, Canvas 2D, Web Audio API, and Gemini AI. Zero bloat, zero dependencies.
+        </p>
+        <div class="font-mono" style="font-size: 0.75rem; color: var(--gold);">
+          © 2026 Gnanendra (Gnani). Electronics & Communication Engineer.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======================== FLOATING TOOLS TRIGGER ======================== -->
+  <div style="position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 100; display: flex; align-items: center; gap: 0.5rem;">
+    <!-- Recruiter JD Matcher -->
+    <button class="btn-ghost" id="btn-floating-jd" style="background: rgba(15, 23, 42, 0.9); padding: 0.6rem 0.9rem; border-radius: 9999px; font-size: 0.75rem;" title="Match your Job Description with AI">
+      <i data-lucide="briefcase" style="width: 0.9rem; height: 0.9rem; color: var(--gold);"></i>
+      <span style="font-weight: 600;">Match JD</span>
+    </button>
+
+    <!-- AI Copilot Chat -->
+    <button class="btn-gold" id="btn-floating-copilot" style="padding: 0.6rem 1.1rem; border-radius: 9999px; font-size: 0.8rem;">
+      <i data-lucide="bot" style="width: 1.1rem; height: 1.1rem;"></i>
+      <span>AI Copilot</span>
+    </button>
+  </div>
+
+  <!-- ======================== MODALS ======================== -->
+
+  <!-- 1. HACKER CLI TERMINAL MODAL -->
+  <div class="modal-backdrop" id="modal-terminal">
+    <div class="glass-card" style="width: 100%; max-width: 650px; background: #030712; border-color: rgba(6, 182, 212, 0.4); padding: 0; overflow: hidden;">
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1rem; background: #0b0f19; border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <i data-lucide="terminal" style="width: 1rem; height: 1rem; color: var(--cyan);"></i>
+          <span class="font-mono" style="font-size: 0.8rem; color: #fff;">gnani@embedded-core:~$ (CLI v2.4)</span>
+        </div>
+        <button class="btn-close-modal" style="background: transparent; border: none; color: var(--text-muted); cursor: pointer;">
+          <i data-lucide="x" style="width: 1.1rem; height: 1.1rem;"></i>
+        </button>
+      </div>
+
+      <div style="padding: 1rem; height: 320px; overflow-y: auto; font-family: var(--font-mono); font-size: 0.8rem; color: #cbd5e1;" id="terminal-history">
+        <div><span style="color: var(--gold);">GNANI ARCHITECTURE CLI v2.4</span></div>
+        <div>Connected to target: <span style="color: var(--emerald);">ESP32 Dual-Core Tensilica @ 240MHz</span></div>
+        <div>Type <span style="color: var(--cyan); font-weight: 700;">help</span> to list available system commands.</div>
+        <div style="margin-top: 0.5rem;"></div>
+      </div>
+
+      <form id="terminal-input-form" style="display: flex; padding: 0.75rem 1rem; background: #050914; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+        <span class="font-mono" style="color: var(--gold); margin-right: 0.5rem;">$</span>
+        <input type="text" id="terminal-input" placeholder="type command (e.g. help, skills, ping)..." style="flex: 1; background: transparent; border: none; outline: none; font-family: var(--font-mono); font-size: 0.85rem; color: #fff;">
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. AI COPILOT CHAT DRAWER -->
+  <div class="modal-backdrop" id="modal-copilot">
+    <div class="glass-card" style="width: 100%; max-width: 520px; background: #0b0f19; border-color: rgba(245, 158, 11, 0.4); padding: 0; overflow: hidden;">
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #030712; border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <i data-lucide="bot" style="width: 1.25rem; height: 1.25rem; color: var(--gold);"></i>
+          <div>
+            <div style="font-weight: 700; font-size: 0.9rem; color: #fff;">Gnani's AI Recruiter Copilot</div>
+            <div class="font-mono" style="font-size: 0.65rem; color: var(--emerald);">Powered by Gemini Intelligence</div>
+          </div>
+        </div>
+        <button class="btn-close-modal" style="background: transparent; border: none; color: var(--text-muted); cursor: pointer;">
+          <i data-lucide="x" style="width: 1.1rem; height: 1.1rem;"></i>
+        </button>
+      </div>
+
+      <div style="padding: 1rem; height: 320px; overflow-y: auto; display: flex; flex-direction: column; gap: 0.75rem;" id="copilot-messages">
+        <div style="align-self: flex-start; background: rgba(255, 255, 255, 0.05); padding: 0.75rem 1rem; border-radius: 0.75rem; max-width: 85%; font-size: 0.85rem; line-height: 1.5;">
+          Hello! I'm Gnani's AI portfolio agent. Ask me anything about his B.Tech in Electronics, ESP32 microcontrollers, hardware projects, or why he's a great match for your engineering team!
+        </div>
+      </div>
+
+      <form id="copilot-input-form" style="display: flex; padding: 0.75rem 1rem; background: #030712; border-top: 1px solid rgba(255, 255, 255, 0.08); gap: 0.5rem;">
+        <input type="text" id="copilot-input" placeholder="Ask about Gnani's skills or projects..." style="flex: 1; padding: 0.6rem 0.9rem; border-radius: 0.5rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; font-size: 0.85rem;">
+        <button type="submit" class="btn-gold" style="padding: 0.6rem 0.9rem;">
+          <i data-lucide="send" style="width: 0.9rem; height: 0.9rem;"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 3. AI FIRMWARE ARCHITECT MODAL -->
+  <div class="modal-backdrop" id="modal-architect">
+    <div class="glass-card" style="width: 100%; max-width: 700px; background: #0b0f19; border-color: rgba(6, 182, 212, 0.4); padding: 2rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <i data-lucide="sparkles" style="width: 1.25rem; height: 1.25rem; color: var(--cyan);"></i>
+          <h3 style="font-size: 1.25rem; font-weight: 700; color: #fff;">AI Firmware & Circuit Architect</h3>
+        </div>
+        <button class="btn-close-modal" style="background: transparent; border: none; color: var(--text-muted); cursor: pointer;">
+          <i data-lucide="x" style="width: 1.1rem; height: 1.1rem;"></i>
+        </button>
+      </div>
+
+      <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">
+        Describe your microcontroller hardware requirements (e.g., <em>"ESP32 with I2C SSD1306 OLED and MQTT telemetry on GPIO 4"</em>) to generate tailored Arduino C++ firmware.
+      </p>
+
+      <div style="margin-bottom: 1.25rem;">
+        <input type="text" id="architect-prompt" value="ESP32 Smart Agricultural Irrigation Controller with I2C OLED and MQTT Telemetry" style="width: 100%; padding: 0.75rem 1rem; border-radius: 0.5rem; background: #030712; border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; font-size: 0.875rem;">
+      </div>
+
+      <button class="btn-gold" id="btn-generate-firmware" style="margin-bottom: 1.5rem;">
+        <i data-lucide="cpu" style="width: 1rem; height: 1rem;"></i>
+        <span>Synthesize C++ Firmware</span>
+      </button>
+
+      <div style="position: relative;">
+        <pre style="background: #020617; padding: 1rem; border-radius: 0.75rem; border: 1px solid rgba(255, 255, 255, 0.1); color: #a7f3d0; font-family: var(--font-mono); font-size: 0.75rem; max-height: 220px; overflow-y: auto;" id="architect-code-output">
+// Click Synthesize C++ Firmware to generate production code...
+        </pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. JOB COMPATIBILITY EVALUATOR MODAL -->
+  <div class="modal-backdrop" id="modal-jd">
+    <div class="glass-card" style="width: 100%; max-width: 600px; background: #0b0f19; border-color: rgba(245, 158, 11, 0.4); padding: 2rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <i data-lucide="briefcase" style="width: 1.25rem; height: 1.25rem; color: var(--gold);"></i>
+          <h3 style="font-size: 1.25rem; font-weight: 700; color: #fff;">AI Job Compatibility Evaluator</h3>
+        </div>
+        <button class="btn-close-modal" style="background: transparent; border: none; color: var(--text-muted); cursor: pointer;">
+          <i data-lucide="x" style="width: 1.1rem; height: 1.1rem;"></i>
+        </button>
+      </div>
+
+      <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">
+        Paste your Job Description (JD) below to evaluate Gnani's candidate match score and strengths.
+      </p>
+
+      <textarea id="jd-input" rows="4" placeholder="e.g. Looking for an Embedded Systems Engineer experienced with ESP32, C/C++, MQTT, sensors, and basic web dashboards..." style="width: 100%; padding: 0.75rem 1rem; border-radius: 0.5rem; background: #030712; border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; font-size: 0.85rem; margin-bottom: 1rem;"></textarea>
+
+      <button class="btn-gold" id="btn-eval-jd" style="width: 100%; justify-content: center; margin-bottom: 1.25rem;">
+        <span>Analyze Candidate Alignment</span>
+      </button>
+
+      <div id="jd-result-box" style="display: none; background: #030712; border: 1px solid rgba(16, 185, 129, 0.3); padding: 1rem; border-radius: 0.75rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+          <span style="font-weight: 700; color: #fff;">Match Assessment:</span>
+          <span class="font-mono" style="font-size: 1.25rem; font-weight: 800; color: var(--emerald);" id="jd-match-score">96% MATCH</span>
+        </div>
+        <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5;" id="jd-match-summary">
+          Strong alignment with core competencies in ESP32 firmware, C/C++ architecture, MQTT telemetry, and full-stack integration.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. RESUME MODAL -->
+  <div class="modal-backdrop" id="modal-resume">
+    <div class="glass-card" style="width: 100%; max-width: 650px; background: #0b0f19; border-color: rgba(245, 158, 11, 0.4); padding: 2rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: #fff;">Engineering Credentials & Resume</h3>
+        <button class="btn-close-modal" style="background: transparent; border: none; color: var(--text-muted); cursor: pointer;">
+          <i data-lucide="x" style="width: 1.1rem; height: 1.1rem;"></i>
+        </button>
+      </div>
+      <div style="line-height: 1.7; font-size: 0.875rem; color: var(--text-muted);">
+        <p><strong style="color: #fff;">Candidate:</strong> Gnani (Gnanendra)</p>
+        <p><strong style="color: #fff;">Education:</strong> B.Tech in Electronics & Communication Engineering (ECE)</p>
+        <p><strong style="color: #fff;">Core Focus:</strong> ESP32, Arduino, Microcontroller Architecture, IoT Telemetry, C/C++, React, Node.js</p>
+        <p><strong style="color: #fff;">Contact:</strong> gnanendra714@gmail.com</p>
+      </div>
+      <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+        <a href="mailto:gnanendra714@gmail.com?subject=Interview%20Invitation" class="btn-gold">
+          <span>Request Full PDF Resume</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================== SCRIPTS ======================== -->
+  <script>
+    // ----------------------------------------------------
+    // 1. WEB AUDIO SYNTHESIZER (SOUND FX)
+    // ----------------------------------------------------
+    class AudioSynthesizer {
+      constructor() {
+        this.ctx = null;
+        this.muted = false;
+      }
+
+      init() {
+        if (!this.ctx && typeof AudioContext !== 'undefined') {
+          this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+      }
+
+      playClick() {
+        if (this.muted) return;
+        this.init();
+        if (!this.ctx) return;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(800, this.ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(300, this.ctx.currentTime + 0.05);
+        gain.gain.setValueAtTime(0.08, this.ctx.currentTime);
+        gain.gain.linearRampToValueAtTime(0.001, this.ctx.currentTime + 0.05);
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start();
+        osc.stop(this.ctx.currentTime + 0.05);
+      }
+
+      playRelaySnap() {
+        if (this.muted) return;
+        this.init();
+        if (!this.ctx) return;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'square';
+        osc.frequency.setValueAtTime(140, this.ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(40, this.ctx.currentTime + 0.08);
+        gain.gain.setValueAtTime(0.15, this.ctx.currentTime);
+        gain.gain.linearRampToValueAtTime(0.001, this.ctx.currentTime + 0.08);
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start();
+        osc.stop(this.ctx.currentTime + 0.08);
+      }
+
+      playChirp() {
+        if (this.muted) return;
+        this.init();
+        if (!this.ctx) return;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(600, this.ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(1200, this.ctx.currentTime + 0.12);
+        gain.gain.setValueAtTime(0.08, this.ctx.currentTime);
+        gain.gain.linearRampToValueAtTime(0.001, this.ctx.currentTime + 0.12);
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start();
+        osc.stop(this.ctx.currentTime + 0.12);
+      }
+    }
+    const sound = new AudioSynthesizer();
+
+    // ----------------------------------------------------
+    // 2. TOAST NOTIFICATION SYSTEM
+    // ----------------------------------------------------
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.innerHTML = `
+        <i data-lucide="${type === 'success' ? 'check-circle-2' : 'info'}" style="width: 1.1rem; height: 1.1rem; color: var(--gold);"></i>
+        <span>${message}</span>
+      `;
+      container.appendChild(toast);
+      lucide.createIcons();
+      requestAnimationFrame(() => toast.classList.add('show'));
+
+      sound.playClick();
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 350);
+      }, 3500);
+    }
+
+    // ----------------------------------------------------
+    // 3. MAGNETIC CUSTOM CURSOR
+    // ----------------------------------------------------
+    const cursorDot = document.getElementById('cursor-dot');
+    const cursorRing = document.getElementById('cursor-ring');
+    let mouseX = -100, mouseY = -100;
+    let ringX = -100, ringY = -100;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      cursorDot.style.left = `${mouseX}px`;
+      cursorDot.style.top = `${mouseY}px`;
+    });
+
+    function renderCursor() {
+      ringX += (mouseX - ringX) * 0.18;
+      ringY += (mouseY - ringY) * 0.18;
+      cursorRing.style.left = `${ringX}px`;
+      cursorRing.style.top = `${ringY}px`;
+      requestAnimationFrame(renderCursor);
+    }
+    renderCursor();
+
+    document.querySelectorAll('a, button, input, [role="button"]').forEach((el) => {
+      el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+    });
+
+    // ----------------------------------------------------
+    // 4. DYNAMIC CYBER-CIRCUIT CANVAS BACKGROUND
+    // ----------------------------------------------------
+    const circuitCanvas = document.getElementById('circuit-canvas');
+    const circuitCtx = circuitCanvas.getContext('2d');
+    let cWidth = (circuitCanvas.width = window.innerWidth);
+    let cHeight = (circuitCanvas.height = window.innerHeight);
+
+    window.addEventListener('resize', () => {
+      cWidth = circuitCanvas.width = window.innerWidth;
+      cHeight = circuitCanvas.height = window.innerHeight;
+    });
+
+    const nodes = [];
+    const nodeCount = 38;
+    for (let i = 0; i < nodeCount; i++) {
+      nodes.push({
+        x: Math.random() * cWidth,
+        y: Math.random() * cHeight,
+        vx: (Math.random() - 0.5) * 0.6,
+        vy: (Math.random() - 0.5) * 0.6,
+        radius: Math.random() * 2 + 1.5,
+      });
+    }
+
+    function renderCircuit() {
+      circuitCtx.clearRect(0, 0, cWidth, cHeight);
+
+      // Draw connections
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const dx = nodes[i].x - nodes[j].x;
+          const dy = nodes[i].y - nodes[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 160) {
+            const alpha = 1 - dist / 160;
+            circuitCtx.strokeStyle = `rgba(6, 182, 212, ${alpha * 0.25})`;
+            circuitCtx.lineWidth = 1;
+            circuitCtx.beginPath();
+            circuitCtx.moveTo(nodes[i].x, nodes[i].y);
+            circuitCtx.lineTo(nodes[j].x, nodes[j].y);
+            circuitCtx.stroke();
+          }
+        }
+      }
+
+      // Update and draw nodes
+      nodes.forEach((n) => {
+        n.x += n.vx;
+        n.y += n.vy;
+
+        if (n.x < 0 || n.x > cWidth) n.vx *= -1;
+        if (n.y < 0 || n.y > cHeight) n.vy *= -1;
+
+        circuitCtx.fillStyle = '#f59e0b';
+        circuitCtx.beginPath();
+        circuitCtx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
+        circuitCtx.fill();
+      });
+
+      requestAnimationFrame(renderCircuit);
+    }
+    renderCircuit();
+
+    // ----------------------------------------------------
+    // 5. MATRIX DIGITAL RAIN CODE OVERLAY
+    // ----------------------------------------------------
+    const matrixCanvas = document.getElementById('matrix-canvas');
+    const matrixCtx = matrixCanvas.getContext('2d');
+    let mWidth = (matrixCanvas.width = window.innerWidth);
+    let mHeight = (matrixCanvas.height = window.innerHeight);
+
+    const chars = '01GNANI_ESP32_MQTT_ARM_C++_CIRCUIT_I2C_UART_ADC_VCC_GND';
+    const fontSize = 14;
+    const columns = Math.floor(mWidth / fontSize);
+    const drops = Array(columns).fill(1);
+    let matrixActive = false;
+
+    function renderMatrix() {
+      if (!matrixActive) return;
+      matrixCtx.fillStyle = 'rgba(3, 7, 18, 0.08)';
+      matrixCtx.fillRect(0, 0, mWidth, mHeight);
+
+      matrixCtx.fillStyle = '#10b981';
+      matrixCtx.font = `${fontSize}px var(--font-mono)`;
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = chars.charAt(Math.floor(Math.random() * chars.length));
+        matrixCtx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > mHeight && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+      requestAnimationFrame(renderMatrix);
+    }
+
+    document.getElementById('btn-toggle-matrix').addEventListener('click', () => {
+      matrixActive = !matrixActive;
+      matrixCanvas.classList.toggle('active', matrixActive);
+      sound.playClick();
+      if (matrixActive) {
+        showToast('Matrix Rain Mode Activated!');
+        renderMatrix();
+      } else {
+        showToast('Matrix Rain Deactivated');
+      }
+    });
+
+    // ----------------------------------------------------
+    // 6. THREE.JS 3D MICROCHIP HERO CANVAS
+    // ----------------------------------------------------
+    let threeInitialized = false;
+    function initThreeHero() {
+      if (threeInitialized) return;
+      const container = document.getElementById('three-hero-container');
+      if (!container || typeof THREE === 'undefined') return;
+      threeInitialized = true;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+      camera.position.set(0, 3.2, 6.2);
+      camera.lookAt(0, 0, 0);
+
+      const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+      renderer.setSize(container.clientWidth, container.clientHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      container.appendChild(renderer.domElement);
+
+      // Chip Body (Black Matte Package)
+      const chipGroup = new THREE.Group();
+
+      const bodyGeo = new THREE.BoxGeometry(2.6, 0.28, 2.6);
+      const bodyMat = new THREE.MeshStandardMaterial({
+        color: 0x0f172a,
+        roughness: 0.35,
+        metalness: 0.2,
+      });
+      const chipBody = new THREE.Mesh(bodyGeo, bodyMat);
+      chipGroup.appendChild(chipBody);
+
+      // Gold Heat Spreader / Center Die
+      const dieGeo = new THREE.BoxGeometry(1.6, 0.32, 1.6);
+      const dieMat = new THREE.MeshStandardMaterial({
+        color: 0xd97706,
+        metalness: 0.85,
+        roughness: 0.2,
+      });
+      const chipDie = new THREE.Mesh(dieGeo, dieMat);
+      chipGroup.appendChild(chipDie);
+
+      // Pins on all 4 sides
+      const pinMat = new THREE.MeshStandardMaterial({ color: 0xf59e0b, metalness: 0.9, roughness: 0.1 });
+      const pinCountPerSide = 8;
+      const spacing = 2.4 / pinCountPerSide;
+
+      for (let i = 0; i < pinCountPerSide; i++) {
+        const offset = -1.1 + i * spacing;
+        
+        // North/South pins
+        const p1 = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.08, 0.45), pinMat);
+        p1.position.set(offset, 0, 1.45);
+        chipGroup.appendChild(p1);
+
+        const p2 = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.08, 0.45), pinMat);
+        p2.position.set(offset, 0, -1.45);
+        chipGroup.appendChild(p2);
+
+        // East/West pins
+        const p3 = new THREE.Mesh(new THREE.BoxGeometry(0.45, 0.08, 0.12), pinMat);
+        p3.position.set(1.45, 0, offset);
+        chipGroup.appendChild(p3);
+
+        const p4 = new THREE.Mesh(new THREE.BoxGeometry(0.45, 0.08, 0.12), pinMat);
+        p4.position.set(-1.45, 0, offset);
+        chipGroup.appendChild(p4);
+      }
+
+      scene.add(chipGroup);
+
+      // Ambient & Point Lighting
+      const ambLight = new THREE.AmbientLight(0xffffff, 0.9);
+      scene.add(ambLight);
+
+      const cyanPoint = new THREE.PointLight(0x06b6d4, 2.5, 14);
+      cyanPoint.position.set(3, 4, 3);
+      scene.add(cyanPoint);
+
+      const goldPoint = new THREE.PointLight(0xf59e0b, 3, 14);
+      goldPoint.position.set(-3, -2, -3);
+      scene.add(goldPoint);
+
+      // Mouse Tilt Reaction
+      let targetRotX = 0;
+      let targetRotY = 0;
+
+      window.addEventListener('mousemove', (e) => {
+        const x = (e.clientX / window.innerWidth) - 0.5;
+        const y = (e.clientY / window.innerHeight) - 0.5;
+        targetRotX = y * 0.8;
+        targetRotY = x * 1.2;
+      });
+
+      let idleTime = 0;
+      function animate() {
+        requestAnimationFrame(animate);
+        idleTime += 0.02;
+
+        // Continuous smooth auto-rotation and floating bob in 3D
+        chipGroup.rotation.y += 0.009;
+        chipGroup.rotation.x = Math.sin(idleTime) * 0.2 + targetRotX * 0.4;
+        chipGroup.position.y = Math.sin(idleTime * 1.5) * 0.15;
+
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      window.addEventListener('resize', () => {
+        camera.aspect = container.clientWidth / container.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(container.clientWidth, container.clientHeight);
+      });
+    }
+
+    function tryInitThreeHero() {
+      const container = document.getElementById('three-hero-container');
+      if (!container) return;
+      if (typeof THREE === 'undefined') {
+        setTimeout(tryInitThreeHero, 150);
+        return;
+      }
+      initThreeHero();
+    }
+    window.addEventListener('DOMContentLoaded', tryInitThreeHero);
+    window.addEventListener('load', tryInitThreeHero);
+    setTimeout(tryInitThreeHero, 300);
+
+    // ----------------------------------------------------
+    // 7. TYPEWRITER SUBTITLE EFFECT
+    // ----------------------------------------------------
+    const roles = [
+      'Embedded Systems & IoT Engineer',
+      'ESP32 & Arduino Developer',
+      'Full-Stack Software Developer',
+      'ECE Physical Computing Architect',
+    ];
+    let roleIdx = 0;
+    let charIdx = 0;
+    let isDeleting = false;
+    const typewriterEl = document.getElementById('role-typewriter');
+
+    function tickTypewriter() {
+      const currentRole = roles[roleIdx];
+      if (isDeleting) {
+        typewriterEl.textContent = currentRole.substring(0, charIdx - 1);
+        charIdx--;
+      } else {
+        typewriterEl.textContent = currentRole.substring(0, charIdx + 1);
+        charIdx++;
+      }
+
+      let speed = isDeleting ? 40 : 80;
+
+      if (!isDeleting && charIdx === currentRole.length) {
+        speed = 1800; // Pause at end
+        isDeleting = true;
+      } else if (isDeleting && charIdx === 0) {
+        isDeleting = false;
+        roleIdx = (roleIdx + 1) % roles.length;
+        speed = 300;
+      }
+
+      setTimeout(tickTypewriter, speed);
+    }
+    tickTypewriter();
+
+    // ----------------------------------------------------
+    // 8. OSCILLOSCOPE REAL-TIME CANVAS
+    // ----------------------------------------------------
+    const oscCanvas = document.getElementById('oscilloscope-canvas');
+    const oscCtx = oscCanvas.getContext('2d');
+    let oscWidth = (oscCanvas.width = oscCanvas.clientWidth);
+    let oscHeight = (oscCanvas.height = oscCanvas.clientHeight);
+    let oscPhase = 0;
+    let currentWaveType = 'sine';
+
+    function renderOscilloscope() {
+      oscCtx.fillStyle = '#020617';
+      oscCtx.fillRect(0, 0, oscWidth, oscHeight);
+
+      // Grid Lines
+      oscCtx.strokeStyle = 'rgba(6, 182, 212, 0.12)';
+      oscCtx.lineWidth = 1;
+      for (let x = 0; x < oscWidth; x += 30) {
+        oscCtx.beginPath();
+        oscCtx.moveTo(x, 0);
+        oscCtx.lineTo(x, oscHeight);
+        oscCtx.stroke();
+      }
+      for (let y = 0; y < oscHeight; y += 30) {
+        oscCtx.beginPath();
+        oscCtx.moveTo(0, y);
+        oscCtx.lineTo(oscWidth, y);
+        oscCtx.stroke();
+      }
+
+      // Draw Waveform
+      oscCtx.strokeStyle = '#22d3ee';
+      oscCtx.lineWidth = 2.5;
+      oscCtx.shadowColor = '#06b6d4';
+      oscCtx.shadowBlur = 8;
+      oscCtx.beginPath();
+
+      const voltageVal = parseFloat(document.getElementById('slider-voltage').value) || 3.3;
+      const amplitude = (voltageVal / 5.0) * (oscHeight * 0.35);
+
+      for (let x = 0; x < oscWidth; x++) {
+        let y = oscHeight / 2;
+        if (currentWaveType === 'sine') {
+          y = oscHeight / 2 - Math.sin(x * 0.04 + oscPhase) * amplitude;
+        } else if (currentWaveType === 'pwm') {
+          const cycle = (x * 0.04 + oscPhase) % (Math.PI * 2);
+          y = cycle < Math.PI ? oscHeight / 2 - amplitude : oscHeight / 2 + amplitude;
+        } else if (currentWaveType === 'analog') {
+          const noise = (Math.random() - 0.5) * 12;
+          y = oscHeight / 2 - Math.sin(x * 0.02 + oscPhase) * amplitude + noise;
+        }
+
+        if (x === 0) oscCtx.moveTo(x, y);
+        else oscCtx.lineTo(x, y);
+      }
+      oscCtx.stroke();
+      oscCtx.shadowBlur = 0;
+
+      oscPhase += 0.08;
+      requestAnimationFrame(renderOscilloscope);
+    }
+    renderOscilloscope();
+
+    document.querySelectorAll('.wave-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.wave-btn').forEach((b) => {
+          b.style.background = 'transparent';
+          b.style.color = 'var(--text-muted)';
+        });
+        btn.style.background = 'var(--cyan)';
+        btn.style.color = '#030712';
+        currentWaveType = btn.dataset.wave;
+        sound.playClick();
+      });
+    });
+
+    // ----------------------------------------------------
+    // 9. HARDWARE WORKBENCH SLIDERS & RELAY TOGGLES
+    // ----------------------------------------------------
+    const sliderVoltage = document.getElementById('slider-voltage');
+    const sliderTemp = document.getElementById('slider-temp');
+    const sliderRssi = document.getElementById('slider-rssi');
+    const serialLogs = document.getElementById('serial-terminal-logs');
+
+    function appendSerialLog(msg) {
+      const now = new Date().toTimeString().split(' ')[0] + '.' + Math.floor(Math.random() * 900 + 100);
+      const div = document.createElement('div');
+      div.textContent = `[${now}] ${msg}`;
+      serialLogs.appendChild(div);
+      serialLogs.scrollTop = serialLogs.scrollHeight;
+    }
+
+    sliderVoltage.addEventListener('input', (e) => {
+      const v = parseFloat(e.target.value).toFixed(2);
+      document.getElementById('label-slider-voltage').textContent = `${v} V`;
+      document.getElementById('val-voltage-badge').textContent = `${v}V`;
+    });
+    sliderVoltage.addEventListener('change', (e) => {
+      appendSerialLog(`[ADC CH0] Voltage calibrated: ${e.target.value}V`);
+    });
+
+    sliderTemp.addEventListener('input', (e) => {
+      const t = parseFloat(e.target.value).toFixed(1);
+      document.getElementById('label-slider-temp').textContent = `${t} °C`;
+      document.getElementById('val-temp-badge').textContent = `${t}°C`;
+    });
+    sliderTemp.addEventListener('change', (e) => {
+      appendSerialLog(`[DHT22] Core temperature: ${e.target.value}°C`);
+    });
+
+    sliderRssi.addEventListener('input', (e) => {
+      const r = e.target.value;
+      document.getElementById('label-slider-rssi').textContent = `${r} dBm`;
+      document.getElementById('val-rssi-badge').textContent = `${r} dBm`;
+    });
+
+    // Relays
+    const toggleRelay1 = document.getElementById('toggle-relay-1');
+    const toggleRelay2 = document.getElementById('toggle-relay-2');
+
+    toggleRelay1.addEventListener('change', (e) => {
+      sound.playRelaySnap();
+      const statusEl = document.getElementById('status-relay-1');
+      if (e.target.checked) {
+        statusEl.textContent = 'STATE: ENERGIZED (ACTIVE)';
+        statusEl.style.color = 'var(--emerald)';
+        appendSerialLog('[RELAY 1] GPIO 18 driven HIGH. Solenoid valve open.');
+      } else {
+        statusEl.textContent = 'STATE: DE-ENERGIZED';
+        statusEl.style.color = 'var(--text-muted)';
+        appendSerialLog('[RELAY 1] GPIO 18 driven LOW. Solenoid valve closed.');
+      }
+    });
+
+    toggleRelay2.addEventListener('change', (e) => {
+      sound.playRelaySnap();
+      const statusEl = document.getElementById('status-relay-2');
+      if (e.target.checked) {
+        statusEl.textContent = 'STATE: ENERGIZED (ACTIVE)';
+        statusEl.style.color = 'var(--emerald)';
+        appendSerialLog('[RELAY 2] GPIO 19 driven HIGH. Cooling fan running.');
+      } else {
+        statusEl.textContent = 'STATE: DE-ENERGIZED';
+        statusEl.style.color = 'var(--text-muted)';
+        appendSerialLog('[RELAY 2] GPIO 19 driven LOW. Cooling fan halted.');
+      }
+    });
+
+    document.getElementById('btn-clear-serial').addEventListener('click', () => {
+      serialLogs.innerHTML = '';
+      appendSerialLog('[SYSTEM] Log buffer cleared.');
+    });
+
+    // ----------------------------------------------------
+    // 10. SKILL MATRIX CATEGORY FILTER
+    // ----------------------------------------------------
+    document.querySelectorAll('.filter-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        sound.playClick();
+        document.querySelectorAll('.filter-btn').forEach((b) => {
+          b.style.background = 'transparent';
+          b.style.color = 'var(--text-muted)';
+        });
+        btn.style.background = 'var(--gold)';
+        btn.style.color = '#030712';
+
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.skill-card').forEach((card) => {
+          if (filter === 'all' || card.dataset.category === filter) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // ----------------------------------------------------
+    // 11. HACKER CLI TERMINAL LOGIC
+    // ----------------------------------------------------
+    const terminalForm = document.getElementById('terminal-input-form');
+    const terminalInput = document.getElementById('terminal-input');
+    const terminalHistory = document.getElementById('terminal-history');
+
+    terminalForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const cmd = terminalInput.value.trim().toLowerCase();
+      if (!cmd) return;
+      sound.playClick();
+
+      const userRow = document.createElement('div');
+      userRow.innerHTML = `<span style="color: var(--gold);">$</span> ${cmd}`;
+      terminalHistory.appendChild(userRow);
+
+      const respRow = document.createElement('div');
+      respRow.style.color = '#94a3b8';
+      respRow.style.marginBottom = '0.5rem';
+
+      switch (cmd) {
+        case 'help':
+          respRow.innerHTML = `Commands: <span style="color:var(--cyan)">about</span>, <span style="color:var(--cyan)">skills</span>, <span style="color:var(--cyan)">projects</span>, <span style="color:var(--cyan)">workbench</span>, <span style="color:var(--cyan)">matrix</span>, <span style="color:var(--cyan)">ping</span>, <span style="color:var(--cyan)">clear</span>`;
+          break;
+        case 'about':
+          respRow.textContent = 'Gnani: B.Tech ECE Engineer specializing in ESP32, physical computing, and full-stack web.';
+          break;
+        case 'skills':
+          respRow.textContent = 'ESP32, C/C++, MQTT, I2C, SPI, React, Node.js, Express, MongoDB, PlatformIO.';
+          break;
+        case 'projects':
+          respRow.textContent = '1. Smart Irrigation Telemetry  2. MediScan AI  3. Solar Photovoltaic Grid Monitor.';
+          break;
+        case 'workbench':
+          window.location.hash = '#workbench';
+          respRow.textContent = 'Navigating to IoT Workbench simulator...';
+          break;
+        case 'matrix':
+          document.getElementById('btn-toggle-matrix').click();
+          respRow.textContent = 'Toggled Matrix rain overlay.';
+          break;
+        case 'ping':
+          respRow.textContent = 'PONG! ESP32 core clock responding at 240MHz (RTT 1.2ms).';
+          break;
+        case 'clear':
+          terminalHistory.innerHTML = '';
+          terminalInput.value = '';
+          return;
+        default:
+          respRow.innerHTML = `Command not recognized: <span style="color:#ef4444">${cmd}</span>. Type 'help' for options.`;
+      }
+
+      terminalHistory.appendChild(respRow);
+      terminalHistory.scrollTop = terminalHistory.scrollHeight;
+      terminalInput.value = '';
+    });
+
+    // ----------------------------------------------------
+    // 12. AI FIRMWARE ARCHITECT GENERATOR
+    // ----------------------------------------------------
+    document.getElementById('btn-generate-firmware').addEventListener('click', () => {
+      sound.playChirp();
+      const codeBox = document.getElementById('architect-code-output');
+      codeBox.textContent = '// Synthesizing ESP32 firmware with FreeRTOS tasks...';
+
+      setTimeout(() => {
+        codeBox.textContent = `#include <WiFi.h>
+#include <PubSubClient.h>
+#include <Wire.h>
+#include <Adafruit_SSD1306.h>
+
+#define RELAY_PIN 18
+#define SOIL_ADC_PIN 34
+const char* mqtt_server = "broker.hivemq.com";
+
+WiFiClient espClient;
+PubSubClient client(espClient);
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(RELAY_PIN, OUTPUT);
+  digitalWrite(RELAY_PIN, LOW);
+  
+  WiFi.begin("IoT-Mesh", "secure_key");
+  while (WiFi.status() != WL_CONNECTED) delay(500);
+  
+  client.setServer(mqtt_server, 1883);
+  Serial.println("[SYSTEM] ESP32 Firmware initialized successfully.");
+}
+
+void loop() {
+  int rawADC = analogRead(SOIL_ADC_PIN);
+  float moisture = map(rawADC, 4095, 1200, 0, 100);
+  
+  if (moisture < 35.0) {
+    digitalWrite(RELAY_PIN, HIGH); // Valve Open
+  } else {
+    digitalWrite(RELAY_PIN, LOW);  // Valve Closed
+  }
+  delay(1000);
+}`;
+        showToast('Firmware Synthesized Successfully!', 'success');
+      }, 700);
+    });
+
+    // ----------------------------------------------------
+    // 13. AI COPILOT CHAT LOGIC
+    // ----------------------------------------------------
+    const copilotForm = document.getElementById('copilot-input-form');
+    const copilotInput = document.getElementById('copilot-input');
+    const copilotMsgs = document.getElementById('copilot-messages');
+
+    copilotForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const query = copilotInput.value.trim();
+      if (!query) return;
+
+      const userBubble = document.createElement('div');
+      userBubble.style.alignSelf = 'flex-end';
+      userBubble.style.background = 'rgba(245, 158, 11, 0.2)';
+      userBubble.style.border = '1px solid rgba(245, 158, 11, 0.4)';
+      userBubble.style.padding = '0.75rem 1rem';
+      userBubble.style.borderRadius = '0.75rem';
+      userBubble.style.maxWidth = '85%';
+      userBubble.style.fontSize = '0.85rem';
+      userBubble.textContent = query;
+      copilotMsgs.appendChild(userBubble);
+
+      copilotInput.value = '';
+      copilotMsgs.scrollTop = copilotMsgs.scrollHeight;
+
+      // Simulated intelligence
+      setTimeout(() => {
+        const aiBubble = document.createElement('div');
+        aiBubble.style.alignSelf = 'flex-start';
+        aiBubble.style.background = 'rgba(255, 255, 255, 0.05)';
+        aiBubble.style.padding = '0.75rem 1rem';
+        aiBubble.style.borderRadius = '0.75rem';
+        aiBubble.style.maxWidth = '85%';
+        aiBubble.style.fontSize = '0.85rem';
+        aiBubble.style.lineHeight = '1.5';
+        aiBubble.textContent = `Regarding "${query}": Gnani combines B.Tech ECE training with practical ESP32 and Full-Stack development. He writes bare-metal C++ firmware for microcontrollers and delivers production cloud dashboards in React and Node.js.`;
+        copilotMsgs.appendChild(aiBubble);
+        copilotMsgs.scrollTop = copilotMsgs.scrollHeight;
+        sound.playChirp();
+      }, 600);
+    });
+
+    // ----------------------------------------------------
+    // 14. AI JOB COMPATIBILITY EVALUATOR
+    // ----------------------------------------------------
+    document.getElementById('btn-eval-jd').addEventListener('click', () => {
+      const jdText = document.getElementById('jd-input').value.trim();
+      if (!jdText) {
+        showToast('Please paste a Job Description first!');
+        return;
+      }
+      sound.playChirp();
+      document.getElementById('jd-result-box').style.display = 'block';
+      showToast('Candidate Alignment Evaluated!', 'success');
+    });
+
+    // ----------------------------------------------------
+    // 15. SPEECH SYNTHESIS ELEVATOR PITCH
+    // ----------------------------------------------------
+    document.getElementById('btn-play-voice-pitch').addEventListener('click', () => {
+      sound.playChirp();
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const msg = new SpeechSynthesisUtterance(
+          "Hello and welcome! I am Gnani, an Electronics and Communication Engineer specializing in Embedded Systems, IoT architecture, and Full-Stack development. From writing bare-metal firmware on ESP32 microcontrollers to deploying scalable React and Node.js applications, I build complete, real-world systems."
+        );
+        msg.rate = 1.0;
+        window.speechSynthesis.speak(msg);
+        showToast('Playing AI Elevator Voice Pitch...');
+      } else {
+        showToast('Audio synthesis not supported in this browser.');
+      }
+    });
+
+    // ----------------------------------------------------
+    // 16. MODAL SYSTEM HANDLERS
+    // ----------------------------------------------------
+    function openModal(id) {
+      sound.playClick();
+      const modal = document.getElementById(id);
+      if (modal) modal.classList.add('open');
+    }
+    function closeModal() {
+      document.querySelectorAll('.modal-backdrop').forEach((m) => m.classList.remove('open'));
+    }
+
+    document.querySelectorAll('.btn-close-modal').forEach((b) => b.addEventListener('click', closeModal));
+    document.querySelectorAll('.modal-backdrop').forEach((m) => {
+      m.addEventListener('click', (e) => {
+        if (e.target === m) closeModal();
+      });
+    });
+
+    document.getElementById('btn-open-terminal').addEventListener('click', () => openModal('modal-terminal'));
+    document.getElementById('btn-floating-copilot').addEventListener('click', () => openModal('modal-copilot'));
+    document.getElementById('btn-open-architect').addEventListener('click', () => openModal('modal-architect'));
+    document.getElementById('btn-floating-jd').addEventListener('click', () => openModal('modal-jd'));
+    document.getElementById('btn-open-resume-modal').addEventListener('click', () => openModal('modal-resume'));
+
+    // Audio Mute Toggle
+    const audioIcon = document.getElementById('audio-icon');
+    document.getElementById('btn-toggle-audio').addEventListener('click', () => {
+      sound.muted = !sound.muted;
+      if (sound.muted) {
+        audioIcon.setAttribute('data-lucide', 'volume-x');
+        showToast('Synthesizer Audio Muted');
+      } else {
+        audioIcon.setAttribute('data-lucide', 'volume-2');
+        sound.playClick();
+        showToast('Synthesizer Audio Unmuted');
+      }
+      lucide.createIcons();
+    });
+
+    // Contact Form Submission
+    document.getElementById('contact-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      sound.playChirp();
+      showToast('Transmission Received! Gnani will respond within 24 hours.', 'success');
+      e.target.reset();
+    });
+
+    // Project card click opens resume/architect
+    document.querySelectorAll('.project-card').forEach((card) => {
+      card.addEventListener('click', () => {
+        openModal('modal-architect');
+      });
+    });
+
+    // Smooth Anchor Navigation without page jumps or reload loops
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href').replace('#', '');
+        if (targetId === 'home' || !targetId) {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          if (window.location.hash) {
+            window.history.replaceState(null, '', window.location.pathname);
+          }
+          return;
+        }
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+          e.preventDefault();
+          const navOffset = 75;
+          const targetTop = targetEl.getBoundingClientRect().top + window.pageYOffset - navOffset;
+          window.scrollTo({ top: targetTop, behavior: 'smooth' });
+          window.history.replaceState(null, '', `#${targetId}`);
+        }
+      });
+    });
+
+    // Initialize Lucide Icons
+    window.addEventListener('DOMContentLoaded', () => {
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      }
+    });
+  </script>
+</body>
+</html>

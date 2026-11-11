@@ -1,0 +1,76 @@
+
+# ==========================================
+# Dependencies
+# ==========================================
+node_modules/
+**/node_modules/
+
+# ==========================================
+# Build outputs
+# ==========================================
+dist/
+**/dist/
+build/
+**/build/
+
+# ==========================================
+# Environment variables and secrets
+# ==========================================
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# ==========================================
+# Logs
+# ==========================================
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# ==========================================
+# Testing and coverage
+# ==========================================
+coverage/
+.nyc_output/
+
+# ==========================================
+# Local caches
+# ==========================================
+.cache/
+.parcel-cache/
+.vite/
+**/.vite/
+.eslintcache
+*.tsbuildinfo
+
+# ==========================================
+# Operating system files
+# ==========================================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ==========================================
+# IDE and editor files
+# ==========================================
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+
+# ==========================================
+# Temporary files
+# ==========================================
+*.tmp
+*.temp
+*.swp
+*.swo
+*.bak
+
+# ==========================================
+# Package manager files
+# ==========================================
+# Keep package-lock.json, bun.lock and other lockfiles

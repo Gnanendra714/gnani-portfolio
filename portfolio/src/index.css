@@ -1,0 +1,571 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-display: "Cinzel", serif;
+    --font-sans: "Plus Jakarta Sans", sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+
+    /* Shared theme colors */
+    --theme-accent: var(--theme-accent-500);
+    --theme-text-primary: #f8fafc;
+    --theme-text-secondary: #cbd5e1;
+
+    /* Default Theme: Electric Sapphire (#3B82F6 & #06B6D4) - Silicon Engineering */
+    --theme-name: "sapphire";
+    --theme-bg-base: #040d21;
+    --theme-bg-surface: #081636;
+    --theme-bg-card: #0e204c;
+    --theme-bg-card-hover: #142c65;
+    --theme-border: rgba(59, 130, 246, 0.24);
+    --theme-border-hover: rgba(96, 165, 250, 0.55);
+    --theme-bg-gradient: radial-gradient(
+      ellipse 90% 60% at 50% -10%,
+      #0d2a6b 0%,
+      #040d21 65%
+    );
+    --theme-accent-200: #bfdbfe;
+    --theme-accent-300: #93c5fd;
+    --theme-accent-400: #60a5fa;
+    --theme-accent-500: #3b82f6;
+    --theme-accent-600: #2563eb;
+    --theme-accent-rgb: 59, 130, 246;
+    --theme-accent-light-rgb: 96, 165, 250;
+    --theme-accent-dark-rgb: 37, 99, 235;
+    --theme-grid-dot: rgba(59, 130, 246, 0.16);
+
+    /* Tailwind v4 color overrides so all UI/UX accents update */
+    --color-amber-200: var(--theme-accent-200);
+    --color-amber-300: var(--theme-accent-300);
+    --color-amber-400: var(--theme-accent-400);
+    --color-amber-500: var(--theme-accent-500);
+    --color-amber-600: var(--theme-accent-600);
+  }
+
+  [data-theme="emerald"] {
+    --theme-name: "emerald";
+    --theme-bg-base: #03140e;
+    --theme-bg-surface: #072218;
+    --theme-bg-card: #0b2d21;
+    --theme-bg-card-hover: #103b2c;
+    --theme-border: rgba(16, 185, 129, 0.22);
+    --theme-border-hover: rgba(52, 211, 153, 0.5);
+    --theme-bg-gradient: radial-gradient(
+      ellipse 90% 60% at 50% -10%,
+      #083c2a 0%,
+      #03140e 65%
+    );
+    --theme-accent-200: #a7f3d0;
+    --theme-accent-300: #6ee7b7;
+    --theme-accent-400: #34d399;
+    --theme-accent-500: #10b981;
+    --theme-accent-600: #059669;
+    --theme-accent-rgb: 16, 185, 129;
+    --theme-accent-light-rgb: 52, 211, 153;
+    --theme-accent-dark-rgb: 5, 150, 105;
+    --theme-grid-dot: rgba(16, 185, 129, 0.16);
+
+    --color-amber-200: var(--theme-accent-200);
+    --color-amber-300: var(--theme-accent-300);
+    --color-amber-400: var(--theme-accent-400);
+    --color-amber-500: var(--theme-accent-500);
+    --color-amber-600: var(--theme-accent-600);
+  }
+
+  [data-theme="sapphire"] {
+    --theme-name: "sapphire";
+    --theme-bg-base: #040d21;
+    --theme-bg-surface: #081636;
+    --theme-bg-card: #0e204c;
+    --theme-bg-card-hover: #142c65;
+    --theme-border: rgba(59, 130, 246, 0.22);
+    --theme-border-hover: rgba(96, 165, 250, 0.52);
+    --theme-bg-gradient: radial-gradient(
+      ellipse 90% 60% at 50% -10%,
+      #0d2a6b 0%,
+      #040d21 65%
+    );
+    --theme-accent-200: #bfdbfe;
+    --theme-accent-300: #93c5fd;
+    --theme-accent-400: #60a5fa;
+    --theme-accent-500: #3b82f6;
+    --theme-accent-600: #2563eb;
+    --theme-accent-rgb: 59, 130, 246;
+    --theme-accent-light-rgb: 96, 165, 250;
+    --theme-accent-dark-rgb: 37, 99, 235;
+    --theme-grid-dot: rgba(59, 130, 246, 0.16);
+
+    --color-amber-200: var(--theme-accent-200);
+    --color-amber-300: var(--theme-accent-300);
+    --color-amber-400: var(--theme-accent-400);
+    --color-amber-500: var(--theme-accent-500);
+    --color-amber-600: var(--theme-accent-600);
+  }
+
+  [data-theme="amethyst"] {
+    --theme-name: "amethyst";
+    --theme-bg-base: #110621;
+    --theme-bg-surface: #1a0a33;
+    --theme-bg-card: #270e4b;
+    --theme-bg-card-hover: #341464;
+    --theme-border: rgba(168, 85, 247, 0.24);
+    --theme-border-hover: rgba(192, 132, 252, 0.55);
+    --theme-bg-gradient: radial-gradient(
+      ellipse 90% 60% at 50% -10%,
+      #350f68 0%,
+      #110621 65%
+    );
+    --theme-accent-200: #e9d5ff;
+    --theme-accent-300: #d8b4fe;
+    --theme-accent-400: #c084fc;
+    --theme-accent-500: #a855f7;
+    --theme-accent-600: #9333ea;
+    --theme-accent-rgb: 168, 85, 247;
+    --theme-accent-light-rgb: 192, 132, 252;
+    --theme-accent-dark-rgb: 147, 51, 234;
+    --theme-grid-dot: rgba(168, 85, 247, 0.16);
+
+    --color-amber-200: var(--theme-accent-200);
+    --color-amber-300: var(--theme-accent-300);
+    --color-amber-400: var(--theme-accent-400);
+    --color-amber-500: var(--theme-accent-500);
+    --color-amber-600: var(--theme-accent-600);
+  }
+
+  [data-theme="cyan"] {
+    --theme-name: "cyan";
+    --theme-bg-base: #02141f;
+    --theme-bg-surface: #052030;
+    --theme-bg-card: #092e44;
+    --theme-bg-card-hover: #0d3d5b;
+    --theme-border: rgba(6, 182, 212, 0.22);
+    --theme-border-hover: rgba(34, 211, 238, 0.52);
+    --theme-bg-gradient: radial-gradient(
+      ellipse 90% 60% at 50% -10%,
+      #063c59 0%,
+      #02141f 65%
+    );
+    --theme-accent-200: #a5f3fc;
+    --theme-accent-300: #67e8f9;
+    --theme-accent-400: #22d3ee;
+    --theme-accent-500: #06b6d4;
+    --theme-accent-600: #0891b2;
+    --theme-accent-rgb: 6, 182, 212;
+    --theme-accent-light-rgb: 34, 211, 238;
+    --theme-accent-dark-rgb: 8, 145, 178;
+    --theme-grid-dot: rgba(6, 182, 212, 0.16);
+
+    --color-amber-200: var(--theme-accent-200);
+    --color-amber-300: var(--theme-accent-300);
+    --color-amber-400: var(--theme-accent-400);
+    --color-amber-500: var(--theme-accent-500);
+    --color-amber-600: var(--theme-accent-600);
+  }
+
+  [data-theme="crimson"] {
+    --theme-name: "crimson";
+    --theme-bg-base: #18040a;
+    --theme-bg-surface: #240710;
+    --theme-bg-card: #350b17;
+    --theme-bg-card-hover: #471020;
+    --theme-border: rgba(244, 63, 94, 0.24);
+    --theme-border-hover: rgba(251, 113, 133, 0.55);
+    --theme-bg-gradient: radial-gradient(
+      ellipse 90% 60% at 50% -10%,
+      #4c0a1a 0%,
+      #18040a 65%
+    );
+    --theme-accent-200: #fecdd3;
+    --theme-accent-300: #fda4af;
+    --theme-accent-400: #fb7185;
+    --theme-accent-500: #f43f5e;
+    --theme-accent-600: #e11d48;
+    --theme-accent-rgb: 244, 63, 94;
+    --theme-accent-light-rgb: 251, 113, 133;
+    --theme-accent-dark-rgb: 225, 29, 72;
+    --theme-grid-dot: rgba(244, 63, 94, 0.16);
+
+    --color-amber-200: var(--theme-accent-200);
+    --color-amber-300: var(--theme-accent-300);
+    --color-amber-400: var(--theme-accent-400);
+    --color-amber-500: var(--theme-accent-500);
+    --color-amber-600: var(--theme-accent-600);
+  }
+
+  [data-theme="amber"] {
+    --theme-name: "amber";
+    --theme-bg-base: #150d03;
+    --theme-bg-surface: #221505;
+    --theme-bg-card: #321f08;
+    --theme-bg-card-hover: #442a0b;
+    --theme-border: rgba(245, 158, 11, 0.24);
+    --theme-border-hover: rgba(251, 191, 36, 0.55);
+    --theme-bg-gradient: radial-gradient(
+      ellipse 90% 60% at 50% -10%,
+      #462503 0%,
+      #150d03 65%
+    );
+    --theme-accent-200: #fef3c7;
+    --theme-accent-300: #fde68a;
+    --theme-accent-400: #fbbf24;
+    --theme-accent-500: #f59e0b;
+    --theme-accent-600: #d97706;
+    --theme-accent-rgb: 245, 158, 11;
+    --theme-accent-light-rgb: 251, 191, 36;
+    --theme-accent-dark-rgb: 217, 119, 6;
+    --theme-grid-dot: rgba(245, 158, 11, 0.16);
+
+    --color-amber-200: var(--theme-accent-200);
+    --color-amber-300: var(--theme-accent-300);
+    --color-amber-400: var(--theme-accent-400);
+    --color-amber-500: var(--theme-accent-500);
+    --color-amber-600: var(--theme-accent-600);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--theme-bg-base);
+    background-image: var(--theme-bg-gradient);
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    color: #e2e8f0;
+    overflow-x: hidden;
+    transition:
+      background-color 0.4s ease,
+      border-color 0.4s ease;
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-serif-display {
+    font-family: var(--font-display);
+  }
+}
+
+/* Custom scrollbar matching active theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--theme-bg-base);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--theme-bg-card-hover);
+  border: 1px solid var(--theme-border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-accent-500);
+}
+
+/* Subtle circuit grid background pattern with theme reactive dots */
+.bg-circuit-grid {
+  background-image:
+    radial-gradient(var(--theme-grid-dot) 1px, transparent 1px),
+    radial-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size:
+    32px 32px,
+    16px 16px;
+  background-position:
+    0 0,
+    16px 16px;
+}
+
+/* ================= High-Impact Keyframe Animations ================= */
+@keyframes floatSlow {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+@keyframes floatDelayed {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(-1deg);
+  }
+}
+
+@keyframes pulseGlowRing {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+    box-shadow: 0 0 15px rgba(var(--theme-accent-rgb), 0.2);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.03);
+    box-shadow: 0 0 35px rgba(var(--theme-accent-rgb), 0.5);
+  }
+}
+
+@keyframes borderSweep {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes scanlineAnim {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(1000%);
+  }
+}
+
+@keyframes radarSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ledBlinkAnim {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.8));
+  }
+}
+
+.animate-float {
+  animation: floatSlow 5s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: floatDelayed 6s ease-in-out 1s infinite;
+}
+
+.animate-glow-ring {
+  animation: pulseGlowRing 3.5s ease-in-out infinite;
+}
+
+.animate-shimmer-sweep {
+  background-size: 200% 200%;
+  animation: borderSweep 4s ease infinite;
+}
+
+.animate-spin-slow {
+  animation: radarSpin 16s linear infinite;
+}
+
+.animate-led-blink {
+  animation: ledBlinkAnim 1.2s ease-in-out infinite;
+}
+
+/* ================= Page Transition & Visit Animations ================= */
+@keyframes pageRevealStagger {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.985);
+    filter: blur(4px);
+  }
+  60% {
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+  }
+}
+
+@keyframes scanlineSweep {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.8;
+  }
+  70% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(1200%);
+    opacity: 0;
+  }
+}
+
+@keyframes circuitTraceSweep {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes radarPingRing {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+    box-shadow: 0 0 0 0 rgba(var(--theme-accent-rgb), 0.6);
+  }
+  70% {
+    transform: scale(1.35);
+    opacity: 0;
+    box-shadow: 0 0 0 14px rgba(var(--theme-accent-rgb), 0);
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+    box-shadow: 0 0 0 0 rgba(var(--theme-accent-rgb), 0);
+  }
+}
+
+@keyframes floatUpHover {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Page Visit Animation utilities */
+.page-fade-in,
+.animate-page-enter {
+  animation: pageRevealStagger 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.stagger-1 {
+  animation: pageRevealStagger 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.05s
+    forwards;
+  opacity: 0;
+}
+
+.stagger-2 {
+  animation: pageRevealStagger 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.12s
+    forwards;
+  opacity: 0;
+}
+
+.stagger-3 {
+  animation: pageRevealStagger 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.18s
+    forwards;
+  opacity: 0;
+}
+
+.stagger-4 {
+  animation: pageRevealStagger 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.24s
+    forwards;
+  opacity: 0;
+}
+
+.stagger-5 {
+  animation: pageRevealStagger 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+  opacity: 0;
+}
+
+/* Scroll Up and Back to Top Animation */
+.animate-scroll-up-bounce {
+  animation: floatUpHover 2.5s ease-in-out infinite;
+}
+
+.animate-radar-ring {
+  animation: radarPingRing 2.2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+}
+
+.trace-line-glow {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(var(--theme-accent-light-rgb), 0.8),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: circuitTraceSweep 3s linear infinite;
+}
+
+/* Cyber Card with dynamic hover trace sweep */
+.cyber-card {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cyber-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(var(--theme-accent-light-rgb), 0.5);
+  box-shadow: 0 10px 30px -10px rgba(var(--theme-accent-rgb), 0.25);
+}
+
+/* ================= Scroll Reveal Animations (with safe visible fallback) ================= */
+.scroll-reveal {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal-left {
+  opacity: 1;
+  transform: translateX(0);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal-right {
+  opacity: 1;
+  transform: translateX(0);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal-scale {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+/* Project modal - theme-aware scrollbar */
+.project-modal-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--theme-accent) transparent;
+  overscroll-behavior: contain;
+}
+
+.project-modal-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.project-modal-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.project-modal-scroll::-webkit-scrollbar-thumb {
+  background: var(--theme-accent);
+  border-radius: 20px;
+}
